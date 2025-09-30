@@ -16,7 +16,6 @@ const TopNavigation = ({
   const tabs = [
     { id: "portfolio", label: "Portfolio" },
     { id: "analytics", label: "Analytics" },
-    { id: "tokenization", label: "Tokenization" },
     { id: "defi", label: "DeFi" }
   ];
 

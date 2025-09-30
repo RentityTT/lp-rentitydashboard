@@ -10,10 +10,9 @@ import DeFi from "./DeFi";
 import Tokenization from "./Tokenization";
 import Settings from "./Settings";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { Badge } from "./ui/badge";
-import { TrendingUp, TrendingDown } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import BlockchainPaymentHistory from "./BlockchainPaymentHistory";
 const Dashboard = () => {
@@ -84,18 +83,6 @@ const Dashboard = () => {
       status: "Active"
     }
   ];
-
-  const borrowPositions = [
-    {
-      property: "Juniper Tower",
-      amount: "$100,000",
-      apr: "7.8%",
-      duration: "2 years",
-      startDate: "Aug 1, 2024",
-      network: "Solana",
-      status: "Active"
-    }
-  ];
   return <div className="flex h-screen bg-background scale-90 origin-top-left">
       <Sidebar activeItem={activeItem} onItemClick={handleSidebarClick} />
       
@@ -131,116 +118,60 @@ const Dashboard = () => {
                     <div>
                       <Card>
                         <CardHeader>
-                          <CardTitle>DeFi Positions Overview</CardTitle>
+                          <CardTitle>Liquidity Pool Positions</CardTitle>
                         </CardHeader>
                         <CardContent>
-                          <div className="grid grid-cols-3 gap-6 mb-6">
+                          <div className="grid grid-cols-2 gap-6 mb-6">
                             <div>
-                              <p className="text-sm text-muted-foreground mb-1">Total Supplied</p>
+                              <p className="text-sm text-muted-foreground mb-1">Total Liquidity Provided</p>
                               <p className="text-2xl font-bold flex items-center gap-2">
                                 $510,500
                                 <TrendingUp className="w-4 h-4 text-green-500" />
                               </p>
                             </div>
                             <div>
-                              <p className="text-sm text-muted-foreground mb-1">Total Borrowed</p>
-                              <p className="text-2xl font-bold flex items-center gap-2">
-                                $100,000
-                                <TrendingDown className="w-4 h-4 text-orange-500" />
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-muted-foreground mb-1">Net Position</p>
-                              <p className="text-2xl font-bold text-green-500">$410,500</p>
+                              <p className="text-sm text-muted-foreground mb-1">Average APY</p>
+                              <p className="text-2xl font-bold text-green-500">7.32%</p>
                             </div>
                           </div>
 
-                          <Tabs defaultValue="earn" className="w-full">
-                            <TabsList className="grid w-full grid-cols-2">
-                              <TabsTrigger value="earn">Earn Positions</TabsTrigger>
-                              <TabsTrigger value="borrow">Borrow Positions</TabsTrigger>
-                            </TabsList>
-                            
-                            <TabsContent value="earn" className="mt-4">
-                              <Table>
-                                <TableHeader>
-                                  <TableRow>
-                                    <TableHead>Pool</TableHead>
-                                    <TableHead>Amount</TableHead>
-                                    <TableHead>APY</TableHead>
-                                    <TableHead>Duration</TableHead>
-                                    <TableHead>Start Date</TableHead>
-                                    <TableHead>Network</TableHead>
-                                    <TableHead>Status</TableHead>
-                                  </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                  {earnPositions.map((position, index) => (
-                                    <TableRow key={index}>
-                                      <TableCell className="font-medium">{position.pool}</TableCell>
-                                      <TableCell>{position.amount}</TableCell>
-                                      <TableCell className="text-green-500">{position.apy}</TableCell>
-                                      <TableCell>{position.duration}</TableCell>
-                                      <TableCell>{position.startDate}</TableCell>
-                                      <TableCell>{position.network}</TableCell>
-                                      <TableCell>
-                                        <Badge variant="default">{position.status}</Badge>
-                                      </TableCell>
-                                    </TableRow>
-                                  ))}
-                                  <TableRow className="border-t-2 font-bold bg-muted/50">
-                                    <TableCell className="text-lg">TOTAL</TableCell>
-                                    <TableCell className="text-lg">$510,500</TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                  </TableRow>
-                                </TableBody>
-                              </Table>
-                            </TabsContent>
-                            
-                            <TabsContent value="borrow" className="mt-4">
-                              <Table>
-                                <TableHeader>
-                                  <TableRow>
-                                    <TableHead>Property</TableHead>
-                                    <TableHead>Amount</TableHead>
-                                    <TableHead>APR</TableHead>
-                                    <TableHead>Duration</TableHead>
-                                    <TableHead>Start Date</TableHead>
-                                    <TableHead>Network</TableHead>
-                                    <TableHead>Status</TableHead>
-                                  </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                  {borrowPositions.map((position, index) => (
-                                    <TableRow key={index}>
-                                      <TableCell className="font-medium">{position.property}</TableCell>
-                                      <TableCell>{position.amount}</TableCell>
-                                      <TableCell className="text-orange-500">{position.apr}</TableCell>
-                                      <TableCell>{position.duration}</TableCell>
-                                      <TableCell>{position.startDate}</TableCell>
-                                      <TableCell>{position.network}</TableCell>
-                                      <TableCell>
-                                        <Badge variant="default">{position.status}</Badge>
-                                      </TableCell>
-                                    </TableRow>
-                                  ))}
-                                  <TableRow className="border-t-2 font-bold bg-muted/50">
-                                    <TableCell className="text-lg">TOTAL</TableCell>
-                                    <TableCell className="text-lg">$100,000</TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                  </TableRow>
-                                </TableBody>
-                              </Table>
-                            </TabsContent>
-                          </Tabs>
+                          <Table>
+                            <TableHeader>
+                              <TableRow>
+                                <TableHead>Pool</TableHead>
+                                <TableHead>Amount</TableHead>
+                                <TableHead>APY</TableHead>
+                                <TableHead>Duration</TableHead>
+                                <TableHead>Start Date</TableHead>
+                                <TableHead>Network</TableHead>
+                                <TableHead>Status</TableHead>
+                              </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                              {earnPositions.map((position, index) => (
+                                <TableRow key={index}>
+                                  <TableCell className="font-medium">{position.pool}</TableCell>
+                                  <TableCell>{position.amount}</TableCell>
+                                  <TableCell className="text-green-500">{position.apy}</TableCell>
+                                  <TableCell>{position.duration}</TableCell>
+                                  <TableCell>{position.startDate}</TableCell>
+                                  <TableCell>{position.network}</TableCell>
+                                  <TableCell>
+                                    <Badge variant="default">{position.status}</Badge>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                              <TableRow className="border-t-2 font-bold bg-muted/50">
+                                <TableCell className="text-lg">TOTAL</TableCell>
+                                <TableCell className="text-lg">$510,500</TableCell>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                                <TableCell></TableCell>
+                              </TableRow>
+                            </TableBody>
+                          </Table>
                         </CardContent>
                       </Card>
                     </div>
