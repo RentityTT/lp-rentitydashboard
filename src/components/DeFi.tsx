@@ -149,10 +149,6 @@ const DeFi = () => {
     amountNumeric: 275500,
     apy: "6.82%",
     apyNumeric: 6.82,
-    monthlyEarnings: "$1,566",
-    monthlyEarningsNumeric: 1566,
-    bonusRentTokens: "125",
-    bonusRentTokensNumeric: 125,
     duration: "Flexible",
     startDate: "Apr 1, 2024",
     status: "Active",
@@ -164,9 +160,7 @@ const DeFi = () => {
       principalAmount: "$275,500",
       currentValue: "$289,625",
       yieldEarned: "$14,125",
-      monthlyEarnings: "$1,566",
       projectedAnnualYield: "$18,793",
-      bonusRentTokens: "125 RENT",
       poolUtilization: "85%",
       nextDistribution: "Jan 15, 2025",
       distributionAmount: "$1,564"
@@ -178,10 +172,6 @@ const DeFi = () => {
     amountNumeric: 150000,
     apy: "9.2%",
     apyNumeric: 9.2,
-    monthlyEarnings: "$1,150",
-    monthlyEarningsNumeric: 1150,
-    bonusRentTokens: "95",
-    bonusRentTokensNumeric: 95,
     duration: "Flexible",
     startDate: "Jun 15, 2024",
     status: "Active",
@@ -193,9 +183,7 @@ const DeFi = () => {
       principalAmount: "$150,000",
       currentValue: "$157,562",
       yieldEarned: "$7,562",
-      monthlyEarnings: "$1,150",
       projectedAnnualYield: "$13,800",
-      bonusRentTokens: "95 RENT",
       poolUtilization: "92%",
       nextDistribution: "Jan 15, 2025",
       distributionAmount: "$1,150"
@@ -207,10 +195,6 @@ const DeFi = () => {
     amountNumeric: 85000,
     apy: "6.95%",
     apyNumeric: 6.95,
-    monthlyEarnings: "$492",
-    monthlyEarningsNumeric: 492,
-    bonusRentTokens: "68",
-    bonusRentTokensNumeric: 68,
     duration: "Flexible",
     startDate: "Aug 1, 2024",
     status: "Active",
@@ -222,9 +206,7 @@ const DeFi = () => {
       principalAmount: "$85,000",
       currentValue: "$87,474",
       yieldEarned: "$2,474",
-      monthlyEarnings: "$492",
       projectedAnnualYield: "$5,908",
-      bonusRentTokens: "68 RENT",
       poolUtilization: "88%",
       nextDistribution: "Jan 15, 2025",
       distributionAmount: "$487"
@@ -339,41 +321,32 @@ const DeFi = () => {
 
       {/* Metrics Overview Section */}
       <div className="p-8 bg-primary-gradient text-primary-foreground border-0 shadow-lg rounded-lg">
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Total Supplied</p>
+              <p className="text-sm">Total Deposits</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold mb-1">$510,500</p>
-            <p className="text-sm">Across 3 pools</p>
+            <p className="text-4xl font-bold mb-1">$5.25B</p>
+            <p className="text-sm">5.25B USDC</p>
           </div>
           
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Monthly Earnings</p>
+              <p className="text-sm">Active Loans</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold mb-1">$3,208</p>
-            <p className="text-sm text-success">+8.2% avg APY</p>
+            <p className="text-4xl font-bold mb-1">$3.19B</p>
+            <p className="text-sm">3.19B USDC</p>
           </div>
           
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Bonus $RENT Tokens</p>
+              <p className="text-sm">Estimated Yield</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold mb-1">288</p>
-            <p className="text-sm">RENT earned this month</p>
-          </div>
-
-          <div>
-            <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Total Earned</p>
-              <Info className="h-4 w-4" />
-            </div>
-            <p className="text-4xl font-bold">$24,161</p>
-            <p className="text-sm">Since inception</p>
+            <p className="text-4xl font-bold">10.0%</p>
+            <p className="text-sm">Annual APY</p>
           </div>
         </div>
       </div>
@@ -391,9 +364,9 @@ const DeFi = () => {
                 <TableHead>Type</TableHead>
                 <TableHead className="text-right">Amount</TableHead>
                 <TableHead className="text-right">APY</TableHead>
-                <TableHead className="text-right">Monthly Earnings</TableHead>
-                <TableHead className="text-right">Bonus $RENT</TableHead>
+                <TableHead>Duration</TableHead>
                 <TableHead>Start Date</TableHead>
+                <TableHead>Network</TableHead>
                 <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
@@ -413,14 +386,16 @@ const DeFi = () => {
                       <TableCell className="text-right font-mono text-sm text-success">
                         {position.apy}
                       </TableCell>
-                      <TableCell className="text-right font-mono text-sm text-[hsl(158,64%,52%)]">
-                        {position.monthlyEarnings}
-                      </TableCell>
-                      <TableCell className="text-right font-mono text-sm text-[hsl(90,70%,60%)]">
-                        {position.bonusRentTokens} RENT
+                      <TableCell className="text-sm text-muted-foreground">
+                        {position.duration}
                       </TableCell>
                       <TableCell className="text-sm text-muted-foreground">
                         {position.startDate}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="text-xs">
+                          {position.network}
+                        </Badge>
                       </TableCell>
                       <TableCell>
                         <Badge variant="default" className="bg-success/20 text-success">
@@ -499,48 +474,25 @@ const DeFi = () => {
                         </CardContent>
                       </Card>
 
-                       {/* Yield Information */}
+                      {/* Yield Information */}
                       <Card>
                         <CardHeader className="bg-muted/30">
                           <CardTitle className="text-lg">Yield & Distribution</CardTitle>
                         </CardHeader>
                         <CardContent className="pt-6">
-                          <div className="grid grid-cols-3 gap-4">
-                            <div className="p-4 border rounded-lg bg-[hsl(158,64%,52%)]/5">
-                              <p className="text-sm text-muted-foreground mb-1">Monthly Earnings</p>
-                              <p className="text-2xl font-bold text-[hsl(158,64%,52%)] mb-3">{position.details.monthlyEarnings}</p>
-                              <p className="text-xs text-muted-foreground">
-                                Per month
-                              </p>
-                            </div>
-                            <div className="p-4 border rounded-lg bg-[hsl(90,70%,60%)]/5">
-                              <p className="text-sm text-muted-foreground mb-1">Bonus $RENT Tokens</p>
-                              <p className="text-2xl font-bold text-[hsl(90,70%,60%)] mb-3">{position.details.bonusRentTokens}</p>
-                              <p className="text-xs text-muted-foreground">
-                                Monthly rewards
-                              </p>
-                            </div>
+                          <div className="grid grid-cols-2 gap-6">
                             <div className="p-4 border rounded-lg bg-success/5">
                               <p className="text-sm text-muted-foreground mb-1">Projected Annual Yield</p>
                               <p className="text-2xl font-bold text-success mb-3">{position.details.projectedAnnualYield}</p>
                               <p className="text-xs text-muted-foreground">
-                                Based on APY of {position.apy}
+                                Based on current APY of {position.apy}
                               </p>
                             </div>
-                          </div>
-                          <div className="grid grid-cols-2 gap-4 mt-4">
                             <div className="p-4 border rounded-lg">
                               <p className="text-sm text-muted-foreground mb-1">Next Distribution</p>
                               <p className="text-xl font-bold mb-3">{position.details.nextDistribution}</p>
                               <p className="text-sm text-muted-foreground mb-1">Amount</p>
                               <p className="text-lg font-bold text-success">{position.details.distributionAmount}</p>
-                            </div>
-                            <div className="p-4 border rounded-lg">
-                              <p className="text-sm text-muted-foreground mb-1">Pool Utilization</p>
-                              <p className="text-xl font-bold">{position.details.poolUtilization}</p>
-                              <p className="text-xs text-muted-foreground mt-2">
-                                Higher utilization = more earnings
-                              </p>
                             </div>
                           </div>
                         </CardContent>
