@@ -26,9 +26,9 @@ const TopNavigation = ({
           <button
             key={tab.id}
             className={cn(
-              "px-6 py-2 rounded-full font-medium transition-all text-sm",
+              "px-8 py-3 rounded-full font-medium transition-all text-base",
               activeTab === tab.id
-                ? "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground"
+                ? "bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white"
                 : "text-foreground hover:text-foreground/80"
             )}
             onClick={() => onTabClick(tab.id)}
