@@ -1371,7 +1371,7 @@ const DeFi = () => {
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Total Value</p>
-                    <p className="text-lg font-semibold font-mono">{selectedPool.totalValue}</p>
+                    <p className="text-lg font-semibold">{selectedPool.totalValue}</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Properties</p>
@@ -1387,7 +1387,7 @@ const DeFi = () => {
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Market Cap</p>
-                    <p className="text-lg font-semibold font-mono">{selectedPool.marketCap}</p>
+                    <p className="text-lg font-semibold">{selectedPool.marketCap}</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Growth</p>
@@ -1400,7 +1400,7 @@ const DeFi = () => {
                 <>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Total Deposits</p>
-                    <p className="text-lg font-semibold font-mono">{selectedPool.deposits}</p>
+                    <p className="text-lg font-semibold">{selectedPool.deposits}</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Supply APY</p>
@@ -1429,7 +1429,7 @@ const DeFi = () => {
                 <>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Total Value</p>
-                    <p className="text-lg font-semibold font-mono">{selectedPool.totalValue}</p>
+                    <p className="text-lg font-semibold">{selectedPool.totalValue}</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Units</p>
@@ -1445,7 +1445,7 @@ const DeFi = () => {
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Market Cap</p>
-                    <p className="text-lg font-semibold font-mono">{selectedPool.marketCap}</p>
+                    <p className="text-lg font-semibold">{selectedPool.marketCap}</p>
                   </div>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Growth</p>
