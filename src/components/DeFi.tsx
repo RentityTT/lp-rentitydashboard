@@ -223,31 +223,33 @@ const DeFi = () => {
 
   const pools = activeMode === "bonds" ? bondPools : loanPools;
   const earnPositions = [{
-    pool: "Residential Prime Pool",
+    pool: "Residential Prime Bond",
     type: "Supply",
-    amount: "$275,500",
-    amountNumeric: 275500,
-    apy: "9.82%",
-    apyNumeric: 9.82,
+    productType: "Bond",
+    amount: "$175,500",
+    amountNumeric: 175500,
+    apy: "7.82%",
+    apyNumeric: 7.82,
     duration: "Flexible",
     startDate: "Apr 1, 2024",
     status: "Active",
     network: "Solana",
     details: {
-      positionId: "RPP-2024-04-001",
+      positionId: "RPB-2024-04-001",
       depositDate: "Apr 1, 2024",
       daysActive: 275,
-      principalAmount: "$275,500",
-      currentValue: "$289,625",
+      principalAmount: "$175,500",
+      currentValue: "$189,625",
       yieldEarned: "$14,125",
-      projectedAnnualYield: "$18,793",
-      poolUtilization: "85%",
+      projectedAnnualYield: "$13,793",
+      poolUtilization: "65%",
       nextDistribution: "Jan 15, 2025",
-      distributionAmount: "$1,564"
+      distributionAmount: "$1,164"
     }
   }, {
-    pool: "Hong Kong Market-Based Pool",
+    pool: "Hong Kong Market-Based Loan",
     type: "Supply",
+    productType: "Loan",
     amount: "$150,000",
     amountNumeric: 150000,
     apy: "11.2%",
@@ -257,20 +259,21 @@ const DeFi = () => {
     status: "Active",
     network: "Solana",
     details: {
-      positionId: "HK-2024-06-001",
+      positionId: "HKL-2024-06-001",
       depositDate: "Jun 15, 2024",
       daysActive: 200,
       principalAmount: "$150,000",
       currentValue: "$157,562",
       yieldEarned: "$7,562",
-      projectedAnnualYield: "$13,800",
+      projectedAnnualYield: "$16,800",
       poolUtilization: "92%",
       nextDistribution: "Jan 15, 2025",
-      distributionAmount: "$1,150"
+      distributionAmount: "$1,400"
     }
   }, {
-    pool: "Multi-Family Housing",
+    pool: "Multi-Family Housing Loan",
     type: "Supply",
+    productType: "Loan",
     amount: "$85,000",
     amountNumeric: 85000,
     apy: "9.95%",
@@ -280,16 +283,16 @@ const DeFi = () => {
     status: "Active",
     network: "Ethereum",
     details: {
-      positionId: "MFH-2024-08-001",
+      positionId: "MFHL-2024-08-001",
       depositDate: "Aug 1, 2024",
       daysActive: 153,
       principalAmount: "$85,000",
       currentValue: "$87,474",
       yieldEarned: "$2,474",
-      projectedAnnualYield: "$5,908",
+      projectedAnnualYield: "$8,458",
       poolUtilization: "88%",
       nextDistribution: "Jan 15, 2025",
-      distributionAmount: "$487"
+      distributionAmount: "$704"
     }
   }];
   const borrowPositions = [{
@@ -469,6 +472,7 @@ const DeFi = () => {
             <TableHeader>
               <TableRow>
                 <TableHead>Pool</TableHead>
+                <TableHead>Product</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead className="text-right">Amount</TableHead>
                 <TableHead className="text-right">APY</TableHead>
@@ -483,6 +487,11 @@ const DeFi = () => {
                   <DialogTrigger asChild>
                     <TableRow className="hover:bg-muted/50 cursor-pointer">
                       <TableCell className="font-medium">{position.pool}</TableCell>
+                      <TableCell>
+                        <Badge variant={position.productType === "Bond" ? "outline" : "secondary"} className={position.productType === "Bond" ? "text-xs" : "bg-primary/20 text-primary text-xs"}>
+                          {position.productType}
+                        </Badge>
+                      </TableCell>
                       <TableCell>
                         <Badge variant="secondary" className="bg-[hsl(158,64%,52%)]/20 text-[hsl(158,64%,52%)]">
                           {position.type}
