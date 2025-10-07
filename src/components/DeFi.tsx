@@ -648,7 +648,7 @@ const DeFi = () => {
                     <TableCell className="text-right">
                       <Button 
                         size="sm" 
-                        className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 rounded-full px-6"
+                        className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
                       >
                         Fund Pool
                       </Button>
@@ -706,7 +706,7 @@ const DeFi = () => {
                     <TableCell className="text-right">
                       <Button 
                         size="sm" 
-                        className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 rounded-full px-6"
+                        className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
                       >
                         Fund Pool
                       </Button>
