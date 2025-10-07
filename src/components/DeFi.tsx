@@ -700,11 +700,13 @@ const DeFi = () => {
         <div className="mb-6">
           <h2 className="text-2xl font-bold">Pools</h2>
         </div>
-        <Tabs defaultValue="markets" className="w-full">
+        <Tabs defaultValue={activeMode === "bonds" ? "markets" : "category"} className="w-full">
           <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
-            <TabsTrigger value="markets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
-              Markets
-            </TabsTrigger>
+            {activeMode === "bonds" && (
+              <TabsTrigger value="markets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
+                Markets
+              </TabsTrigger>
+            )}
             <TabsTrigger value="category" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               Category
             </TabsTrigger>
