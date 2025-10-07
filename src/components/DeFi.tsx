@@ -705,6 +705,76 @@ const DeFi = () => {
               </TableBody>
             </Table>
           </TabsContent>
+
+          <TabsContent value="more" className="pt-6">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Property</TableHead>
+                  <TableHead className="text-right">Total Value</TableHead>
+                  <TableHead className="text-right">Units</TableHead>
+                  <TableHead className="text-right">Avg Return</TableHead>
+                  <TableHead className="text-right">Occupancy</TableHead>
+                  <TableHead className="text-right">Market Cap</TableHead>
+                  <TableHead className="text-right">Growth</TableHead>
+                  <TableHead className="text-right">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow className="hover:bg-muted/50">
+                  <TableCell className="font-medium">Century City</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$45,678,900</TableCell>
+                  <TableCell className="text-right font-mono text-sm">156</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">10.5%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">96%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$52.3M</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">+15.2%</TableCell>
+                  <TableCell className="text-right">
+                    <Button 
+                      size="sm" 
+                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                    >
+                      Fund Pool
+                    </Button>
+                  </TableCell>
+                </TableRow>
+                <TableRow className="hover:bg-muted/50">
+                  <TableCell className="font-medium">Atmosphere</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$38,234,500</TableCell>
+                  <TableCell className="text-right font-mono text-sm">124</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">9.8%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">94%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$43.1M</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">+13.8%</TableCell>
+                  <TableCell className="text-right">
+                    <Button 
+                      size="sm" 
+                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                    >
+                      Fund Pool
+                    </Button>
+                  </TableCell>
+                </TableRow>
+                <TableRow className="hover:bg-muted/50">
+                  <TableCell className="font-medium">Sphere</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$52,890,200</TableCell>
+                  <TableCell className="text-right font-mono text-sm">178</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">11.2%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">98%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$61.5M</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">+16.5%</TableCell>
+                  <TableCell className="text-right">
+                    <Button 
+                      size="sm" 
+                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                    >
+                      Fund Pool
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TabsContent>
         </Tabs>
       </Card>
         </TabsContent>
