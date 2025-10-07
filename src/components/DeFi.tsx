@@ -662,46 +662,40 @@ const DeFi = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Vault</TableHead>
-                  <TableHead className="text-right">Deposits</TableHead>
-                  <TableHead>Curator</TableHead>
-                  <TableHead>Collateral</TableHead>
-                  <TableHead className="text-right">Supply APY</TableHead>
-                  <TableHead className="text-right">Borrow APY</TableHead>
-                  <TableHead>Network</TableHead>
-                  <TableHead className="text-right">Utilization</TableHead>
+                  <TableHead>Location</TableHead>
+                  <TableHead>Country</TableHead>
+                  <TableHead className="text-right">Total Value</TableHead>
+                  <TableHead className="text-right">Properties</TableHead>
+                  <TableHead className="text-right">Avg Return</TableHead>
+                  <TableHead className="text-right">Occupancy</TableHead>
+                  <TableHead className="text-right">Market Cap</TableHead>
+                  <TableHead className="text-right">Growth</TableHead>
                   <TableHead className="text-right">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {pools.map((pool, index) => <TableRow key={index} className="hover:bg-muted/50">
                     <TableCell className="font-medium">{pool.name}</TableCell>
+                    <TableCell className="text-sm text-muted-foreground">
+                      {pool.network}
+                    </TableCell>
                     <TableCell className="text-right font-mono text-sm">
                       {pool.deposits}
                     </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {pool.curator}
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex gap-1">
-                        {pool.collateral.map((token, i) => <Badge key={i} variant="outline" className="text-xs">
-                            {token}
-                          </Badge>)}
-                      </div>
+                    <TableCell className="text-right font-mono text-sm">
+                      -
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm text-success">
                       {pool.supplyAPY}
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm">
-                      {pool.borrowAPY}
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant="secondary" className="text-xs">
-                        {pool.network}
-                      </Badge>
+                      {pool.utilization}
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm">
-                      {pool.utilization}
+                      {pool.deposits}
+                    </TableCell>
+                    <TableCell className="text-right font-mono text-sm text-success">
+                      {pool.borrowAPY}
                     </TableCell>
                     <TableCell className="text-right">
                       <Button 
