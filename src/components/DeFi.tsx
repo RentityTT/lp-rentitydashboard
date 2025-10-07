@@ -1407,10 +1407,6 @@ const DeFi = () => {
                     <p className="text-lg font-semibold text-success">{selectedPool.supplyAPY}</p>
                   </div>
                   <div className="space-y-1">
-                    <p className="text-sm text-muted-foreground">Borrow APY</p>
-                    <p className="text-lg font-semibold text-success">{selectedPool.borrowAPY}</p>
-                  </div>
-                  <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Utilization</p>
                     <p className="text-lg font-semibold">{selectedPool.utilization}</p>
                   </div>
