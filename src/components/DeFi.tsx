@@ -75,7 +75,7 @@ const DeFi = () => {
     deposits: "$1,245,678,901",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT"],
-    supplyAPY: "6.82%",
+    supplyAPY: "9.82%",
     borrowAPY: "7.45%",
     network: "Solana",
     utilization: "85%"
@@ -84,7 +84,7 @@ const DeFi = () => {
     deposits: "$892,345,123",
     curator: "Rentity Protocol",
     collateral: ["USDC", "DAI"],
-    supplyAPY: "7.12%",
+    supplyAPY: "10.12%",
     borrowAPY: "8.05%",
     network: "Solana",
     utilization: "78%"
@@ -93,7 +93,7 @@ const DeFi = () => {
     deposits: "$678,234,567",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT", "DAI"],
-    supplyAPY: "6.45%",
+    supplyAPY: "9.45%",
     borrowAPY: "7.15%",
     network: "Solana",
     utilization: "72%"
@@ -102,7 +102,7 @@ const DeFi = () => {
     deposits: "$567,890,234",
     curator: "Rentity Protocol",
     collateral: ["USDC"],
-    supplyAPY: "6.95%",
+    supplyAPY: "9.95%",
     borrowAPY: "7.75%",
     network: "Ethereum",
     utilization: "88%"
@@ -111,7 +111,7 @@ const DeFi = () => {
     deposits: "$445,123,678",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT"],
-    supplyAPY: "7.35%",
+    supplyAPY: "10.35%",
     borrowAPY: "8.25%",
     network: "Solana",
     utilization: "82%"
@@ -120,7 +120,7 @@ const DeFi = () => {
     deposits: "$389,456,890",
     curator: "Rentity Protocol",
     collateral: ["USDC", "DAI"],
-    supplyAPY: "6.65%",
+    supplyAPY: "9.65%",
     borrowAPY: "7.35%",
     network: "Solana",
     utilization: "75%"
@@ -129,7 +129,7 @@ const DeFi = () => {
     deposits: "$312,567,234",
     curator: "Rentity Protocol",
     collateral: ["USDC"],
-    supplyAPY: "6.28%",
+    supplyAPY: "9.28%",
     borrowAPY: "6.95%",
     network: "Arbitrum",
     utilization: "68%"
@@ -138,7 +138,7 @@ const DeFi = () => {
     deposits: "$267,890,123",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT"],
-    supplyAPY: "6.15%",
+    supplyAPY: "9.15%",
     borrowAPY: "6.85%",
     network: "Solana",
     utilization: "65%"
