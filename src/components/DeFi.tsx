@@ -663,7 +663,6 @@ const DeFi = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Location</TableHead>
-                  <TableHead>Country</TableHead>
                   <TableHead className="text-right">Total Value</TableHead>
                   <TableHead className="text-right">Properties</TableHead>
                   <TableHead className="text-right">Avg Return</TableHead>
@@ -676,9 +675,6 @@ const DeFi = () => {
               <TableBody>
                 {pools.map((pool, index) => <TableRow key={index} className="hover:bg-muted/50">
                     <TableCell className="font-medium">{pool.name}</TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {pool.network}
-                    </TableCell>
                     <TableCell className="text-right font-mono text-sm">
                       {pool.deposits}
                     </TableCell>
