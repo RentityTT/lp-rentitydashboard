@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import TopNavigation from "./TopNavigation";
 import CapitalCard from "./CapitalCard";
-import PropertiesTable from "./PropertiesTable";
+
 import RecentActivity from "./RecentActivity";
 import Analytics from "./Analytics";
 import Wallet from "./Wallet";
@@ -96,7 +96,6 @@ const Dashboard = () => {
                     <div className="flex gap-8 mb-8">
                       <div className="flex-1">
                         <CapitalCard />
-                        <PropertiesTable />
                       </div>
                       
                       <RecentActivity />
