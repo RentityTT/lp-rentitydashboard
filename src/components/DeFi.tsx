@@ -473,7 +473,6 @@ const DeFi = () => {
               <TableRow>
                 <TableHead>Pool</TableHead>
                 <TableHead>Product</TableHead>
-                <TableHead>Type</TableHead>
                 <TableHead className="text-right">Amount</TableHead>
                 <TableHead className="text-right">APY</TableHead>
                 <TableHead>Duration</TableHead>
@@ -490,11 +489,6 @@ const DeFi = () => {
                       <TableCell>
                         <Badge variant={position.productType === "Bond" ? "outline" : "secondary"} className={position.productType === "Bond" ? "text-xs" : "bg-primary/20 text-primary text-xs"}>
                           {position.productType}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="secondary" className="bg-[hsl(158,64%,52%)]/20 text-[hsl(158,64%,52%)]">
-                          {position.type}
                         </Badge>
                       </TableCell>
                       <TableCell className="text-right font-mono text-sm">
