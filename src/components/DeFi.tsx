@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
@@ -617,6 +618,7 @@ const DeFi = () => {
                   <TableHead className="text-right">Occupancy</TableHead>
                   <TableHead className="text-right">Market Cap</TableHead>
                   <TableHead className="text-right">Growth</TableHead>
+                  <TableHead className="text-right">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -642,6 +644,11 @@ const DeFi = () => {
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm text-success">
                       {market.growth}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button size="sm" variant="default">
+                        Fund Pool
+                      </Button>
                     </TableCell>
                   </TableRow>)}
               </TableBody>
