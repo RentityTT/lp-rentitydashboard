@@ -43,30 +43,33 @@ const Dashboard = () => {
 
   const earnPositions = [
     {
-      pool: "Residential Prime Pool",
-      amount: "$275,500",
-      apy: "6.82%",
-      duration: "Flexible",
+      pool: "Residential Prime Bond",
+      productType: "Bond",
+      amount: "$175,500",
+      apy: "7.82%",
+      duration: "Fixed - 3 months remaining",
       startDate: "Apr 1, 2024",
       network: "Solana",
       status: "Active"
     },
     {
-      pool: "Hong Kong Market-Based Pool",
+      pool: "Hong Kong Market-Based Loan",
+      productType: "Loan",
       amount: "$150,000",
-      apy: "9.2%",
+      apy: "11.2%",
       duration: "Flexible",
       startDate: "Jun 15, 2024",
       network: "Solana",
       status: "Active"
     },
     {
-      pool: "Multi-Family Housing",
+      pool: "Multi-Family Housing Loan",
+      productType: "Loan",
       amount: "$85,000",
-      apy: "6.95%",
+      apy: "9.95%",
       duration: "Flexible",
       startDate: "Aug 1, 2024",
-      network: "Solana",
+      network: "Ethereum",
       status: "Active"
     }
   ];
@@ -106,13 +109,13 @@ const Dashboard = () => {
                               <div>
                                 <p className="text-sm text-muted-foreground mb-1">Total Liquidity Provided</p>
                                 <p className="text-2xl font-bold flex items-center gap-2">
-                                  $510,500
+                                  $410,500
                                   <TrendingUp className="w-4 h-4 text-green-500" />
                                 </p>
                               </div>
                               <div>
                                 <p className="text-sm text-muted-foreground mb-1">Average APY</p>
-                                <p className="text-2xl font-bold text-green-500">7.32%</p>
+                                <p className="text-2xl font-bold text-green-500">9.66%</p>
                               </div>
                             </div>
 
@@ -120,8 +123,9 @@ const Dashboard = () => {
                               <TableHeader>
                                 <TableRow>
                                   <TableHead>Pool</TableHead>
-                                  <TableHead>Amount</TableHead>
-                                  <TableHead>APY</TableHead>
+                                  <TableHead>Product</TableHead>
+                                  <TableHead className="text-right">Amount</TableHead>
+                                  <TableHead className="text-right">APY</TableHead>
                                   <TableHead>Duration</TableHead>
                                   <TableHead>Start Date</TableHead>
                                   <TableHead>Network</TableHead>
@@ -130,21 +134,29 @@ const Dashboard = () => {
                               </TableHeader>
                               <TableBody>
                                 {earnPositions.map((position, index) => (
-                                  <TableRow key={index}>
+                                  <TableRow key={index} className="hover:bg-muted/50">
                                     <TableCell className="font-medium">{position.pool}</TableCell>
-                                    <TableCell>{position.amount}</TableCell>
-                                    <TableCell className="text-green-500">{position.apy}</TableCell>
-                                    <TableCell>{position.duration}</TableCell>
-                                    <TableCell>{position.startDate}</TableCell>
-                                    <TableCell>{position.network}</TableCell>
                                     <TableCell>
-                                      <Badge variant="default">{position.status}</Badge>
+                                      <Badge variant={position.productType === "Bond" ? "outline" : "secondary"} className={position.productType === "Bond" ? "text-xs" : "bg-primary/20 text-primary text-xs"}>
+                                        {position.productType}
+                                      </Badge>
+                                    </TableCell>
+                                    <TableCell className="text-right font-mono text-sm">{position.amount}</TableCell>
+                                    <TableCell className="text-right font-mono text-sm text-success">{position.apy}</TableCell>
+                                    <TableCell className="text-sm text-muted-foreground">{position.duration}</TableCell>
+                                    <TableCell className="text-sm text-muted-foreground">{position.startDate}</TableCell>
+                                    <TableCell>
+                                      <Badge variant="outline" className="text-xs">{position.network}</Badge>
+                                    </TableCell>
+                                    <TableCell>
+                                      <Badge variant="default" className="bg-success/20 text-success">{position.status}</Badge>
                                     </TableCell>
                                   </TableRow>
                                 ))}
                                 <TableRow className="border-t-2 font-bold bg-muted/50">
                                   <TableCell className="text-lg">TOTAL</TableCell>
-                                  <TableCell className="text-lg">$510,500</TableCell>
+                                  <TableCell></TableCell>
+                                  <TableCell className="text-right text-lg">$410,500</TableCell>
                                   <TableCell></TableCell>
                                   <TableCell></TableCell>
                                   <TableCell></TableCell>
