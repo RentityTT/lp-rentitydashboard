@@ -30,6 +30,15 @@ const Dashboard = () => {
         setActiveTab("portfolio");
         navigate("/");
         break;
+      case "my-positions":
+        setActiveTab("defi");
+        break;
+      case "stake":
+        setActiveTab("earn");
+        break;
+      case "explore":
+        setActiveTab("defi");
+        break;
       case "wallet":
         setShowWallet(true);
         break;
