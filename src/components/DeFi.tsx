@@ -144,7 +144,7 @@ const DeFi = () => {
   }];
   const earnPositions = [{
     pool: "Residential Prime Pool",
-    type: "Supply",
+    type: "Staked",
     amount: "$275,500",
     amountNumeric: 275500,
     apy: "6.82%",
@@ -160,6 +160,8 @@ const DeFi = () => {
       principalAmount: "$275,500",
       currentValue: "$289,625",
       yieldEarned: "$14,125",
+      monthlyEarnings: "$1,566",
+      rentTokensEarned: "2,450 $RENT",
       projectedAnnualYield: "$18,793",
       poolUtilization: "85%",
       nextDistribution: "Jan 15, 2025",
@@ -167,7 +169,7 @@ const DeFi = () => {
     }
   }, {
     pool: "Hong Kong Market-Based Pool",
-    type: "Supply",
+    type: "Staked",
     amount: "$150,000",
     amountNumeric: 150000,
     apy: "9.2%",
@@ -183,6 +185,8 @@ const DeFi = () => {
       principalAmount: "$150,000",
       currentValue: "$157,562",
       yieldEarned: "$7,562",
+      monthlyEarnings: "$1,150",
+      rentTokensEarned: "1,380 $RENT",
       projectedAnnualYield: "$13,800",
       poolUtilization: "92%",
       nextDistribution: "Jan 15, 2025",
@@ -190,7 +194,7 @@ const DeFi = () => {
     }
   }, {
     pool: "Multi-Family Housing",
-    type: "Supply",
+    type: "Staked",
     amount: "$85,000",
     amountNumeric: 85000,
     apy: "6.95%",
@@ -206,6 +210,8 @@ const DeFi = () => {
       principalAmount: "$85,000",
       currentValue: "$87,474",
       yieldEarned: "$2,474",
+      monthlyEarnings: "$492",
+      rentTokensEarned: "825 $RENT",
       projectedAnnualYield: "$5,908",
       poolUtilization: "88%",
       nextDistribution: "Jan 15, 2025",
@@ -300,13 +306,13 @@ const DeFi = () => {
   return <div className="space-y-6">
       {/* Header and Description */}
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold">Rentity Real Estate</h1>
+        <h1 className="text-3xl font-bold">Rentity Staking</h1>
         <p className="text-muted-foreground">
-          Rentity DeFi Pools give property owners two powerful options:
+          Stake your tokens to earn passive income and bonus $RENT tokens
         </p>
         <div className="mt-4 space-y-3 text-muted-foreground">
           <p>
-            <strong>1. Earn Yield</strong> — Deposit stablecoins into Rentity Pools to earn returns backed by real estate cashflows. Choose from curated pools by market (Vancouver, New York, Hong Kong) or by sector (multifamily, senior housing, student housing), with transparent terms and on-chain reporting.
+            <strong>1. Stake & Earn</strong> — Stake your tokens in Rentity Pools to earn monthly returns backed by real estate cashflows, plus bonus $RENT tokens. Track your earnings in real-time with transparent on-chain reporting.
           </p>
           <p>
             <strong>2. Borrow</strong> — Tap into the same pools for fast, non-dilutive financing. Property owners can request loans, receiving upfront liquidity directly from global LPs.
@@ -315,38 +321,54 @@ const DeFi = () => {
       </div>
 
       <Tabs defaultValue="earn" className="w-full">
-        
+        <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent mb-6">
+          <TabsTrigger value="earn" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-6 py-3 text-base font-medium">
+            Staking
+          </TabsTrigger>
+          <TabsTrigger value="borrow" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-6 py-3 text-base font-medium">
+            Borrow
+          </TabsTrigger>
+        </TabsList>
 
         <TabsContent value="earn" className="mt-6 space-y-6">
 
       {/* Metrics Overview Section */}
       <div className="p-8 bg-primary-gradient text-primary-foreground border-0 shadow-lg rounded-lg">
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-4 gap-6">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Total Deposits</p>
+              <p className="text-sm">Total Staked</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold mb-1">$5.25B</p>
-            <p className="text-sm">5.25B USDC</p>
+            <p className="text-4xl font-bold mb-1">$510,500</p>
+            <p className="text-sm">Your stake</p>
           </div>
           
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Active Loans</p>
+              <p className="text-sm">Monthly Earnings</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold mb-1">$3.19B</p>
-            <p className="text-sm">3.19B USDC</p>
+            <p className="text-4xl font-bold mb-1">$3,208</p>
+            <p className="text-sm">This month</p>
           </div>
           
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Estimated Yield</p>
+              <p className="text-sm">Bonus $RENT Tokens</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold">10.0%</p>
-            <p className="text-sm">Annual APY</p>
+            <p className="text-4xl font-bold">4,655</p>
+            <p className="text-sm">Total earned</p>
+          </div>
+          
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <p className="text-sm">Average APY</p>
+              <Info className="h-4 w-4" />
+            </div>
+            <p className="text-4xl font-bold">7.53%</p>
+            <p className="text-sm">Across positions</p>
           </div>
         </div>
       </div>
@@ -354,7 +376,7 @@ const DeFi = () => {
       {/* Active Positions Section */}
       <Card>
         <CardHeader>
-          <CardTitle>My Active Positions</CardTitle>
+          <CardTitle>My Active Staking Positions</CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
@@ -376,7 +398,7 @@ const DeFi = () => {
                     <TableRow className="hover:bg-muted/50 cursor-pointer">
                       <TableCell className="font-medium">{position.pool}</TableCell>
                       <TableCell>
-                        <Badge variant="secondary" className="bg-[hsl(158,64%,52%)]/20 text-[hsl(158,64%,52%)]">
+                        <Badge variant="secondary" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white">
                           {position.type}
                         </Badge>
                       </TableCell>
@@ -474,18 +496,25 @@ const DeFi = () => {
                         </CardContent>
                       </Card>
 
-                      {/* Yield Information */}
+                       {/* Yield Information */}
                       <Card>
                         <CardHeader className="bg-muted/30">
-                          <CardTitle className="text-lg">Yield & Distribution</CardTitle>
+                          <CardTitle className="text-lg">Earnings & Rewards</CardTitle>
                         </CardHeader>
                         <CardContent className="pt-6">
-                          <div className="grid grid-cols-2 gap-6">
+                          <div className="grid grid-cols-3 gap-4">
                             <div className="p-4 border rounded-lg bg-success/5">
-                              <p className="text-sm text-muted-foreground mb-1">Projected Annual Yield</p>
-                              <p className="text-2xl font-bold text-success mb-3">{position.details.projectedAnnualYield}</p>
+                              <p className="text-sm text-muted-foreground mb-1">Monthly Earnings</p>
+                              <p className="text-2xl font-bold text-success mb-3">{position.details.monthlyEarnings}</p>
                               <p className="text-xs text-muted-foreground">
-                                Based on current APY of {position.apy}
+                                Current month
+                              </p>
+                            </div>
+                            <div className="p-4 border rounded-lg bg-gradient-to-br from-[hsl(180,65%,45%)]/10 to-[hsl(90,70%,60%)]/10">
+                              <p className="text-sm text-muted-foreground mb-1">Bonus $RENT Tokens</p>
+                              <p className="text-2xl font-bold mb-3">{position.details.rentTokensEarned}</p>
+                              <p className="text-xs text-muted-foreground">
+                                Total earned
                               </p>
                             </div>
                             <div className="p-4 border rounded-lg">
