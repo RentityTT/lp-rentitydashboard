@@ -31,7 +31,7 @@ const Dashboard = () => {
         navigate("/");
         break;
       case "my-positions":
-        setActiveTab("defi");
+        setActiveTab("portfolio");
         break;
       case "stake":
         setActiveTab("earn");
