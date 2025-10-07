@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import TopNavigation from "./TopNavigation";
 import CapitalCard from "./CapitalCard";
-
 import RecentActivity from "./RecentActivity";
 import Analytics from "./Analytics";
 import Wallet from "./Wallet";
 import DeFi from "./DeFi";
-
 import Settings from "./Settings";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
@@ -20,7 +18,9 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("portfolio");
   const [showWallet, setShowWallet] = useState(false);
   const navigate = useNavigate();
-  const { slug } = useParams();
+  const {
+    slug
+  } = useParams();
   const handleSidebarClick = (item: string) => {
     setActiveItem(item);
     // Reset wallet view unless explicitly opening it
@@ -40,60 +40,47 @@ const Dashboard = () => {
         break;
     }
   };
-
-  const earnPositions = [
-    {
-      pool: "Residential Prime Bond",
-      productType: "Bond",
-      amount: "$175,500",
-      apy: "7.82%",
-      duration: "Fixed - 3 months remaining",
-      startDate: "Apr 1, 2024",
-      network: "Solana",
-      status: "Active"
-    },
-    {
-      pool: "Hong Kong Market-Based Loan",
-      productType: "Loan",
-      amount: "$150,000",
-      apy: "11.2%",
-      duration: "Flexible",
-      startDate: "Jun 15, 2024",
-      network: "Solana",
-      status: "Active"
-    },
-    {
-      pool: "Multi-Family Housing Loan",
-      productType: "Loan",
-      amount: "$85,000",
-      apy: "9.95%",
-      duration: "Flexible",
-      startDate: "Aug 1, 2024",
-      network: "Ethereum",
-      status: "Active"
-    }
-  ];
+  const earnPositions = [{
+    pool: "Residential Prime Bond",
+    productType: "Bond",
+    amount: "$175,500",
+    apy: "7.82%",
+    duration: "Fixed - 3 months remaining",
+    startDate: "Apr 1, 2024",
+    network: "Solana",
+    status: "Active"
+  }, {
+    pool: "Hong Kong Market-Based Loan",
+    productType: "Loan",
+    amount: "$150,000",
+    apy: "11.2%",
+    duration: "Flexible",
+    startDate: "Jun 15, 2024",
+    network: "Solana",
+    status: "Active"
+  }, {
+    pool: "Multi-Family Housing Loan",
+    productType: "Loan",
+    amount: "$85,000",
+    apy: "9.95%",
+    duration: "Flexible",
+    startDate: "Aug 1, 2024",
+    network: "Ethereum",
+    status: "Active"
+  }];
   return <div className="flex h-screen bg-background scale-90 origin-top-left">
       <Sidebar activeItem={activeItem} onItemClick={handleSidebarClick} />
       
       <div className="flex-1 flex flex-col">
-        <TopNavigation 
-          activeTab={activeTab} 
-          onTabClick={(tab) => {
-            setActiveTab(tab);
-            setShowWallet(false);
-          }}
-          onWalletClick={() => setShowWallet(true)}
-        />
+        <TopNavigation activeTab={activeTab} onTabClick={tab => {
+        setActiveTab(tab);
+        setShowWallet(false);
+      }} onWalletClick={() => setShowWallet(true)} />
         
         <main className="flex-1 p-8 overflow-auto">
           <div className="max-w-7xl mx-auto">
-            {showWallet ? (
-              <Wallet />
-            ) : (
-              <>
-                {activeTab === "portfolio" && (
-                  <>
+            {showWallet ? <Wallet /> : <>
+                {activeTab === "portfolio" && <>
                     <h1 className="text-2xl font-bold mb-8">Hello Johnny 👋</h1>
                     
                     <div className="flex gap-8 mb-8">
@@ -102,7 +89,7 @@ const Dashboard = () => {
                         
                         <Card>
                           <CardHeader>
-                            <CardTitle>Liquidity Pool Positions</CardTitle>
+                            <CardTitle>My Positions</CardTitle>
                           </CardHeader>
                           <CardContent>
                             <div className="grid grid-cols-2 gap-6 mb-6">
@@ -133,8 +120,7 @@ const Dashboard = () => {
                                 </TableRow>
                               </TableHeader>
                               <TableBody>
-                                {earnPositions.map((position, index) => (
-                                  <TableRow key={index} className="hover:bg-muted/50">
+                                {earnPositions.map((position, index) => <TableRow key={index} className="hover:bg-muted/50">
                                     <TableCell className="font-medium">{position.pool}</TableCell>
                                     <TableCell>
                                       <Badge variant={position.productType === "Bond" ? "outline" : "secondary"} className={position.productType === "Bond" ? "text-xs" : "bg-primary/20 text-primary text-xs"}>
@@ -151,8 +137,7 @@ const Dashboard = () => {
                                     <TableCell>
                                       <Badge variant="default" className="bg-success/20 text-success">{position.status}</Badge>
                                     </TableCell>
-                                  </TableRow>
-                                ))}
+                                  </TableRow>)}
                                 <TableRow className="border-t-2 font-bold bg-muted/50">
                                   <TableCell className="text-lg">TOTAL</TableCell>
                                   <TableCell></TableCell>
@@ -175,16 +160,14 @@ const Dashboard = () => {
                     <div className="mt-8">
                       <BlockchainPaymentHistory />
                     </div>
-                  </>
-                )}
+                  </>}
                 
                 {activeTab === "earn" && <Analytics />}
                 
                 {activeTab === "defi" && <DeFi />}
                 
                 {activeTab === "settings" && <Settings />}
-              </>
-            )}
+              </>}
           </div>
         </main>
       </div>
