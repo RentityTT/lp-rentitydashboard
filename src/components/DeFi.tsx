@@ -73,8 +73,82 @@ const DeFi = () => {
     deposits: 5247830456,
     loans: 3192045789
   }];
-  const pools = [{
-    name: "Residential Prime Pool",
+  const bondPools = [{
+    name: "Residential Prime Bond",
+    deposits: "$845,678,901",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT"],
+    supplyAPY: "7.82%",
+    borrowAPY: "5.45%",
+    network: "Solana",
+    utilization: "65%"
+  }, {
+    name: "Commercial Property Bond",
+    deposits: "$592,345,123",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "DAI"],
+    supplyAPY: "8.12%",
+    borrowAPY: "6.05%",
+    network: "Solana",
+    utilization: "58%"
+  }, {
+    name: "Mixed-Use Development Bond",
+    deposits: "$478,234,567",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT", "DAI"],
+    supplyAPY: "7.45%",
+    borrowAPY: "5.15%",
+    network: "Solana",
+    utilization: "52%"
+  }, {
+    name: "Multi-Family Housing Bond",
+    deposits: "$367,890,234",
+    curator: "Rentity Protocol",
+    collateral: ["USDC"],
+    supplyAPY: "7.95%",
+    borrowAPY: "5.75%",
+    network: "Ethereum",
+    utilization: "68%"
+  }, {
+    name: "Student Housing Bond",
+    deposits: "$345,123,678",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT"],
+    supplyAPY: "8.35%",
+    borrowAPY: "6.25%",
+    network: "Solana",
+    utilization: "62%"
+  }, {
+    name: "Luxury Residential Bond",
+    deposits: "$289,456,890",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "DAI"],
+    supplyAPY: "7.65%",
+    borrowAPY: "5.35%",
+    network: "Solana",
+    utilization: "55%"
+  }, {
+    name: "Retail Property Bond",
+    deposits: "$212,567,234",
+    curator: "Rentity Protocol",
+    collateral: ["USDC"],
+    supplyAPY: "7.28%",
+    borrowAPY: "4.95%",
+    network: "Arbitrum",
+    utilization: "48%"
+  }, {
+    name: "Office Space Bond",
+    deposits: "$167,890,123",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT"],
+    supplyAPY: "7.15%",
+    borrowAPY: "4.85%",
+    network: "Solana",
+    utilization: "45%"
+  }];
+
+  const loanPools = [{
+    name: "Residential Prime Loan",
     deposits: "$1,245,678,901",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT"],
@@ -83,7 +157,7 @@ const DeFi = () => {
     network: "Solana",
     utilization: "85%"
   }, {
-    name: "Commercial Property Pool",
+    name: "Commercial Property Loan",
     deposits: "$892,345,123",
     curator: "Rentity Protocol",
     collateral: ["USDC", "DAI"],
@@ -92,7 +166,7 @@ const DeFi = () => {
     network: "Solana",
     utilization: "78%"
   }, {
-    name: "Mixed-Use Development",
+    name: "Mixed-Use Development Loan",
     deposits: "$678,234,567",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT", "DAI"],
@@ -101,7 +175,7 @@ const DeFi = () => {
     network: "Solana",
     utilization: "72%"
   }, {
-    name: "Multi-Family Housing",
+    name: "Multi-Family Housing Loan",
     deposits: "$567,890,234",
     curator: "Rentity Protocol",
     collateral: ["USDC"],
@@ -110,7 +184,7 @@ const DeFi = () => {
     network: "Ethereum",
     utilization: "88%"
   }, {
-    name: "Student Housing Pool",
+    name: "Student Housing Loan",
     deposits: "$445,123,678",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT"],
@@ -119,7 +193,7 @@ const DeFi = () => {
     network: "Solana",
     utilization: "82%"
   }, {
-    name: "Luxury Residential",
+    name: "Luxury Residential Loan",
     deposits: "$389,456,890",
     curator: "Rentity Protocol",
     collateral: ["USDC", "DAI"],
@@ -128,7 +202,7 @@ const DeFi = () => {
     network: "Solana",
     utilization: "75%"
   }, {
-    name: "Retail Property Pool",
+    name: "Retail Property Loan",
     deposits: "$312,567,234",
     curator: "Rentity Protocol",
     collateral: ["USDC"],
@@ -137,7 +211,7 @@ const DeFi = () => {
     network: "Arbitrum",
     utilization: "68%"
   }, {
-    name: "Office Space Pool",
+    name: "Office Space Loan",
     deposits: "$267,890,123",
     curator: "Rentity Protocol",
     collateral: ["USDC", "USDT"],
@@ -146,6 +220,8 @@ const DeFi = () => {
     network: "Solana",
     utilization: "65%"
   }];
+
+  const pools = activeMode === "bonds" ? bondPools : loanPools;
   const earnPositions = [{
     pool: "Residential Prime Pool",
     type: "Supply",
@@ -359,17 +435,17 @@ const DeFi = () => {
               <p className="text-sm">Total Deposits</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold mb-1">$5.25B</p>
-            <p className="text-sm">5.25B USDC</p>
+            <p className="text-4xl font-bold mb-1">{activeMode === "bonds" ? "$3.29B" : "$5.25B"}</p>
+            <p className="text-sm">{activeMode === "bonds" ? "3.29B USDC" : "5.25B USDC"}</p>
           </div>
           
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-sm">Active Loans</p>
+              <p className="text-sm">Active {activeMode === "bonds" ? "Bonds" : "Loans"}</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold mb-1">$3.19B</p>
-            <p className="text-sm">3.19B USDC</p>
+            <p className="text-4xl font-bold mb-1">{activeMode === "bonds" ? "$1.85B" : "$3.19B"}</p>
+            <p className="text-sm">{activeMode === "bonds" ? "1.85B USDC" : "3.19B USDC"}</p>
           </div>
           
           <div>
@@ -377,7 +453,7 @@ const DeFi = () => {
               <p className="text-sm">Estimated Yield</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold">10.0%</p>
+            <p className="text-4xl font-bold">{activeMode === "bonds" ? "7.5%" : "10.0%"}</p>
             <p className="text-sm">Annual APY</p>
           </div>
         </div>
