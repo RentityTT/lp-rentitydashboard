@@ -8,7 +8,10 @@ import { Info } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
+
 const DeFi = () => {
+  const [activeMode, setActiveMode] = useState<"bonds" | "loans">("bonds");
   // User's properties with location and sector information
   const userProperties = [{
     name: "Juniper Tower",
@@ -312,6 +315,34 @@ const DeFi = () => {
           <p>
             <strong>2. Borrow</strong> — Tap into the same pools for fast, non-dilutive financing. Property owners can request loans, receiving upfront liquidity directly from global LPs.
           </p>
+        </div>
+      </div>
+
+      {/* Bonds/Loans Toggle */}
+      <div className="flex items-center justify-center py-4">
+        <div className="flex items-center gap-2 bg-card border border-border rounded-full px-2 py-2">
+          <button
+            className={cn(
+              "px-6 py-2 rounded-full font-medium transition-all text-sm",
+              activeMode === "bonds"
+                ? "bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white"
+                : "text-foreground hover:text-foreground/80"
+            )}
+            onClick={() => setActiveMode("bonds")}
+          >
+            Bonds
+          </button>
+          <button
+            className={cn(
+              "px-6 py-2 rounded-full font-medium transition-all text-sm",
+              activeMode === "loans"
+                ? "bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white"
+                : "text-foreground hover:text-foreground/80"
+            )}
+            onClick={() => setActiveMode("loans")}
+          >
+            Loans
+          </button>
         </div>
       </div>
 
