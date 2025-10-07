@@ -7,7 +7,7 @@ import RecentActivity from "./RecentActivity";
 import Analytics from "./Analytics";
 import Wallet from "./Wallet";
 import DeFi from "./DeFi";
-import Tokenization from "./Tokenization";
+
 import Settings from "./Settings";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
@@ -36,24 +36,11 @@ const Dashboard = () => {
       case "settings":
         setActiveTab("settings");
         break;
-      case "juniper-tower":
-      case "century-city":
-      case "atmosphere":
-        setActiveTab("tokenization");
-        navigate(`/properties/${item}`);
-        break;
       default:
         break;
     }
   };
 
-  useEffect(() => {
-    if (slug) {
-      setActiveItem(slug as string);
-      setActiveTab("tokenization");
-      setShowWallet(false);
-    }
-  }, [slug]);
   const earnPositions = [
     {
       pool: "Residential Prime Pool",
@@ -183,8 +170,6 @@ const Dashboard = () => {
                 )}
                 
                 {activeTab === "earn" && <Analytics />}
-                
-                {activeTab === "tokenization" && <Tokenization />}
                 
                 {activeTab === "defi" && <DeFi />}
                 
