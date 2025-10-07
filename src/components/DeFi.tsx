@@ -319,7 +319,7 @@ const DeFi = () => {
       </div>
 
       {/* Bonds/Loans Toggle */}
-      <div className="flex items-center justify-center py-4">
+      <div className="flex items-center py-4">
         <div className="flex items-center gap-2 bg-card border border-border rounded-full px-2 py-2">
           <button
             className={cn(
