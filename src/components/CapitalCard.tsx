@@ -9,7 +9,7 @@ const CapitalCard = () => {
         </div>
         
         <Button variant="secondary" className="bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm">
-          Get More Capital
+          Stake For Rewards
         </Button>
       </div>
     </Card>;
