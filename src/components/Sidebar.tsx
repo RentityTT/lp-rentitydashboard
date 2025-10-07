@@ -11,15 +11,15 @@ interface SidebarProps {
 const Sidebar = ({ activeItem, onItemClick }: SidebarProps) => {
   const menuItems = [
     { id: "dashboard", label: "Dashboard", icon: Home },
-    { id: "loan-pools", label: "Loan Pools", icon: Building, hasSubItems: true },
+    { id: "manage", label: "Manage", icon: Building, hasSubItems: true },
     { id: "wallet", label: "Wallet", icon: Wallet },
     { id: "settings", label: "Settings", icon: Settings },
   ];
 
-  const loanPoolItems = [
-    { id: "all-markets", label: "All Markets" },
-    { id: "my-investments", label: "My Investments" },
-    { id: "watch-list", label: "Watch List" },
+  const manageItems = [
+    { id: "my-positions", label: "My Positions" },
+    { id: "stake", label: "Stake" },
+    { id: "explore", label: "Explore" },
   ];
 
   return (
@@ -56,9 +56,9 @@ const Sidebar = ({ activeItem, onItemClick }: SidebarProps) => {
                 )}
               </Button>
               
-              {item.hasSubItems && item.id === "loan-pools" && (
+              {item.hasSubItems && item.id === "manage" && (
                 <div className="ml-6 space-y-1">
-                  {loanPoolItems.map((subItem) => (
+                  {manageItems.map((subItem) => (
                     <Button
                       key={subItem.id}
                       variant="ghost"
