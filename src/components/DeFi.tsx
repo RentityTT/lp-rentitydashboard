@@ -723,11 +723,11 @@ const DeFi = () => {
               <TableBody>
                 <TableRow className="hover:bg-muted/50">
                   <TableCell className="font-medium">Century City</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$45,678,900</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$3,245,600</TableCell>
                   <TableCell className="text-right font-mono text-sm">156</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">10.5%</TableCell>
                   <TableCell className="text-right font-mono text-sm">96%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$52.3M</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$3.7M</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">+15.2%</TableCell>
                   <TableCell className="text-right">
                     <Button 
@@ -740,11 +740,11 @@ const DeFi = () => {
                 </TableRow>
                 <TableRow className="hover:bg-muted/50">
                   <TableCell className="font-medium">Atmosphere</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$38,234,500</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$2,890,300</TableCell>
                   <TableCell className="text-right font-mono text-sm">124</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">9.8%</TableCell>
                   <TableCell className="text-right font-mono text-sm">94%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$43.1M</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$3.2M</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">+13.8%</TableCell>
                   <TableCell className="text-right">
                     <Button 
@@ -757,11 +757,11 @@ const DeFi = () => {
                 </TableRow>
                 <TableRow className="hover:bg-muted/50">
                   <TableCell className="font-medium">Sphere</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$52,890,200</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$3,125,800</TableCell>
                   <TableCell className="text-right font-mono text-sm">178</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">11.2%</TableCell>
                   <TableCell className="text-right font-mono text-sm">98%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$61.5M</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$3.5M</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">+16.5%</TableCell>
                   <TableCell className="text-right">
                     <Button 
