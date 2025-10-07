@@ -94,72 +94,70 @@ const Dashboard = () => {
                     <h1 className="text-2xl font-bold mb-8">Hello Johnny 👋</h1>
                     
                     <div className="flex gap-8 mb-8">
-                      <div className="flex-1">
+                      <div className="flex-1 space-y-8">
                         <CapitalCard />
+                        
+                        <Card>
+                          <CardHeader>
+                            <CardTitle>Liquidity Pool Positions</CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="grid grid-cols-2 gap-6 mb-6">
+                              <div>
+                                <p className="text-sm text-muted-foreground mb-1">Total Liquidity Provided</p>
+                                <p className="text-2xl font-bold flex items-center gap-2">
+                                  $510,500
+                                  <TrendingUp className="w-4 h-4 text-green-500" />
+                                </p>
+                              </div>
+                              <div>
+                                <p className="text-sm text-muted-foreground mb-1">Average APY</p>
+                                <p className="text-2xl font-bold text-green-500">7.32%</p>
+                              </div>
+                            </div>
+
+                            <Table>
+                              <TableHeader>
+                                <TableRow>
+                                  <TableHead>Pool</TableHead>
+                                  <TableHead>Amount</TableHead>
+                                  <TableHead>APY</TableHead>
+                                  <TableHead>Duration</TableHead>
+                                  <TableHead>Start Date</TableHead>
+                                  <TableHead>Network</TableHead>
+                                  <TableHead>Status</TableHead>
+                                </TableRow>
+                              </TableHeader>
+                              <TableBody>
+                                {earnPositions.map((position, index) => (
+                                  <TableRow key={index}>
+                                    <TableCell className="font-medium">{position.pool}</TableCell>
+                                    <TableCell>{position.amount}</TableCell>
+                                    <TableCell className="text-green-500">{position.apy}</TableCell>
+                                    <TableCell>{position.duration}</TableCell>
+                                    <TableCell>{position.startDate}</TableCell>
+                                    <TableCell>{position.network}</TableCell>
+                                    <TableCell>
+                                      <Badge variant="default">{position.status}</Badge>
+                                    </TableCell>
+                                  </TableRow>
+                                ))}
+                                <TableRow className="border-t-2 font-bold bg-muted/50">
+                                  <TableCell className="text-lg">TOTAL</TableCell>
+                                  <TableCell className="text-lg">$510,500</TableCell>
+                                  <TableCell></TableCell>
+                                  <TableCell></TableCell>
+                                  <TableCell></TableCell>
+                                  <TableCell></TableCell>
+                                  <TableCell></TableCell>
+                                </TableRow>
+                              </TableBody>
+                            </Table>
+                          </CardContent>
+                        </Card>
                       </div>
                       
                       <RecentActivity />
-                    </div>
-
-                    <div>
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>Liquidity Pool Positions</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="grid grid-cols-2 gap-6 mb-6">
-                            <div>
-                              <p className="text-sm text-muted-foreground mb-1">Total Liquidity Provided</p>
-                              <p className="text-2xl font-bold flex items-center gap-2">
-                                $510,500
-                                <TrendingUp className="w-4 h-4 text-green-500" />
-                              </p>
-                            </div>
-                            <div>
-                              <p className="text-sm text-muted-foreground mb-1">Average APY</p>
-                              <p className="text-2xl font-bold text-green-500">7.32%</p>
-                            </div>
-                          </div>
-
-                          <Table>
-                            <TableHeader>
-                              <TableRow>
-                                <TableHead>Pool</TableHead>
-                                <TableHead>Amount</TableHead>
-                                <TableHead>APY</TableHead>
-                                <TableHead>Duration</TableHead>
-                                <TableHead>Start Date</TableHead>
-                                <TableHead>Network</TableHead>
-                                <TableHead>Status</TableHead>
-                              </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                              {earnPositions.map((position, index) => (
-                                <TableRow key={index}>
-                                  <TableCell className="font-medium">{position.pool}</TableCell>
-                                  <TableCell>{position.amount}</TableCell>
-                                  <TableCell className="text-green-500">{position.apy}</TableCell>
-                                  <TableCell>{position.duration}</TableCell>
-                                  <TableCell>{position.startDate}</TableCell>
-                                  <TableCell>{position.network}</TableCell>
-                                  <TableCell>
-                                    <Badge variant="default">{position.status}</Badge>
-                                  </TableCell>
-                                </TableRow>
-                              ))}
-                              <TableRow className="border-t-2 font-bold bg-muted/50">
-                                <TableCell className="text-lg">TOTAL</TableCell>
-                                <TableCell className="text-lg">$510,500</TableCell>
-                                <TableCell></TableCell>
-                                <TableCell></TableCell>
-                                <TableCell></TableCell>
-                                <TableCell></TableCell>
-                                <TableCell></TableCell>
-                              </TableRow>
-                            </TableBody>
-                          </Table>
-                        </CardContent>
-                      </Card>
                     </div>
 
                     <div className="mt-8">
