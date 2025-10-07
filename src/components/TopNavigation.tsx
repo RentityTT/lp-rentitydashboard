@@ -15,7 +15,7 @@ const TopNavigation = ({
 }: TopNavigationProps) => {
   const tabs = [
     { id: "portfolio", label: "Portfolio" },
-    { id: "earn", label: "Staking" },
+    { id: "earn", label: "Earn" },
     { id: "defi", label: "DeFi" }
   ];
 
