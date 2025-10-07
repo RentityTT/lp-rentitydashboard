@@ -1473,10 +1473,10 @@ const DeFi = () => {
               </h4>
               <p className="text-sm text-muted-foreground">
                 {selectedPool.type === 'market' 
-                  ? `This market-based pool aggregates real estate opportunities across ${selectedPool.location}, ${selectedPool.country}. Investments are diversified across ${selectedPool.properties} properties in the region.`
+                  ? `This market-based pool aggregates real estate financing opportunities across ${selectedPool.location}, ${selectedPool.country}. Loans could be for land acquisition, construction development, mezzanine financing, bridge loans, or other real estate purposes.`
                   : selectedPool.type === 'building'
-                  ? `This building-specific pool focuses on ${selectedPool.name} with ${selectedPool.units} units. Returns are generated through rental income and property appreciation.`
-                  : `This category pool specializes in ${selectedPool.name} investments. Funds are deployed across multiple properties matching this category criteria.`
+                  ? `This building-specific pool provides financing for ${selectedPool.name} with ${selectedPool.units} units. Loans may include construction development, bridge financing, mezzanine loans, or land acquisition for this property.`
+                  : `This loan pool specializes in ${selectedPool.name} financing. Funds are deployed for land loans, construction development, mezzanine financing, bridge loans, and other real estate lending opportunities matching this category.`
                 }
               </p>
             </div>
