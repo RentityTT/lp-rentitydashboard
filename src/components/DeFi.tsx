@@ -683,7 +683,7 @@ const DeFi = () => {
                       {pool.deposits}
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm">
-                      -
+                      {[234, 189, 156, 142, 128, 98, 87, 76][index] || 50}
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm text-success">
                       {pool.supplyAPY}
