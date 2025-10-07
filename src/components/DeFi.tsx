@@ -230,7 +230,7 @@ const DeFi = () => {
     amountNumeric: 175500,
     apy: "7.82%",
     apyNumeric: 7.82,
-    duration: "Flexible",
+    duration: "Fixed - 3 months remaining",
     startDate: "Apr 1, 2024",
     status: "Active",
     network: "Solana",
