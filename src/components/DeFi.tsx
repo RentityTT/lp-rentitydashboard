@@ -517,122 +517,104 @@ const DeFi = () => {
                       </TableCell>
                     </TableRow>
                   </DialogTrigger>
-                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                  <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
-                      <DialogTitle className="text-2xl font-bold">{position.pool} Position</DialogTitle>
-                      <p className="text-muted-foreground">Position ID: {position.details.positionId}</p>
+                      <DialogTitle className="text-2xl">Position Details</DialogTitle>
                     </DialogHeader>
                     
-                    <div className="space-y-6 mt-6">
-                      {/* Key Metrics Cards */}
-                      <div className="grid grid-cols-3 gap-4">
-                        <Card className="bg-gradient-to-br from-success/10 to-success/5 border-success/20">
-                          <CardContent className="pt-6">
-                            <p className="text-sm text-muted-foreground mb-1">Principal Amount</p>
-                            <p className="text-3xl font-bold">{position.details.principalAmount}</p>
-                          </CardContent>
-                        </Card>
-                        <Card className="bg-gradient-to-br from-[hsl(158,64%,52%)]/10 to-[hsl(158,64%,52%)]/5 border-[hsl(158,64%,52%)]/20">
-                          <CardContent className="pt-6">
-                            <p className="text-sm text-muted-foreground mb-1">Yield Earned</p>
-                            <p className="text-3xl font-bold text-success">{position.details.yieldEarned}</p>
-                          </CardContent>
-                        </Card>
-                        <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
-                          <CardContent className="pt-6">
-                            <p className="text-sm text-muted-foreground mb-1">Current Value</p>
-                            <p className="text-3xl font-bold">{position.details.currentValue}</p>
-                          </CardContent>
-                        </Card>
+                    <div className="space-y-6">
+                      {/* Position Header */}
+                      <div className="bg-primary-gradient text-primary-foreground p-6 rounded-lg">
+                        <h3 className="text-2xl font-bold mb-2">{position.pool}</h3>
+                        <Badge variant="outline" className="bg-white/20 text-white border-white/30">
+                          {position.productType} Position
+                        </Badge>
+                        <p className="text-sm mt-2 opacity-90">Position ID: {position.details.positionId}</p>
                       </div>
 
-                      {/* Position Information */}
-                      <Card>
-                        <CardHeader className="bg-muted/30">
-                          <CardTitle className="text-lg">Position Information</CardTitle>
-                        </CardHeader>
-                        <CardContent className="pt-6">
-                          <div className="grid grid-cols-2 gap-6">
-                            <div className="space-y-3">
-                              <div className="flex justify-between items-center py-2 border-b">
-                                <span className="text-muted-foreground">APY</span>
-                                <span className="font-semibold text-success text-lg">{position.apy}</span>
-                              </div>
-                              <div className="flex justify-between items-center py-2 border-b">
-                                <span className="text-muted-foreground">Deposit Date</span>
-                                <span className="font-mono text-sm">{position.details.depositDate}</span>
-                              </div>
-                              <div className="flex justify-between items-center py-2 border-b">
-                                <span className="text-muted-foreground">Days Active</span>
-                                <span className="font-semibold">{position.details.daysActive} days</span>
-                              </div>
-                            </div>
-                            <div className="space-y-3">
-                              <div className="flex justify-between items-center py-2 border-b">
-                                <span className="text-muted-foreground">Status</span>
-                                <Badge variant="default" className="bg-success/20 text-success">
-                                  {position.status}
-                                </Badge>
-                              </div>
-                              <div className="flex justify-between items-center py-2 border-b">
-                                <span className="text-muted-foreground">Network</span>
-                                <Badge variant="outline">{position.network}</Badge>
-                              </div>
-                              <div className="flex justify-between items-center py-2 border-b">
-                                <span className="text-muted-foreground">Pool Utilization</span>
-                                <span className="font-semibold">{position.details.poolUtilization}</span>
-                              </div>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      {/* Key Metrics */}
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Principal Amount</p>
+                          <p className="text-lg font-semibold">{position.details.principalAmount}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Yield Earned</p>
+                          <p className="text-lg font-semibold text-success">{position.details.yieldEarned}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Current Value</p>
+                          <p className="text-lg font-semibold">{position.details.currentValue}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">APY</p>
+                          <p className="text-lg font-semibold text-success">{position.apy}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Days Active</p>
+                          <p className="text-lg font-semibold">{position.details.daysActive} days</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Status</p>
+                          <Badge variant="default" className="bg-success/20 text-success">
+                            {position.status}
+                          </Badge>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Network</p>
+                          <p className="text-lg font-semibold">{position.network}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Pool Utilization</p>
+                          <p className="text-lg font-semibold">{position.details.poolUtilization}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Deposit Date</p>
+                          <p className="text-lg font-semibold">{position.details.depositDate}</p>
+                        </div>
+                      </div>
+
+                      <Separator />
 
                       {/* Yield Information */}
-                      <Card>
-                        <CardHeader className="bg-muted/30">
-                          <CardTitle className="text-lg">Yield & Distribution</CardTitle>
-                        </CardHeader>
-                        <CardContent className="pt-6">
-                          <div className="grid grid-cols-2 gap-6">
-                            <div className="p-4 border rounded-lg bg-success/5">
-                              <p className="text-sm text-muted-foreground mb-1">Projected Annual Yield</p>
-                              <p className="text-2xl font-bold text-success mb-3">{position.details.projectedAnnualYield}</p>
-                              <p className="text-xs text-muted-foreground">
-                                Based on current APY of {position.apy}
-                              </p>
-                            </div>
-                            <div className="p-4 border rounded-lg">
-                              <p className="text-sm text-muted-foreground mb-1">Next Distribution</p>
-                              <p className="text-xl font-bold mb-3">{position.details.nextDistribution}</p>
-                              <p className="text-sm text-muted-foreground mb-1">Amount</p>
-                              <p className="text-lg font-bold text-success">{position.details.distributionAmount}</p>
-                            </div>
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3">Yield & Distribution</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <p className="text-sm text-muted-foreground">Projected Annual Yield</p>
+                            <p className="text-lg font-semibold text-success">{position.details.projectedAnnualYield}</p>
+                            <p className="text-xs text-muted-foreground">Based on current APY of {position.apy}</p>
                           </div>
-                        </CardContent>
-                      </Card>
+                          <div className="space-y-1">
+                            <p className="text-sm text-muted-foreground">Next Distribution</p>
+                            <p className="text-lg font-semibold">{position.details.nextDistribution}</p>
+                            <p className="text-xs text-muted-foreground">Amount: {position.details.distributionAmount}</p>
+                          </div>
+                        </div>
+                      </div>
 
-                      {/* Performance Summary */}
-                      <Card>
-                        <CardHeader className="bg-muted/30">
-                          <CardTitle className="text-lg">Performance Summary</CardTitle>
-                        </CardHeader>
-                        <CardContent className="pt-6">
-                          <div className="space-y-3">
-                            <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                              <span className="text-sm text-muted-foreground">Total Deposited</span>
-                              <span className="text-lg font-semibold">{position.details.principalAmount}</span>
-                            </div>
-                            <div className="flex justify-between items-center p-3 bg-success/10 rounded-lg">
-                              <span className="text-sm text-muted-foreground">Total Yield Earned</span>
-                              <span className="text-lg font-semibold text-success">{position.details.yieldEarned}</span>
-                            </div>
-                            <div className="flex justify-between items-center p-3 bg-primary/10 rounded-lg">
-                              <span className="text-sm text-muted-foreground">Current Total Value</span>
-                              <span className="text-xl font-bold">{position.details.currentValue}</span>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
+                      {/* Additional Info */}
+                      <div className="bg-muted p-4 rounded-lg">
+                        <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
+                          <Info className="h-4 w-4" />
+                          Position Information
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          This {position.productType.toLowerCase()} position in {position.pool} has been active for {position.details.daysActive} days, earning a total of {position.details.yieldEarned} in yield. The current value of your position is {position.details.currentValue}, representing a return on your principal investment of {position.details.principalAmount}.
+                        </p>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-3">
+                        <Button 
+                          className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
+                        >
+                          Add Funds
+                        </Button>
+                        <Button variant="outline" className="flex-1">
+                          Withdraw
+                        </Button>
+                      </div>
                     </div>
                   </DialogContent>
                 </Dialog>)}
