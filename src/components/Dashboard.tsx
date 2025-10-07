@@ -182,7 +182,7 @@ const Dashboard = () => {
                   </>
                 )}
                 
-                {activeTab === "analytics" && <Analytics />}
+                {activeTab === "earn" && <Analytics />}
                 
                 {activeTab === "tokenization" && <Tokenization />}
                 
