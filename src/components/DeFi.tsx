@@ -602,7 +602,7 @@ const DeFi = () => {
               Category
             </TabsTrigger>
             <TabsTrigger value="more" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
-              More
+              Buildings
             </TabsTrigger>
           </TabsList>
 
