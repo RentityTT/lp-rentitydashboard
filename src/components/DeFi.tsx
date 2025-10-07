@@ -646,7 +646,10 @@ const DeFi = () => {
                       {market.growth}
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button size="sm" variant="default">
+                      <Button 
+                        size="sm" 
+                        className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 rounded-full px-6"
+                      >
                         Fund Pool
                       </Button>
                     </TableCell>
@@ -667,6 +670,7 @@ const DeFi = () => {
                   <TableHead className="text-right">Borrow APY</TableHead>
                   <TableHead>Network</TableHead>
                   <TableHead className="text-right">Utilization</TableHead>
+                  <TableHead className="text-right">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -698,6 +702,14 @@ const DeFi = () => {
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm">
                       {pool.utilization}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button 
+                        size="sm" 
+                        className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 rounded-full px-6"
+                      >
+                        Fund Pool
+                      </Button>
                     </TableCell>
                   </TableRow>)}
               </TableBody>
