@@ -7,294 +7,297 @@ import { Info } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-
 const DeFi = () => {
   // User's properties with location and sector information
-  const userProperties = [
-    {
-      name: "Juniper Tower",
-      location: "Vancouver",
-      sector: "Multi-Family Housing"
-    }
-  ];
+  const userProperties = [{
+    name: "Juniper Tower",
+    location: "Vancouver",
+    sector: "Multi-Family Housing"
+  }];
 
   // Extract unique locations and sectors from user properties
   const userLocations = [...new Set(userProperties.map(p => p.location))];
   const userSectors = [...new Set(userProperties.map(p => p.sector))];
 
   // Historical data for the chart (showing growth over time)
-  const chartData = [
-    { month: 'Jan 2024', deposits: 1200000000, loans: 800000000 },
-    { month: 'Feb 2024', deposits: 1500000000, loans: 950000000 },
-    { month: 'Mar 2024', deposits: 1800000000, loans: 1150000000 },
-    { month: 'Apr 2024', deposits: 2100000000, loans: 1350000000 },
-    { month: 'May 2024', deposits: 2500000000, loans: 1600000000 },
-    { month: 'Jun 2024', deposits: 2900000000, loans: 1850000000 },
-    { month: 'Jul 2024', deposits: 3300000000, loans: 2100000000 },
-    { month: 'Aug 2024', deposits: 3800000000, loans: 2450000000 },
-    { month: 'Sep 2024', deposits: 4400000000, loans: 2800000000 },
-    { month: 'Oct 2024', deposits: 4900000000, loans: 3050000000 },
-    { month: 'Nov 2024', deposits: 5150000000, loans: 3150000000 },
-    { month: 'Dec 2024', deposits: 5247830456, loans: 3192045789 },
-  ];
-
-  const pools = [
-    {
-      name: "Residential Prime Pool",
-      deposits: "$1,245,678,901",
-      curator: "Rentity Protocol",
-      collateral: ["USDC", "USDT"],
-      supplyAPY: "6.82%",
-      borrowAPY: "7.45%",
-      network: "Solana",
-      utilization: "85%",
-    },
-    {
-      name: "Commercial Property Pool",
-      deposits: "$892,345,123",
-      curator: "Rentity Protocol",
-      collateral: ["USDC", "DAI"],
-      supplyAPY: "7.12%",
-      borrowAPY: "8.05%",
-      network: "Solana",
-      utilization: "78%",
-    },
-    {
-      name: "Mixed-Use Development",
-      deposits: "$678,234,567",
-      curator: "Rentity Protocol",
-      collateral: ["USDC", "USDT", "DAI"],
-      supplyAPY: "6.45%",
-      borrowAPY: "7.15%",
-      network: "Solana",
-      utilization: "72%",
-    },
-    {
-      name: "Multi-Family Housing",
-      deposits: "$567,890,234",
-      curator: "Rentity Protocol",
-      collateral: ["USDC"],
-      supplyAPY: "6.95%",
-      borrowAPY: "7.75%",
-      network: "Ethereum",
-      utilization: "88%",
-    },
-    {
-      name: "Student Housing Pool",
-      deposits: "$445,123,678",
-      curator: "Rentity Protocol",
-      collateral: ["USDC", "USDT"],
-      supplyAPY: "7.35%",
-      borrowAPY: "8.25%",
-      network: "Solana",
-      utilization: "82%",
-    },
-    {
-      name: "Luxury Residential",
-      deposits: "$389,456,890",
-      curator: "Rentity Protocol",
-      collateral: ["USDC", "DAI"],
-      supplyAPY: "6.65%",
-      borrowAPY: "7.35%",
-      network: "Solana",
-      utilization: "75%",
-    },
-    {
-      name: "Retail Property Pool",
-      deposits: "$312,567,234",
-      curator: "Rentity Protocol",
-      collateral: ["USDC"],
-      supplyAPY: "6.28%",
-      borrowAPY: "6.95%",
-      network: "Arbitrum",
-      utilization: "68%",
-    },
-    {
-      name: "Office Space Pool",
-      deposits: "$267,890,123",
-      curator: "Rentity Protocol",
-      collateral: ["USDC", "USDT"],
-      supplyAPY: "6.15%",
-      borrowAPY: "6.85%",
-      network: "Solana",
-      utilization: "65%",
-    },
-  ];
-
-  const earnPositions = [
-    {
-      pool: "Residential Prime Pool",
-      type: "Supply",
-      amount: "$275,500",
-      amountNumeric: 275500,
-      apy: "6.82%",
-      apyNumeric: 6.82,
-      duration: "Flexible",
-      startDate: "Apr 1, 2024",
-      status: "Active",
-      network: "Solana",
-      details: {
-        positionId: "RPP-2024-04-001",
-        depositDate: "Apr 1, 2024",
-        daysActive: 275,
-        principalAmount: "$275,500",
-        currentValue: "$289,625",
-        yieldEarned: "$14,125",
-        projectedAnnualYield: "$18,793",
-        poolUtilization: "85%",
-        nextDistribution: "Jan 15, 2025",
-        distributionAmount: "$1,564",
-      }
-    },
-    {
-      pool: "Hong Kong Market-Based Pool",
-      type: "Supply",
-      amount: "$150,000",
-      amountNumeric: 150000,
-      apy: "9.2%",
-      apyNumeric: 9.2,
-      duration: "Flexible",
-      startDate: "Jun 15, 2024",
-      status: "Active",
-      network: "Solana",
-      details: {
-        positionId: "HK-2024-06-001",
-        depositDate: "Jun 15, 2024",
-        daysActive: 200,
-        principalAmount: "$150,000",
-        currentValue: "$157,562",
-        yieldEarned: "$7,562",
-        projectedAnnualYield: "$13,800",
-        poolUtilization: "92%",
-        nextDistribution: "Jan 15, 2025",
-        distributionAmount: "$1,150",
-      }
-    },
-    {
-      pool: "Multi-Family Housing",
-      type: "Supply",
-      amount: "$85,000",
-      amountNumeric: 85000,
-      apy: "6.95%",
-      apyNumeric: 6.95,
-      duration: "Flexible",
-      startDate: "Aug 1, 2024",
-      status: "Active",
-      network: "Ethereum",
-      details: {
-        positionId: "MFH-2024-08-001",
-        depositDate: "Aug 1, 2024",
-        daysActive: 153,
-        principalAmount: "$85,000",
-        currentValue: "$87,474",
-        yieldEarned: "$2,474",
-        projectedAnnualYield: "$5,908",
-        poolUtilization: "88%",
-        nextDistribution: "Jan 15, 2025",
-        distributionAmount: "$487",
-      }
-    },
-  ];
-
-  const borrowPositions = [
-    {
-      property: "Juniper Tower",
-      type: "Borrow",
-      amount: "$100,000",
-      apr: "7.8%",
-      duration: "2 years",
-      startDate: "Aug 1, 2024",
-      status: "Active",
-      network: "Solana",
-      details: {
-        loanId: "JT-2024-08-001",
-        securityType: "Position on Title + Corporate Guarantee",
-        propertyAddress: "4567 Juniper Street, Vancouver, BC",
-        corporateGuarantor: "Greystone Properties Holdings Limited",
-        principalRemaining: "$89,250",
-        interestPaid: "$6,850",
-        nextPaymentDate: "Jan 1, 2025",
-        nextPaymentAmount: "$3,250",
-        totalRepayments: "$13,150",
-        maturityDate: "Aug 1, 2026",
-        loanToValue: "45%",
-        propertyValue: "$2,250,000",
-      }
+  const chartData = [{
+    month: 'Jan 2024',
+    deposits: 1200000000,
+    loans: 800000000
+  }, {
+    month: 'Feb 2024',
+    deposits: 1500000000,
+    loans: 950000000
+  }, {
+    month: 'Mar 2024',
+    deposits: 1800000000,
+    loans: 1150000000
+  }, {
+    month: 'Apr 2024',
+    deposits: 2100000000,
+    loans: 1350000000
+  }, {
+    month: 'May 2024',
+    deposits: 2500000000,
+    loans: 1600000000
+  }, {
+    month: 'Jun 2024',
+    deposits: 2900000000,
+    loans: 1850000000
+  }, {
+    month: 'Jul 2024',
+    deposits: 3300000000,
+    loans: 2100000000
+  }, {
+    month: 'Aug 2024',
+    deposits: 3800000000,
+    loans: 2450000000
+  }, {
+    month: 'Sep 2024',
+    deposits: 4400000000,
+    loans: 2800000000
+  }, {
+    month: 'Oct 2024',
+    deposits: 4900000000,
+    loans: 3050000000
+  }, {
+    month: 'Nov 2024',
+    deposits: 5150000000,
+    loans: 3150000000
+  }, {
+    month: 'Dec 2024',
+    deposits: 5247830456,
+    loans: 3192045789
+  }];
+  const pools = [{
+    name: "Residential Prime Pool",
+    deposits: "$1,245,678,901",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT"],
+    supplyAPY: "6.82%",
+    borrowAPY: "7.45%",
+    network: "Solana",
+    utilization: "85%"
+  }, {
+    name: "Commercial Property Pool",
+    deposits: "$892,345,123",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "DAI"],
+    supplyAPY: "7.12%",
+    borrowAPY: "8.05%",
+    network: "Solana",
+    utilization: "78%"
+  }, {
+    name: "Mixed-Use Development",
+    deposits: "$678,234,567",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT", "DAI"],
+    supplyAPY: "6.45%",
+    borrowAPY: "7.15%",
+    network: "Solana",
+    utilization: "72%"
+  }, {
+    name: "Multi-Family Housing",
+    deposits: "$567,890,234",
+    curator: "Rentity Protocol",
+    collateral: ["USDC"],
+    supplyAPY: "6.95%",
+    borrowAPY: "7.75%",
+    network: "Ethereum",
+    utilization: "88%"
+  }, {
+    name: "Student Housing Pool",
+    deposits: "$445,123,678",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT"],
+    supplyAPY: "7.35%",
+    borrowAPY: "8.25%",
+    network: "Solana",
+    utilization: "82%"
+  }, {
+    name: "Luxury Residential",
+    deposits: "$389,456,890",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "DAI"],
+    supplyAPY: "6.65%",
+    borrowAPY: "7.35%",
+    network: "Solana",
+    utilization: "75%"
+  }, {
+    name: "Retail Property Pool",
+    deposits: "$312,567,234",
+    curator: "Rentity Protocol",
+    collateral: ["USDC"],
+    supplyAPY: "6.28%",
+    borrowAPY: "6.95%",
+    network: "Arbitrum",
+    utilization: "68%"
+  }, {
+    name: "Office Space Pool",
+    deposits: "$267,890,123",
+    curator: "Rentity Protocol",
+    collateral: ["USDC", "USDT"],
+    supplyAPY: "6.15%",
+    borrowAPY: "6.85%",
+    network: "Solana",
+    utilization: "65%"
+  }];
+  const earnPositions = [{
+    pool: "Residential Prime Pool",
+    type: "Supply",
+    amount: "$275,500",
+    amountNumeric: 275500,
+    apy: "6.82%",
+    apyNumeric: 6.82,
+    duration: "Flexible",
+    startDate: "Apr 1, 2024",
+    status: "Active",
+    network: "Solana",
+    details: {
+      positionId: "RPP-2024-04-001",
+      depositDate: "Apr 1, 2024",
+      daysActive: 275,
+      principalAmount: "$275,500",
+      currentValue: "$289,625",
+      yieldEarned: "$14,125",
+      projectedAnnualYield: "$18,793",
+      poolUtilization: "85%",
+      nextDistribution: "Jan 15, 2025",
+      distributionAmount: "$1,564"
     }
-  ];
-
-  const markets = [
-    {
-      location: "Vancouver",
-      country: "Canada",
-      totalValue: "$1,892,456,789",
-      properties: 234,
-      avgReturn: "8.5%",
-      occupancyRate: "94%",
-      marketCap: "$2.1B",
-      growth: "+12.3%",
-    },
-    {
-      location: "Paris",
-      country: "France",
-      totalValue: "$1,456,789,234",
-      properties: 189,
-      avgReturn: "7.8%",
-      occupancyRate: "92%",
-      marketCap: "$1.8B",
-      growth: "+9.7%",
-    },
-    {
-      location: "Hong Kong",
-      country: "China",
-      totalValue: "$1,234,567,890",
-      properties: 156,
-      avgReturn: "9.2%",
-      occupancyRate: "96%",
-      marketCap: "$1.5B",
-      growth: "+15.8%",
-    },
-    {
-      location: "New York",
-      country: "USA",
-      totalValue: "$1,123,456,789",
-      properties: 298,
-      avgReturn: "8.1%",
-      occupancyRate: "91%",
-      marketCap: "$1.4B",
-      growth: "+10.5%",
-    },
-    {
-      location: "London",
-      country: "UK",
-      totalValue: "$987,654,321",
-      properties: 167,
-      avgReturn: "7.5%",
-      occupancyRate: "89%",
-      marketCap: "$1.2B",
-      growth: "+8.2%",
-    },
-    {
-      location: "Tokyo",
-      country: "Japan",
-      totalValue: "$876,543,210",
-      properties: 145,
-      avgReturn: "7.2%",
-      occupancyRate: "93%",
-      marketCap: "$1.0B",
-      growth: "+7.9%",
-    },
-  ];
-
+  }, {
+    pool: "Hong Kong Market-Based Pool",
+    type: "Supply",
+    amount: "$150,000",
+    amountNumeric: 150000,
+    apy: "9.2%",
+    apyNumeric: 9.2,
+    duration: "Flexible",
+    startDate: "Jun 15, 2024",
+    status: "Active",
+    network: "Solana",
+    details: {
+      positionId: "HK-2024-06-001",
+      depositDate: "Jun 15, 2024",
+      daysActive: 200,
+      principalAmount: "$150,000",
+      currentValue: "$157,562",
+      yieldEarned: "$7,562",
+      projectedAnnualYield: "$13,800",
+      poolUtilization: "92%",
+      nextDistribution: "Jan 15, 2025",
+      distributionAmount: "$1,150"
+    }
+  }, {
+    pool: "Multi-Family Housing",
+    type: "Supply",
+    amount: "$85,000",
+    amountNumeric: 85000,
+    apy: "6.95%",
+    apyNumeric: 6.95,
+    duration: "Flexible",
+    startDate: "Aug 1, 2024",
+    status: "Active",
+    network: "Ethereum",
+    details: {
+      positionId: "MFH-2024-08-001",
+      depositDate: "Aug 1, 2024",
+      daysActive: 153,
+      principalAmount: "$85,000",
+      currentValue: "$87,474",
+      yieldEarned: "$2,474",
+      projectedAnnualYield: "$5,908",
+      poolUtilization: "88%",
+      nextDistribution: "Jan 15, 2025",
+      distributionAmount: "$487"
+    }
+  }];
+  const borrowPositions = [{
+    property: "Juniper Tower",
+    type: "Borrow",
+    amount: "$100,000",
+    apr: "7.8%",
+    duration: "2 years",
+    startDate: "Aug 1, 2024",
+    status: "Active",
+    network: "Solana",
+    details: {
+      loanId: "JT-2024-08-001",
+      securityType: "Position on Title + Corporate Guarantee",
+      propertyAddress: "4567 Juniper Street, Vancouver, BC",
+      corporateGuarantor: "Greystone Properties Holdings Limited",
+      principalRemaining: "$89,250",
+      interestPaid: "$6,850",
+      nextPaymentDate: "Jan 1, 2025",
+      nextPaymentAmount: "$3,250",
+      totalRepayments: "$13,150",
+      maturityDate: "Aug 1, 2026",
+      loanToValue: "45%",
+      propertyValue: "$2,250,000"
+    }
+  }];
+  const markets = [{
+    location: "Vancouver",
+    country: "Canada",
+    totalValue: "$1,892,456,789",
+    properties: 234,
+    avgReturn: "8.5%",
+    occupancyRate: "94%",
+    marketCap: "$2.1B",
+    growth: "+12.3%"
+  }, {
+    location: "Paris",
+    country: "France",
+    totalValue: "$1,456,789,234",
+    properties: 189,
+    avgReturn: "7.8%",
+    occupancyRate: "92%",
+    marketCap: "$1.8B",
+    growth: "+9.7%"
+  }, {
+    location: "Hong Kong",
+    country: "China",
+    totalValue: "$1,234,567,890",
+    properties: 156,
+    avgReturn: "9.2%",
+    occupancyRate: "96%",
+    marketCap: "$1.5B",
+    growth: "+15.8%"
+  }, {
+    location: "New York",
+    country: "USA",
+    totalValue: "$1,123,456,789",
+    properties: 298,
+    avgReturn: "8.1%",
+    occupancyRate: "91%",
+    marketCap: "$1.4B",
+    growth: "+10.5%"
+  }, {
+    location: "London",
+    country: "UK",
+    totalValue: "$987,654,321",
+    properties: 167,
+    avgReturn: "7.5%",
+    occupancyRate: "89%",
+    marketCap: "$1.2B",
+    growth: "+8.2%"
+  }, {
+    location: "Tokyo",
+    country: "Japan",
+    totalValue: "$876,543,210",
+    properties: 145,
+    avgReturn: "7.2%",
+    occupancyRate: "93%",
+    marketCap: "$1.0B",
+    growth: "+7.9%"
+  }];
   const formatCurrency = (value: number) => {
     if (value >= 1000000000) {
       return `$${(value / 1000000000).toFixed(2)}B`;
     }
     return `$${(value / 1000000).toFixed(2)}M`;
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       {/* Header and Description */}
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">Rentity Real Estate</h1>
@@ -312,20 +315,7 @@ const DeFi = () => {
       </div>
 
       <Tabs defaultValue="earn" className="w-full">
-        <TabsList className="w-fit border rounded-full h-auto p-1 bg-card">
-          <TabsTrigger 
-            value="earn"
-            className="rounded-full px-6 py-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(180,65%,45%)] data-[state=active]:to-[hsl(90,70%,60%)] data-[state=active]:text-white"
-          >
-            Earn
-          </TabsTrigger>
-          <TabsTrigger 
-            value="borrow"
-            className="rounded-full px-6 py-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[hsl(180,65%,45%)] data-[state=active]:to-[hsl(90,70%,60%)] data-[state=active]:text-white"
-          >
-            Borrow
-          </TabsTrigger>
-        </TabsList>
+        
 
         <TabsContent value="earn" className="mt-6 space-y-6">
 
@@ -381,8 +371,7 @@ const DeFi = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {earnPositions.map((position, index) => (
-                <Dialog key={index}>
+              {earnPositions.map((position, index) => <Dialog key={index}>
                   <DialogTrigger asChild>
                     <TableRow className="hover:bg-muted/50 cursor-pointer">
                       <TableCell className="font-medium">{position.pool}</TableCell>
@@ -533,8 +522,7 @@ const DeFi = () => {
                       </Card>
                     </div>
                   </DialogContent>
-                </Dialog>
-              ))}
+                </Dialog>)}
               <TableRow className="border-t-2 font-bold bg-muted/50">
                 <TableCell className="text-lg">TOTAL</TableCell>
                 <TableCell></TableCell>
@@ -576,48 +564,24 @@ const DeFi = () => {
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="depositsGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="loansGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis 
-                  dataKey="month" 
-                  stroke="hsl(var(--muted-foreground))"
-                  fontSize={11}
-                  tickFormatter={(value) => value.split(' ')[0]}
-                />
-                <YAxis 
-                  stroke="hsl(var(--muted-foreground))"
-                  fontSize={11}
-                  tickFormatter={formatCurrency}
-                />
-                <Tooltip 
-                  formatter={(value: number) => formatCurrency(value)}
-                  contentStyle={{
-                    backgroundColor: 'hsl(var(--card))',
-                    border: '1px solid hsl(var(--border))',
-                    borderRadius: '8px',
-                  }}
-                />
-                <Area 
-                  type="monotone" 
-                  dataKey="deposits" 
-                  stroke="hsl(158, 64%, 52%)" 
-                  strokeWidth={2}
-                  fill="url(#depositsGradient)"
-                />
-                <Area 
-                  type="monotone" 
-                  dataKey="loans" 
-                  stroke="hsl(180, 65%, 45%)" 
-                  strokeWidth={2}
-                  fill="url(#loansGradient)"
-                />
+                <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => value.split(' ')[0]} />
+                <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={formatCurrency} />
+                <Tooltip formatter={(value: number) => formatCurrency(value)} contentStyle={{
+                  backgroundColor: 'hsl(var(--card))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '8px'
+                }} />
+                <Area type="monotone" dataKey="deposits" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#depositsGradient)" />
+                <Area type="monotone" dataKey="loans" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#loansGradient)" />
               </AreaChart>
             </ResponsiveContainer>
         </CardContent>
@@ -630,22 +594,13 @@ const DeFi = () => {
         </div>
         <Tabs defaultValue="markets" className="w-full">
           <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
-            <TabsTrigger 
-              value="markets"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
-            >
+            <TabsTrigger value="markets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               Markets
             </TabsTrigger>
-            <TabsTrigger 
-              value="category"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
-            >
+            <TabsTrigger value="category" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               Category
             </TabsTrigger>
-            <TabsTrigger 
-              value="more"
-              className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
-            >
+            <TabsTrigger value="more" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               More
             </TabsTrigger>
           </TabsList>
@@ -665,8 +620,7 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {markets.map((market, index) => (
-                  <TableRow key={index} className="hover:bg-muted/50">
+                {markets.map((market, index) => <TableRow key={index} className="hover:bg-muted/50">
                     <TableCell className="font-medium">{market.location}</TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {market.country}
@@ -689,8 +643,7 @@ const DeFi = () => {
                     <TableCell className="text-right font-mono text-sm text-success">
                       {market.growth}
                     </TableCell>
-                  </TableRow>
-                ))}
+                  </TableRow>)}
               </TableBody>
             </Table>
           </TabsContent>
@@ -710,8 +663,7 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {pools.map((pool, index) => (
-                  <TableRow key={index} className="hover:bg-muted/50">
+                {pools.map((pool, index) => <TableRow key={index} className="hover:bg-muted/50">
                     <TableCell className="font-medium">{pool.name}</TableCell>
                     <TableCell className="text-right font-mono text-sm">
                       {pool.deposits}
@@ -721,11 +673,9 @@ const DeFi = () => {
                     </TableCell>
                     <TableCell>
                       <div className="flex gap-1">
-                        {pool.collateral.map((token, i) => (
-                          <Badge key={i} variant="outline" className="text-xs">
+                        {pool.collateral.map((token, i) => <Badge key={i} variant="outline" className="text-xs">
                             {token}
-                          </Badge>
-                        ))}
+                          </Badge>)}
                       </div>
                     </TableCell>
                     <TableCell className="text-right font-mono text-sm text-success">
@@ -742,8 +692,7 @@ const DeFi = () => {
                     <TableCell className="text-right font-mono text-sm">
                       {pool.utilization}
                     </TableCell>
-                  </TableRow>
-                ))}
+                  </TableRow>)}
               </TableBody>
             </Table>
           </TabsContent>
@@ -804,8 +753,7 @@ const DeFi = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {borrowPositions.map((position, index) => (
-                    <Dialog key={index}>
+                  {borrowPositions.map((position, index) => <Dialog key={index}>
                       <DialogTrigger asChild>
                         <TableRow className="hover:bg-muted/50 cursor-pointer">
                           <TableCell className="font-medium">{position.property}</TableCell>
@@ -968,8 +916,7 @@ const DeFi = () => {
                           </Card>
                         </div>
                       </DialogContent>
-                    </Dialog>
-                  ))}
+                    </Dialog>)}
                   <TableRow className="border-t-2 font-bold bg-muted/50">
                     <TableCell className="text-lg">TOTAL</TableCell>
                     <TableCell></TableCell>
@@ -1011,48 +958,24 @@ const DeFi = () => {
                   <AreaChart data={chartData}>
                     <defs>
                       <linearGradient id="depositsGradientBorrow" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
                       </linearGradient>
                       <linearGradient id="loansGradientBorrow" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                    <XAxis 
-                      dataKey="month" 
-                      stroke="hsl(var(--muted-foreground))"
-                      fontSize={11}
-                      tickFormatter={(value) => value.split(' ')[0]}
-                    />
-                    <YAxis 
-                      stroke="hsl(var(--muted-foreground))"
-                      fontSize={11}
-                      tickFormatter={formatCurrency}
-                    />
-                    <Tooltip 
-                      formatter={(value: number) => formatCurrency(value)}
-                      contentStyle={{
-                        backgroundColor: 'hsl(var(--card))',
-                        border: '1px solid hsl(var(--border))',
-                        borderRadius: '8px',
-                      }}
-                    />
-                    <Area 
-                      type="monotone" 
-                      dataKey="deposits" 
-                      stroke="hsl(158, 64%, 52%)" 
-                      strokeWidth={2}
-                      fill="url(#depositsGradientBorrow)"
-                    />
-                    <Area 
-                      type="monotone" 
-                      dataKey="loans" 
-                      stroke="hsl(180, 65%, 45%)" 
-                      strokeWidth={2}
-                      fill="url(#loansGradientBorrow)"
-                    />
+                    <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => value.split(' ')[0]} />
+                    <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={formatCurrency} />
+                    <Tooltip formatter={(value: number) => formatCurrency(value)} contentStyle={{
+                  backgroundColor: 'hsl(var(--card))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '8px'
+                }} />
+                    <Area type="monotone" dataKey="deposits" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#depositsGradientBorrow)" />
+                    <Area type="monotone" dataKey="loans" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#loansGradientBorrow)" />
                   </AreaChart>
                 </ResponsiveContainer>
             </CardContent>
@@ -1065,22 +988,13 @@ const DeFi = () => {
             </div>
             <Tabs defaultValue="markets" className="w-full">
               <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
-                <TabsTrigger 
-                  value="markets"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
-                >
+                <TabsTrigger value="markets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
                   Markets
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="category"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
-                >
+                <TabsTrigger value="category" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
                   Category
                 </TabsTrigger>
-                <TabsTrigger 
-                  value="more"
-                  className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent"
-                >
+                <TabsTrigger value="more" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
                   More
                 </TabsTrigger>
               </TabsList>
@@ -1100,8 +1014,7 @@ const DeFi = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {markets.filter(market => userLocations.includes(market.location)).map((market, index) => (
-                      <TableRow key={index} className="hover:bg-muted/50">
+                    {markets.filter(market => userLocations.includes(market.location)).map((market, index) => <TableRow key={index} className="hover:bg-muted/50">
                         <TableCell className="font-medium">{market.location}</TableCell>
                         <TableCell className="text-sm text-muted-foreground">
                           {market.country}
@@ -1124,8 +1037,7 @@ const DeFi = () => {
                         <TableCell className="text-right font-mono text-sm text-success">
                           {market.growth}
                         </TableCell>
-                      </TableRow>
-                    ))}
+                      </TableRow>)}
                   </TableBody>
                 </Table>
               </TabsContent>
@@ -1144,8 +1056,7 @@ const DeFi = () => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {pools.filter(pool => userSectors.includes(pool.name)).map((pool, index) => (
-                      <TableRow key={index} className="hover:bg-muted/50">
+                    {pools.filter(pool => userSectors.includes(pool.name)).map((pool, index) => <TableRow key={index} className="hover:bg-muted/50">
                         <TableCell className="font-medium">{pool.name}</TableCell>
                         <TableCell className="text-right font-mono text-sm text-success">
                           {pool.deposits}
@@ -1155,11 +1066,9 @@ const DeFi = () => {
                         </TableCell>
                         <TableCell>
                           <div className="flex gap-1">
-                            {pool.collateral.map((token, i) => (
-                              <Badge key={i} variant="outline" className="text-xs">
+                            {pool.collateral.map((token, i) => <Badge key={i} variant="outline" className="text-xs">
                                 {token}
-                              </Badge>
-                            ))}
+                              </Badge>)}
                           </div>
                         </TableCell>
                         <TableCell className="text-right font-mono text-sm">
@@ -1173,8 +1082,7 @@ const DeFi = () => {
                         <TableCell className="text-right font-mono text-sm">
                           {pool.utilization}
                         </TableCell>
-                      </TableRow>
-                    ))}
+                      </TableRow>)}
                   </TableBody>
                 </Table>
               </TabsContent>
@@ -1182,8 +1090,6 @@ const DeFi = () => {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>
-  );
+    </div>;
 };
-
 export default DeFi;
