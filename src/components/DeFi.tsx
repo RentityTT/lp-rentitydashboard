@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 
 const DeFi = () => {
   const [activeMode, setActiveMode] = useState<"bonds" | "loans">("bonds");
+  const [selectedPool, setSelectedPool] = useState<any>(null);
   // User's properties with location and sector information
   const userProperties = [{
     name: "Juniper Tower",
@@ -380,7 +381,8 @@ const DeFi = () => {
     }
     return `$${(value / 1000000).toFixed(2)}M`;
   };
-  return <div className="space-y-6">
+  return <>
+    <div className="space-y-6">
       {/* Header and Description */}
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">Rentity Real Estate</h1>
@@ -734,7 +736,11 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {markets.map((market, index) => <TableRow key={index} className="hover:bg-muted/50">
+                {markets.map((market, index) => <TableRow 
+                    key={index} 
+                    className="hover:bg-muted/50 cursor-pointer"
+                    onClick={() => setSelectedPool({ ...market, type: 'market' })}
+                  >
                     <TableCell className="font-medium">{market.location}</TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {market.country}
@@ -761,6 +767,9 @@ const DeFi = () => {
                       <Button 
                         size="sm" 
                         className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         Fund Pool
                       </Button>
@@ -785,7 +794,11 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {pools.map((pool, index) => <TableRow key={index} className="hover:bg-muted/50">
+                {pools.map((pool, index) => <TableRow 
+                    key={index} 
+                    className="hover:bg-muted/50 cursor-pointer"
+                    onClick={() => setSelectedPool({ ...pool, type: 'pool' })}
+                  >
                     <TableCell className="font-medium">{pool.name}</TableCell>
                     <TableCell className="text-right font-mono text-sm">
                       {pool.deposits}
@@ -809,6 +822,9 @@ const DeFi = () => {
                       <Button 
                         size="sm" 
                         className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
                       >
                         Fund Pool
                       </Button>
@@ -833,7 +849,19 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow className="hover:bg-muted/50">
+                <TableRow 
+                  className="hover:bg-muted/50 cursor-pointer"
+                  onClick={() => setSelectedPool({ 
+                    name: 'Century City',
+                    totalValue: '$3,245,600',
+                    units: 156,
+                    avgReturn: '10.5%',
+                    occupancy: '96%',
+                    marketCap: '$3.7M',
+                    growth: '+15.2%',
+                    type: 'building'
+                  })}
+                >
                   <TableCell className="font-medium">Century City</TableCell>
                   <TableCell className="text-right font-mono text-sm">$3,245,600</TableCell>
                   <TableCell className="text-right font-mono text-sm">156</TableCell>
@@ -845,12 +873,25 @@ const DeFi = () => {
                     <Button 
                       size="sm" 
                       className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       Fund Pool
                     </Button>
                   </TableCell>
                 </TableRow>
-                <TableRow className="hover:bg-muted/50">
+                <TableRow 
+                  className="hover:bg-muted/50 cursor-pointer"
+                  onClick={() => setSelectedPool({ 
+                    name: 'Atmosphere',
+                    totalValue: '$2,890,300',
+                    units: 124,
+                    avgReturn: '9.8%',
+                    occupancy: '94%',
+                    marketCap: '$3.2M',
+                    growth: '+13.8%',
+                    type: 'building'
+                  })}
+                >
                   <TableCell className="font-medium">Atmosphere</TableCell>
                   <TableCell className="text-right font-mono text-sm">$2,890,300</TableCell>
                   <TableCell className="text-right font-mono text-sm">124</TableCell>
@@ -862,12 +903,25 @@ const DeFi = () => {
                     <Button 
                       size="sm" 
                       className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       Fund Pool
                     </Button>
                   </TableCell>
                 </TableRow>
-                <TableRow className="hover:bg-muted/50">
+                <TableRow 
+                  className="hover:bg-muted/50 cursor-pointer"
+                  onClick={() => setSelectedPool({ 
+                    name: 'Sphere',
+                    totalValue: '$3,125,800',
+                    units: 178,
+                    avgReturn: '11.2%',
+                    occupancy: '98%',
+                    marketCap: '$3.5M',
+                    growth: '+16.5%',
+                    type: 'building'
+                  })}
+                >
                   <TableCell className="font-medium">Sphere</TableCell>
                   <TableCell className="text-right font-mono text-sm">$3,125,800</TableCell>
                   <TableCell className="text-right font-mono text-sm">178</TableCell>
@@ -879,6 +933,7 @@ const DeFi = () => {
                     <Button 
                       size="sm" 
                       className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
+                      onClick={(e) => e.stopPropagation()}
                     >
                       Fund Pool
                     </Button>
@@ -1281,6 +1336,171 @@ const DeFi = () => {
           </Card>
         </TabsContent>
       </Tabs>
-    </div>;
+    </div>
+
+    {/* Pool Facts Dialog */}
+    <Dialog open={!!selectedPool} onOpenChange={() => setSelectedPool(null)}>
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="text-2xl">Pool Facts</DialogTitle>
+        </DialogHeader>
+        
+        {selectedPool && (
+          <div className="space-y-6">
+            {/* Pool Header */}
+            <div className="bg-primary-gradient text-primary-foreground p-6 rounded-lg">
+              <h3 className="text-2xl font-bold mb-2">
+                {selectedPool.name || selectedPool.location}
+              </h3>
+              <Badge variant="outline" className="bg-white/20 text-white border-white/30">
+                {selectedPool.type === 'market' ? 'Market Pool' : selectedPool.type === 'building' ? 'Building Pool' : 'Category Pool'}
+              </Badge>
+            </div>
+
+            {/* Key Metrics */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {selectedPool.type === 'market' && (
+                <>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Location</p>
+                    <p className="text-lg font-semibold">{selectedPool.location}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Country</p>
+                    <p className="text-lg font-semibold">{selectedPool.country}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Total Value</p>
+                    <p className="text-lg font-semibold font-mono">{selectedPool.totalValue}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Properties</p>
+                    <p className="text-lg font-semibold">{selectedPool.properties}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Avg Return</p>
+                    <p className="text-lg font-semibold text-success">{selectedPool.avgReturn}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Occupancy Rate</p>
+                    <p className="text-lg font-semibold">{selectedPool.occupancyRate}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Market Cap</p>
+                    <p className="text-lg font-semibold font-mono">{selectedPool.marketCap}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Growth</p>
+                    <p className="text-lg font-semibold text-success">{selectedPool.growth}</p>
+                  </div>
+                </>
+              )}
+
+              {selectedPool.type === 'pool' && (
+                <>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Total Deposits</p>
+                    <p className="text-lg font-semibold font-mono">{selectedPool.deposits}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Supply APY</p>
+                    <p className="text-lg font-semibold text-success">{selectedPool.supplyAPY}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Borrow APY</p>
+                    <p className="text-lg font-semibold text-success">{selectedPool.borrowAPY}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Utilization</p>
+                    <p className="text-lg font-semibold">{selectedPool.utilization}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Network</p>
+                    <p className="text-lg font-semibold">{selectedPool.network}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Curator</p>
+                    <p className="text-lg font-semibold">{selectedPool.curator}</p>
+                  </div>
+                </>
+              )}
+
+              {selectedPool.type === 'building' && (
+                <>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Total Value</p>
+                    <p className="text-lg font-semibold font-mono">{selectedPool.totalValue}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Units</p>
+                    <p className="text-lg font-semibold">{selectedPool.units}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Avg Return</p>
+                    <p className="text-lg font-semibold text-success">{selectedPool.avgReturn}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Occupancy</p>
+                    <p className="text-lg font-semibold">{selectedPool.occupancy}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Market Cap</p>
+                    <p className="text-lg font-semibold font-mono">{selectedPool.marketCap}</p>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">Growth</p>
+                    <p className="text-lg font-semibold text-success">{selectedPool.growth}</p>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <Separator />
+
+            {/* Collateral Information (for pool type) */}
+            {selectedPool.type === 'pool' && selectedPool.collateral && (
+              <div>
+                <h4 className="text-lg font-semibold mb-3">Accepted Collateral</h4>
+                <div className="flex gap-2 flex-wrap">
+                  {selectedPool.collateral.map((token: string, idx: number) => (
+                    <Badge key={idx} variant="secondary">{token}</Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Additional Info */}
+            <div className="bg-muted p-4 rounded-lg">
+              <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
+                <Info className="h-4 w-4" />
+                Pool Information
+              </h4>
+              <p className="text-sm text-muted-foreground">
+                {selectedPool.type === 'market' 
+                  ? `This market-based pool aggregates real estate opportunities across ${selectedPool.location}, ${selectedPool.country}. Investments are diversified across ${selectedPool.properties} properties in the region.`
+                  : selectedPool.type === 'building'
+                  ? `This building-specific pool focuses on ${selectedPool.name} with ${selectedPool.units} units. Returns are generated through rental income and property appreciation.`
+                  : `This category pool specializes in ${selectedPool.name} investments. Funds are deployed across multiple properties matching this category criteria.`
+                }
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-3">
+              <Button 
+                className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
+              >
+                Fund Pool
+              </Button>
+              <Button variant="outline" className="flex-1">
+                View Details
+              </Button>
+            </div>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
+  </>;
 };
+
 export default DeFi;
