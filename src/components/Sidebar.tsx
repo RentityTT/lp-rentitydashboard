@@ -1,7 +1,7 @@
 import { ChevronDown, Home, Building, Wallet, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import logo from "@/assets/rentity-logo.png";
+import userAvatar from "@/assets/user-avatar.png";
 
 interface SidebarProps {
   activeItem: string;
@@ -26,7 +26,7 @@ const Sidebar = ({ activeItem, onItemClick }: SidebarProps) => {
     <div className="w-64 h-screen bg-card border-r border-border">
       <div className="p-6">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Rentity Logo" className="w-10 h-10 rounded-lg" />
+          <img src={userAvatar} alt="User Avatar" className="w-10 h-10 rounded-lg" />
           <div>
             <h2 className="font-semibold text-foreground">Greystone</h2>
             <p className="text-sm text-muted-foreground">Properties</p>
