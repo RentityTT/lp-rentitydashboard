@@ -23,45 +23,45 @@ const Earn = () => {
   const rentTokenPrice = 0.15;
 
   // User's wallet data
-  const totalBalance = 510500;
+  const totalBalance = 410500;
   const totalYieldEarned = 24161;
 
   // Historical balance and yield data
   const balanceChartData = [{
     month: 'Apr',
-    balance: 410500,
+    balance: 310500,
     yield: 0
   }, {
     month: 'May',
-    balance: 420750,
+    balance: 320750,
     yield: 3250
   }, {
     month: 'Jun',
-    balance: 432100,
+    balance: 332100,
     yield: 6850
   }, {
     month: 'Jul',
-    balance: 444500,
+    balance: 344500,
     yield: 10800
   }, {
     month: 'Aug',
-    balance: 458200,
+    balance: 358200,
     yield: 14900
   }, {
     month: 'Sep',
-    balance: 473100,
+    balance: 373100,
     yield: 18650
   }, {
     month: 'Oct',
-    balance: 488500,
+    balance: 388500,
     yield: 21500
   }, {
     month: 'Nov',
-    balance: 499300,
+    balance: 399300,
     yield: 23100
   }, {
     month: 'Dec',
-    balance: 510500,
+    balance: 410500,
     yield: 24161
   }];
   const formatCurrency = (value: number) => {
