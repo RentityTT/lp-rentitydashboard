@@ -41,7 +41,7 @@ const Sidebar = ({
   return <div className="w-64 h-screen bg-card border-r border-border">
       <div className="p-6">
         <div className="flex items-center gap-3">
-          <img src={userAvatar} alt="User Avatar" className="w-10 h-10 rounded-lg animate-fade-in hover-scale" />
+          <img src={userAvatar} alt="User Avatar" className="w-10 h-10 rounded-lg animate-fade-in hover-scale object-contain" />
           <div>
             <h2 className="font-semibold text-foreground">@JB9324</h2>
             <p className="text-sm text-muted-foreground">Properties</p>
