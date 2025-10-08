@@ -5,16 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Info } from "lucide-react";
+import { Info, TrendingUp, Coins } from "lucide-react";
 import usdcLogo from "@/assets/usdc-logo.png";
 const Earn = () => {
   const [depositAmount, setDepositAmount] = useState("");
   const [lockupMonths, setLockupMonths] = useState(3);
   const [activeType, setActiveType] = useState<"bond" | "loan">("bond");
+  const [stakeAmount, setStakeAmount] = useState("");
+  const [purchaseAmount, setPurchaseAmount] = useState("");
   const walletBalance = 50000;
+  const rentTokenBalance = 125000;
   const baseAPY = activeType === "bond" ? 7.82 : 11.2;
   const estimatedYield = Number(depositAmount) * (baseAPY / 100);
   const rentTokenBonus = Number(depositAmount) / 10000 * lockupMonths * 100;
+  const apyBoost = Number(stakeAmount) / 10000 * 0.1;
+  const rentTokenPrice = 0.15;
   const handlePercentage = (percent: number) => {
     const amount = (walletBalance * percent).toFixed(2);
     setDepositAmount(amount);
@@ -123,6 +128,95 @@ const Earn = () => {
           </Button>
         </CardContent>
       </Card>
+
+      {/* Staking Section */}
+      <div>
+        <h2 className="text-2xl font-bold mb-4">$RENT Token Staking</h2>
+        <p className="text-muted-foreground mb-4">Boost your APY by staking $RENT tokens</p>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        {/* Purchase $RENT */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Coins className="w-5 h-5" />
+              Purchase $RENT
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <Label>Amount (USDC)</Label>
+              <Input
+                type="number"
+                value={purchaseAmount}
+                onChange={e => setPurchaseAmount(e.target.value)}
+                placeholder="0.00"
+                className="text-xl h-12 font-mono mt-2"
+              />
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-sm text-muted-foreground">
+                  Current Price: ${rentTokenPrice} per $RENT
+                </span>
+                <span className="text-sm font-medium">
+                  ≈ {(Number(purchaseAmount) / rentTokenPrice).toFixed(0)} $RENT
+                </span>
+              </div>
+            </div>
+            <Button className="w-full" variant="outline">
+              Purchase $RENT Tokens
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Stake $RENT */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5" />
+              Stake $RENT
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <Label>Stake Amount</Label>
+              <Input
+                type="number"
+                value={stakeAmount}
+                onChange={e => setStakeAmount(e.target.value)}
+                placeholder="0"
+                className="text-xl h-12 font-mono mt-2"
+              />
+              <div className="flex items-center justify-between mt-2">
+                <span className="text-sm text-muted-foreground">
+                  Available: {rentTokenBalance.toLocaleString()} $RENT
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setStakeAmount(rentTokenBalance.toString())}
+                >
+                  Max
+                </Button>
+              </div>
+            </div>
+            <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="w-4 h-4 text-primary" />
+                <span className="font-semibold text-primary">
+                  +{apyBoost.toFixed(2)}% APY Boost
+                </span>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                10,000 $RENT tokens = +0.1% APY bonus
+              </p>
+            </div>
+            <Button className="w-full">
+              Stake $RENT Tokens
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </div>;
 };
 export default Earn;
