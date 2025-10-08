@@ -50,33 +50,26 @@ const Earn = () => {
       {/* Wallet Balance Overview with Chart */}
       <Card>
         <CardHeader className="pb-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Wallet className="h-5 w-5 text-muted-foreground" />
-              <CardTitle className="text-sm font-medium text-muted-foreground">
-                Total Wallet Balance
-              </CardTitle>
+          <CardTitle className="text-2xl font-bold mb-4">My Wallet</CardTitle>
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <div className="text-sm text-muted-foreground mb-1">Total Balance</div>
+              <div className="text-3xl font-bold">${totalBalance.toLocaleString()}</div>
+              <div className="text-sm text-success mt-1">
+                +${totalYieldEarned.toLocaleString()} yield earned
+              </div>
             </div>
-          </div>
-          <div className="flex items-baseline gap-4 mt-2">
-            <div className="text-4xl font-bold">${totalBalance.toLocaleString()}</div>
-            <div className="text-lg font-semibold text-success">
-              +${totalYieldEarned.toLocaleString()} yield
+            <div>
+              <div className="text-sm text-muted-foreground mb-1">$RENT Tokens</div>
+              <div className="text-3xl font-bold">{rentTokenBalance.toLocaleString()}</div>
+              <div className="text-sm text-muted-foreground mt-1">
+                ≈ ${(rentTokenBalance * rentTokenPrice).toLocaleString()} USDC
+              </div>
             </div>
           </div>
         </CardHeader>
         <CardContent className="pt-4">
-          <div className="flex gap-4 mb-4 text-xs">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-[hsl(180,65%,45%)]" />
-              <span className="text-muted-foreground">Balance</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-[hsl(158,64%,52%)]" />
-              <span className="text-muted-foreground">Yield Earned</span>
-            </div>
-          </div>
-          <ResponsiveContainer width="100%" height={220}>
+          <ResponsiveContainer width="100%" height={200}>
             <AreaChart data={balanceChartData}>
               <defs>
                 <linearGradient id="balanceGradient" x1="0" y1="0" x2="0" y2="1">
