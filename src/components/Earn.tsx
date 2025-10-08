@@ -48,7 +48,7 @@ const Earn = () => {
   };
   return <div className="max-w-3xl mx-auto space-y-6">
       {/* Wallet Balance Overview with Chart */}
-      <Card className="border-2">
+      <Card>
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
