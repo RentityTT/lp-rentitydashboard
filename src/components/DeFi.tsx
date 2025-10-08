@@ -794,22 +794,22 @@ const DeFi = () => {
               </TableHeader>
               <TableBody>
                 <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Century City',
-                        totalValue: '$3,245,600',
-                        units: 156,
-                        avgReturn: '10.5%',
-                        occupancy: '96%',
-                        marketCap: '$3.7M',
-                        growth: '+15.2%',
+                        name: 'Riverside Gardens',
+                        totalValue: '$4,567,200',
+                        units: 189,
+                        avgReturn: '9.2%',
+                        occupancy: '97%',
+                        marketCap: '$4.8M',
+                        growth: '+14.6%',
                         type: 'building'
                       })}>
-                  <TableCell className="font-medium">Century City</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$3,245,600</TableCell>
-                  <TableCell className="text-right font-mono text-sm">156</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">10.5%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">96%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$3.7M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+15.2%</TableCell>
+                  <TableCell className="font-medium">Riverside Gardens</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$4,567,200</TableCell>
+                  <TableCell className="text-right font-mono text-sm">189</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">9.2%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">97%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$4.8M</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">+14.6%</TableCell>
                   <TableCell className="text-right">
                     <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
                       Fund Pool
@@ -817,22 +817,21 @@ const DeFi = () => {
                   </TableCell>
                 </TableRow>
                 <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Atmosphere',
-                        totalValue: '$2,890,300',
-                        units: 124,
-                        avgReturn: '9.8%',
-                        occupancy: '94%',
-                        marketCap: '$3.2M',
-                        growth: '+13.8%',
+                        name: 'Downtown Development Site',
+                        totalValue: '$8,950,000',
+                        isDevelopmentLand: true,
+                        avgReturn: '12.5%',
+                        marketCap: '$9.2M',
+                        growth: '+18.3%',
                         type: 'building'
                       })}>
-                  <TableCell className="font-medium">Atmosphere</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$2,890,300</TableCell>
-                  <TableCell className="text-right font-mono text-sm">124</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">9.8%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">94%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$3.2M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+13.8%</TableCell>
+                  <TableCell className="font-medium">Downtown Development Site</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$8,950,000</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">12.5%</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$9.2M</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">+18.3%</TableCell>
                   <TableCell className="text-right">
                     <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
                       Fund Pool
@@ -840,22 +839,44 @@ const DeFi = () => {
                   </TableCell>
                 </TableRow>
                 <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Sphere',
-                        totalValue: '$3,125,800',
-                        units: 178,
-                        avgReturn: '11.2%',
-                        occupancy: '98%',
-                        marketCap: '$3.5M',
-                        growth: '+16.5%',
+                        name: 'Harbor Point Towers',
+                        totalValue: '$6,234,800',
+                        units: 142,
+                        avgReturn: '10.8%',
+                        occupancy: '95%',
+                        marketCap: '$6.5M',
+                        growth: '+16.1%',
                         type: 'building'
                       })}>
-                  <TableCell className="font-medium">Sphere</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$3,125,800</TableCell>
-                  <TableCell className="text-right font-mono text-sm">178</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">11.2%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">98%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$3.5M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+16.5%</TableCell>
+                  <TableCell className="font-medium">Harbor Point Towers</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$6,234,800</TableCell>
+                  <TableCell className="text-right font-mono text-sm">142</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">10.8%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">95%</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$6.5M</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">+16.1%</TableCell>
+                  <TableCell className="text-right">
+                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
+                      Fund Pool
+                    </Button>
+                  </TableCell>
+                </TableRow>
+                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                        name: 'Westside Land Parcel',
+                        totalValue: '$5,670,000',
+                        isDevelopmentLand: true,
+                        avgReturn: '13.2%',
+                        marketCap: '$5.9M',
+                        growth: '+19.5%',
+                        type: 'building'
+                      })}>
+                  <TableCell className="font-medium">Westside Land Parcel</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$5,670,000</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">13.2%</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
+                  <TableCell className="text-right font-mono text-sm">$5.9M</TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success">+19.5%</TableCell>
                   <TableCell className="text-right">
                     <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
                       Fund Pool
