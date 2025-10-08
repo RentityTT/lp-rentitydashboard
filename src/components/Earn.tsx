@@ -30,39 +30,48 @@ const Earn = () => {
   const balanceChartData = [{
     month: 'Apr',
     balance: 926050,
-    yield: 0
+    yield: 0,
+    positions: 310500
   }, {
     month: 'May',
     balance: 936750,
-    yield: 3250
+    yield: 3250,
+    positions: 320750
   }, {
     month: 'Jun',
     balance: 948100,
-    yield: 6850
+    yield: 6850,
+    positions: 332100
   }, {
     month: 'Jul',
     balance: 960500,
-    yield: 10800
+    yield: 10800,
+    positions: 344500
   }, {
     month: 'Aug',
     balance: 974200,
-    yield: 14900
+    yield: 14900,
+    positions: 358200
   }, {
     month: 'Sep',
     balance: 989100,
-    yield: 18650
+    yield: 18650,
+    positions: 373100
   }, {
     month: 'Oct',
     balance: 1004500,
-    yield: 21500
+    yield: 21500,
+    positions: 388500
   }, {
     month: 'Nov',
     balance: 1015300,
-    yield: 23100
+    yield: 23100,
+    positions: 399300
   }, {
     month: 'Dec',
     balance: 1026050,
-    yield: 24161
+    yield: 24161,
+    positions: 410500
   }];
   const formatCurrency = (value: number) => {
     return `$${value.toLocaleString()}`;
@@ -105,6 +114,20 @@ const Earn = () => {
           </div>
         </CardHeader>
         <CardContent className="pt-4">
+          <div className="flex gap-4 mb-4 text-xs">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[hsl(180,65%,45%)]" />
+              <span className="text-muted-foreground">Balance</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[hsl(158,64%,52%)]" />
+              <span className="text-muted-foreground">Yield</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[hsl(270,70%,60%)]" />
+              <span className="text-muted-foreground">Positions</span>
+            </div>
+          </div>
           <ResponsiveContainer width="100%" height={200}>
             <AreaChart data={balanceChartData}>
               <defs>
@@ -115,6 +138,10 @@ const Earn = () => {
                 <linearGradient id="yieldGradient" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
                   <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="positionsGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
@@ -127,6 +154,7 @@ const Earn = () => {
               }} />
               <Area type="monotone" dataKey="balance" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#balanceGradient)" />
               <Area type="monotone" dataKey="yield" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#yieldGradient)" />
+              <Area type="monotone" dataKey="positions" stroke="hsl(270, 70%, 60%)" strokeWidth={2} fill="url(#positionsGradient)" />
             </AreaChart>
           </ResponsiveContainer>
         </CardContent>
