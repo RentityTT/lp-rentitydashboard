@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Info, TrendingUp, Coins } from "lucide-react";
+import { Info, TrendingUp, Coins, Wallet } from "lucide-react";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import usdcLogo from "@/assets/usdc-logo.png";
 const Earn = () => {
   const [depositAmount, setDepositAmount] = useState("");
@@ -20,6 +21,27 @@ const Earn = () => {
   const rentTokenBonus = Number(depositAmount) / 10000 * lockupMonths * 100;
   const apyBoost = Number(stakeAmount) / 10000 * 0.1;
   const rentTokenPrice = 0.15;
+
+  // User's wallet data
+  const totalBalance = 510500;
+  const totalYieldEarned = 24161;
+  
+  // Historical balance and yield data
+  const balanceChartData = [
+    { month: 'Apr', balance: 410500, yield: 0 },
+    { month: 'May', balance: 420750, yield: 3250 },
+    { month: 'Jun', balance: 432100, yield: 6850 },
+    { month: 'Jul', balance: 444500, yield: 10800 },
+    { month: 'Aug', balance: 458200, yield: 14900 },
+    { month: 'Sep', balance: 473100, yield: 18650 },
+    { month: 'Oct', balance: 488500, yield: 21500 },
+    { month: 'Nov', balance: 499300, yield: 23100 },
+    { month: 'Dec', balance: 510500, yield: 24161 }
+  ];
+
+  const formatCurrency = (value: number) => {
+    return `$${value.toLocaleString()}`;
+  };
   const handlePercentage = (percent: number) => {
     const amount = (walletBalance * percent).toFixed(2);
     setDepositAmount(amount);
@@ -29,6 +51,85 @@ const Earn = () => {
         <h1 className="text-3xl font-bold mb-2">Deposit Funds</h1>
         <p className="text-muted-foreground">Choose your investment type and earn competitive returns</p>
       </div>
+
+      {/* Wallet Balance Overview with Chart */}
+      <Card>
+        <CardHeader className="pb-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Wallet className="h-5 w-5 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium text-muted-foreground">
+                Total Wallet Balance
+              </CardTitle>
+            </div>
+          </div>
+          <div className="flex items-baseline gap-4 mt-2">
+            <div className="text-4xl font-bold">${totalBalance.toLocaleString()}</div>
+            <div className="text-lg font-semibold text-success">
+              +${totalYieldEarned.toLocaleString()} yield
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-4">
+          <div className="flex gap-4 mb-4 text-xs">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[hsl(180,65%,45%)]" />
+              <span className="text-muted-foreground">Balance</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-[hsl(158,64%,52%)]" />
+              <span className="text-muted-foreground">Yield Earned</span>
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={220}>
+            <AreaChart data={balanceChartData}>
+              <defs>
+                <linearGradient id="balanceGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="yieldGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+              <XAxis 
+                dataKey="month" 
+                stroke="hsl(var(--muted-foreground))" 
+                fontSize={11} 
+              />
+              <YAxis 
+                stroke="hsl(var(--muted-foreground))" 
+                fontSize={11} 
+                tickFormatter={formatCurrency}
+              />
+              <Tooltip 
+                formatter={(value: number) => formatCurrency(value)} 
+                contentStyle={{
+                  backgroundColor: 'hsl(var(--card))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '8px'
+                }} 
+              />
+              <Area 
+                type="monotone" 
+                dataKey="balance" 
+                stroke="hsl(180, 65%, 45%)" 
+                strokeWidth={2} 
+                fill="url(#balanceGradient)" 
+              />
+              <Area 
+                type="monotone" 
+                dataKey="yield" 
+                stroke="hsl(158, 64%, 52%)" 
+                strokeWidth={2} 
+                fill="url(#yieldGradient)" 
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
 
       {/* Product Type Selection */}
       <Card>
