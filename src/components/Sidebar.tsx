@@ -1,7 +1,7 @@
 import { ChevronDown, Home, Building, Wallet, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import userAvatar from "@/assets/profile-avatar.webp";
+import userAvatar from "@/assets/profile-avatar.png";
 interface SidebarProps {
   activeItem: string;
   onItemClick: (item: string) => void;
