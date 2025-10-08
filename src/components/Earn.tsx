@@ -53,7 +53,7 @@ const Earn = () => {
       </div>
 
       {/* Wallet Balance Overview with Chart */}
-      <Card>
+      <Card className="border-2">
         <CardHeader className="pb-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
