@@ -1393,6 +1393,80 @@ const DeFi = () => {
 
             <Separator />
 
+            {/* Performance Chart */}
+            <div>
+              <h4 className="text-lg font-semibold mb-3">Historical Performance</h4>
+              <ResponsiveContainer width="100%" height={200}>
+                <AreaChart data={[
+                  { month: 'Jul', apy: selectedPool.type === 'market' ? 7.2 : selectedPool.type === 'pool' ? 6.8 : 9.1, tvl: selectedPool.type === 'market' ? 1.6 : selectedPool.type === 'pool' ? 280 : 2.8 },
+                  { month: 'Aug', apy: selectedPool.type === 'market' ? 7.5 : selectedPool.type === 'pool' ? 7.1 : 9.5, tvl: selectedPool.type === 'market' ? 1.7 : selectedPool.type === 'pool' ? 295 : 2.9 },
+                  { month: 'Sep', apy: selectedPool.type === 'market' ? 7.8 : selectedPool.type === 'pool' ? 7.3 : 9.8, tvl: selectedPool.type === 'market' ? 1.75 : selectedPool.type === 'pool' ? 310 : 3.0 },
+                  { month: 'Oct', apy: selectedPool.type === 'market' ? 8.0 : selectedPool.type === 'pool' ? 7.5 : 10.2, tvl: selectedPool.type === 'market' ? 1.8 : selectedPool.type === 'pool' ? 330 : 3.1 },
+                  { month: 'Nov', apy: selectedPool.type === 'market' ? 8.3 : selectedPool.type === 'pool' ? 7.7 : 10.5, tvl: selectedPool.type === 'market' ? 1.85 : selectedPool.type === 'pool' ? 350 : 3.15 },
+                  { month: 'Dec', apy: selectedPool.type === 'market' ? parseFloat(selectedPool.avgReturn) : parseFloat(selectedPool.supplyAPY || selectedPool.avgReturn), tvl: selectedPool.type === 'market' ? 1.89 : selectedPool.type === 'pool' ? 367 : 3.2 }
+                ]}>
+                  <defs>
+                    <linearGradient id="apyGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+                  <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `${value}%`} />
+                  <Tooltip 
+                    formatter={(value: number, name: string) => [name === 'apy' ? `${value}%` : `$${value}B`, name === 'apy' ? 'APY' : 'TVL']}
+                    contentStyle={{
+                      backgroundColor: 'hsl(var(--card))',
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px'
+                    }} 
+                  />
+                  <Area type="monotone" dataKey="apy" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#apyGradient)" />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+
+            <Separator />
+
+            {/* Utilization Chart (for pool types) */}
+            {(selectedPool.type === 'pool' || selectedPool.type === 'building') && (
+              <div>
+                <h4 className="text-lg font-semibold mb-3">Utilization Trends</h4>
+                <ResponsiveContainer width="100%" height={180}>
+                  <AreaChart data={[
+                    { month: 'Jul', utilization: selectedPool.type === 'pool' ? 45 : 88 },
+                    { month: 'Aug', utilization: selectedPool.type === 'pool' ? 48 : 90 },
+                    { month: 'Sep', utilization: selectedPool.type === 'pool' ? 51 : 92 },
+                    { month: 'Oct', utilization: selectedPool.type === 'pool' ? 55 : 94 },
+                    { month: 'Nov', utilization: selectedPool.type === 'pool' ? 58 : 95 },
+                    { month: 'Dec', utilization: selectedPool.type === 'pool' ? parseInt(selectedPool.utilization) : parseInt(selectedPool.occupancy || '90') }
+                  ]}>
+                    <defs>
+                      <linearGradient id="utilizationGradient" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
+                        <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                    <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+                    <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `${value}%`} domain={[0, 100]} />
+                    <Tooltip 
+                      formatter={(value: number) => [`${value}%`, selectedPool.type === 'pool' ? 'Utilization' : 'Occupancy']}
+                      contentStyle={{
+                        backgroundColor: 'hsl(var(--card))',
+                        border: '1px solid hsl(var(--border))',
+                        borderRadius: '8px'
+                      }} 
+                    />
+                    <Area type="monotone" dataKey="utilization" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#utilizationGradient)" />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            )}
+
+            <Separator />
+
             {/* Collateral Information (for pool type) */}
             {selectedPool.type === 'pool' && selectedPool.collateral && <div>
                 <h4 className="text-lg font-semibold mb-3">Accepted Collateral</h4>
