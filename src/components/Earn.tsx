@@ -80,12 +80,19 @@ const Earn = () => {
         </div>
         <Card>
           <CardHeader className="pb-2">
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             <div>
               <div className="text-sm text-muted-foreground mb-1">Total Balance</div>
               <div className="text-3xl font-bold">${totalBalance.toLocaleString()}</div>
               <div className="text-sm text-success mt-1">
                 +${totalYieldEarned.toLocaleString()} yield earned
+              </div>
+            </div>
+            <div>
+              <div className="text-sm text-muted-foreground mb-1">Total Positions</div>
+              <div className="text-3xl font-bold">$410,500</div>
+              <div className="text-sm text-muted-foreground mt-1">
+                Across 3 active pools
               </div>
             </div>
             <div>
