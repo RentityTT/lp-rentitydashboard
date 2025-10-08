@@ -224,7 +224,7 @@ const Earn = () => {
               <span className="text-xl font-bold text-primary">{rentTokenBonus.toFixed(0)}</span>
             </div>
           </div>
-          <Button className="w-full mt-6" size="lg">
+          <Button className="w-full mt-6 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full" size="lg">
             Deposit Funds
           </Button>
         </CardContent>
@@ -314,7 +314,7 @@ const Earn = () => {
                 10,000 $RENT tokens = +0.1% APY bonus
               </p>
             </div>
-            <Button className="w-full">
+            <Button className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full">
               Stake $RENT Tokens
             </Button>
           </CardContent>
