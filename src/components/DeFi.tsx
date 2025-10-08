@@ -9,7 +9,6 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-
 const DeFi = () => {
   const [activeMode, setActiveMode] = useState<"bonds" | "loans">("bonds");
   const [selectedPool, setSelectedPool] = useState<any>(null);
@@ -147,7 +146,6 @@ const DeFi = () => {
     network: "Solana",
     utilization: "45%"
   }];
-
   const loanPools = [{
     name: "Residential Prime Loan",
     deposits: "$1,245,678,901",
@@ -221,7 +219,6 @@ const DeFi = () => {
     network: "Solana",
     utilization: "65%"
   }];
-
   const pools = activeMode === "bonds" ? bondPools : loanPools;
   const earnPositions = [{
     pool: "Residential Prime Bond",
@@ -385,43 +382,21 @@ const DeFi = () => {
     <div className="space-y-6">
       {/* Header and Description */}
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold">Rentity Real Estate</h1>
-        <p className="text-muted-foreground">
-          Rentity DeFi Pools give property owners two powerful options:
-        </p>
+        <h1 className="text-3xl font-bold">Real Estate DeFi</h1>
+        <p className="text-muted-foreground">Choose to fund and earn from specific pools based on market, category, or individual property. All pools have been curated and completed due dilligence by Rentity.</p>
         <div className="mt-4 space-y-3 text-muted-foreground">
-          <p>
-            <strong>1. Earn Yield</strong> — Deposit stablecoins into Rentity Pools to earn returns backed by real estate cashflows. Choose from curated pools by market (Vancouver, New York, Hong Kong) or by sector (multifamily, senior housing, student housing), with transparent terms and on-chain reporting.
-          </p>
-          <p>
-            <strong>2. Borrow</strong> — Tap into the same pools for fast, non-dilutive financing. Property owners can request loans, receiving upfront liquidity directly from global LPs.
-          </p>
+          
+          
         </div>
       </div>
 
       {/* Bonds/Loans Toggle */}
       <div className="flex items-center py-4">
         <div className="flex items-center gap-2 bg-card border border-border rounded-full px-2 py-2">
-          <button
-            className={cn(
-              "px-6 py-2 rounded-full font-medium transition-all text-sm",
-              activeMode === "bonds"
-                ? "bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white"
-                : "text-foreground hover:text-foreground/80"
-            )}
-            onClick={() => setActiveMode("bonds")}
-          >
+          <button className={cn("px-6 py-2 rounded-full font-medium transition-all text-sm", activeMode === "bonds" ? "bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white" : "text-foreground hover:text-foreground/80")} onClick={() => setActiveMode("bonds")}>
             Bonds
           </button>
-          <button
-            className={cn(
-              "px-6 py-2 rounded-full font-medium transition-all text-sm",
-              activeMode === "loans"
-                ? "bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white"
-                : "text-foreground hover:text-foreground/80"
-            )}
-            onClick={() => setActiveMode("loans")}
-          >
+          <button className={cn("px-6 py-2 rounded-full font-medium transition-all text-sm", activeMode === "loans" ? "bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white" : "text-foreground hover:text-foreground/80")} onClick={() => setActiveMode("loans")}>
             Loans
           </button>
         </div>
@@ -606,9 +581,7 @@ const DeFi = () => {
 
                       {/* Action Buttons */}
                       <div className="flex gap-3">
-                        <Button 
-                          className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
-                        >
+                        <Button className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90">
                           Add Funds
                         </Button>
                         <Button variant="outline" className="flex-1">
@@ -671,10 +644,10 @@ const DeFi = () => {
                 <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => value.split(' ')[0]} />
                 <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={formatCurrency} />
                 <Tooltip formatter={(value: number) => formatCurrency(value)} contentStyle={{
-                  backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '8px'
-                }} />
+                    backgroundColor: 'hsl(var(--card))',
+                    border: '1px solid hsl(var(--border))',
+                    borderRadius: '8px'
+                  }} />
                 <Area type="monotone" dataKey="deposits" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#depositsGradient)" />
                 <Area type="monotone" dataKey="loans" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#loansGradient)" />
               </AreaChart>
@@ -689,11 +662,9 @@ const DeFi = () => {
         </div>
         <Tabs defaultValue={activeMode === "bonds" ? "markets" : "category"} className="w-full">
           <TabsList className="w-full justify-start border-b rounded-none h-auto p-0 bg-transparent">
-            {activeMode === "bonds" && (
-              <TabsTrigger value="markets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
+            {activeMode === "bonds" && <TabsTrigger value="markets" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
                 Markets
-              </TabsTrigger>
-            )}
+              </TabsTrigger>}
             <TabsTrigger value="category" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               Category
             </TabsTrigger>
@@ -718,11 +689,10 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {markets.map((market, index) => <TableRow 
-                    key={index} 
-                    className="hover:bg-muted/50 cursor-pointer"
-                    onClick={() => setSelectedPool({ ...market, type: 'market' })}
-                  >
+                {markets.map((market, index) => <TableRow key={index} className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                      ...market,
+                      type: 'market'
+                    })}>
                     <TableCell className="font-medium">{market.location}</TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {market.country}
@@ -746,13 +716,9 @@ const DeFi = () => {
                       {market.growth}
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button 
-                        size="sm" 
-                        className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
-                        onClick={(e) => {
+                      <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => {
                           e.stopPropagation();
-                        }}
-                      >
+                        }}>
                         Fund Pool
                       </Button>
                     </TableCell>
@@ -776,11 +742,10 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {pools.map((pool, index) => <TableRow 
-                    key={index} 
-                    className="hover:bg-muted/50 cursor-pointer"
-                    onClick={() => setSelectedPool({ ...pool, type: 'pool' })}
-                  >
+                {pools.map((pool, index) => <TableRow key={index} className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                      ...pool,
+                      type: 'pool'
+                    })}>
                     <TableCell className="font-medium">{pool.name}</TableCell>
                     <TableCell className="text-right font-mono text-sm">
                       {pool.deposits}
@@ -801,13 +766,9 @@ const DeFi = () => {
                       {pool.borrowAPY}
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button 
-                        size="sm" 
-                        className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
-                        onClick={(e) => {
+                      <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => {
                           e.stopPropagation();
-                        }}
-                      >
+                        }}>
                         Fund Pool
                       </Button>
                     </TableCell>
@@ -831,19 +792,16 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow 
-                  className="hover:bg-muted/50 cursor-pointer"
-                  onClick={() => setSelectedPool({ 
-                    name: 'Century City',
-                    totalValue: '$3,245,600',
-                    units: 156,
-                    avgReturn: '10.5%',
-                    occupancy: '96%',
-                    marketCap: '$3.7M',
-                    growth: '+15.2%',
-                    type: 'building'
-                  })}
-                >
+                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                      name: 'Century City',
+                      totalValue: '$3,245,600',
+                      units: 156,
+                      avgReturn: '10.5%',
+                      occupancy: '96%',
+                      marketCap: '$3.7M',
+                      growth: '+15.2%',
+                      type: 'building'
+                    })}>
                   <TableCell className="font-medium">Century City</TableCell>
                   <TableCell className="text-right font-mono text-sm">$3,245,600</TableCell>
                   <TableCell className="text-right font-mono text-sm">156</TableCell>
@@ -852,28 +810,21 @@ const DeFi = () => {
                   <TableCell className="text-right font-mono text-sm">$3.7M</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">+15.2%</TableCell>
                   <TableCell className="text-right">
-                    <Button 
-                      size="sm" 
-                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
                       Fund Pool
                     </Button>
                   </TableCell>
                 </TableRow>
-                <TableRow 
-                  className="hover:bg-muted/50 cursor-pointer"
-                  onClick={() => setSelectedPool({ 
-                    name: 'Atmosphere',
-                    totalValue: '$2,890,300',
-                    units: 124,
-                    avgReturn: '9.8%',
-                    occupancy: '94%',
-                    marketCap: '$3.2M',
-                    growth: '+13.8%',
-                    type: 'building'
-                  })}
-                >
+                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                      name: 'Atmosphere',
+                      totalValue: '$2,890,300',
+                      units: 124,
+                      avgReturn: '9.8%',
+                      occupancy: '94%',
+                      marketCap: '$3.2M',
+                      growth: '+13.8%',
+                      type: 'building'
+                    })}>
                   <TableCell className="font-medium">Atmosphere</TableCell>
                   <TableCell className="text-right font-mono text-sm">$2,890,300</TableCell>
                   <TableCell className="text-right font-mono text-sm">124</TableCell>
@@ -882,28 +833,21 @@ const DeFi = () => {
                   <TableCell className="text-right font-mono text-sm">$3.2M</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">+13.8%</TableCell>
                   <TableCell className="text-right">
-                    <Button 
-                      size="sm" 
-                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
                       Fund Pool
                     </Button>
                   </TableCell>
                 </TableRow>
-                <TableRow 
-                  className="hover:bg-muted/50 cursor-pointer"
-                  onClick={() => setSelectedPool({ 
-                    name: 'Sphere',
-                    totalValue: '$3,125,800',
-                    units: 178,
-                    avgReturn: '11.2%',
-                    occupancy: '98%',
-                    marketCap: '$3.5M',
-                    growth: '+16.5%',
-                    type: 'building'
-                  })}
-                >
+                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                      name: 'Sphere',
+                      totalValue: '$3,125,800',
+                      units: 178,
+                      avgReturn: '11.2%',
+                      occupancy: '98%',
+                      marketCap: '$3.5M',
+                      growth: '+16.5%',
+                      type: 'building'
+                    })}>
                   <TableCell className="font-medium">Sphere</TableCell>
                   <TableCell className="text-right font-mono text-sm">$3,125,800</TableCell>
                   <TableCell className="text-right font-mono text-sm">178</TableCell>
@@ -912,11 +856,7 @@ const DeFi = () => {
                   <TableCell className="text-right font-mono text-sm">$3.5M</TableCell>
                   <TableCell className="text-right font-mono text-sm text-success">+16.5%</TableCell>
                   <TableCell className="text-right">
-                    <Button 
-                      size="sm" 
-                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
                       Fund Pool
                     </Button>
                   </TableCell>
@@ -1198,10 +1138,10 @@ const DeFi = () => {
                     <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => value.split(' ')[0]} />
                     <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={formatCurrency} />
                     <Tooltip formatter={(value: number) => formatCurrency(value)} contentStyle={{
-                  backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '8px'
-                }} />
+                    backgroundColor: 'hsl(var(--card))',
+                    border: '1px solid hsl(var(--border))',
+                    borderRadius: '8px'
+                  }} />
                     <Area type="monotone" dataKey="deposits" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#depositsGradientBorrow)" />
                     <Area type="monotone" dataKey="loans" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#loansGradientBorrow)" />
                   </AreaChart>
@@ -1327,8 +1267,7 @@ const DeFi = () => {
           <DialogTitle className="text-2xl">Pool Facts</DialogTitle>
         </DialogHeader>
         
-        {selectedPool && (
-          <div className="space-y-6">
+        {selectedPool && <div className="space-y-6">
             {/* Pool Header */}
             <div className="bg-primary-gradient text-primary-foreground p-6 rounded-lg">
               <h3 className="text-2xl font-bold mb-2">
@@ -1341,8 +1280,7 @@ const DeFi = () => {
 
             {/* Key Metrics */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {selectedPool.type === 'market' && (
-                <>
+              {selectedPool.type === 'market' && <>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Location</p>
                     <p className="text-lg font-semibold">{selectedPool.location}</p>
@@ -1375,11 +1313,9 @@ const DeFi = () => {
                     <p className="text-sm text-muted-foreground">Growth</p>
                     <p className="text-lg font-semibold text-success">{selectedPool.growth}</p>
                   </div>
-                </>
-              )}
+                </>}
 
-              {selectedPool.type === 'pool' && (
-                <>
+              {selectedPool.type === 'pool' && <>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Total Deposits</p>
                     <p className="text-lg font-semibold">{selectedPool.deposits}</p>
@@ -1400,11 +1336,9 @@ const DeFi = () => {
                     <p className="text-sm text-muted-foreground">Curator</p>
                     <p className="text-lg font-semibold">{selectedPool.curator}</p>
                   </div>
-                </>
-              )}
+                </>}
 
-              {selectedPool.type === 'building' && (
-                <>
+              {selectedPool.type === 'building' && <>
                   <div className="space-y-1">
                     <p className="text-sm text-muted-foreground">Total Value</p>
                     <p className="text-lg font-semibold">{selectedPool.totalValue}</p>
@@ -1429,23 +1363,18 @@ const DeFi = () => {
                     <p className="text-sm text-muted-foreground">Growth</p>
                     <p className="text-lg font-semibold text-success">{selectedPool.growth}</p>
                   </div>
-                </>
-              )}
+                </>}
             </div>
 
             <Separator />
 
             {/* Collateral Information (for pool type) */}
-            {selectedPool.type === 'pool' && selectedPool.collateral && (
-              <div>
+            {selectedPool.type === 'pool' && selectedPool.collateral && <div>
                 <h4 className="text-lg font-semibold mb-3">Accepted Collateral</h4>
                 <div className="flex gap-2 flex-wrap">
-                  {selectedPool.collateral.map((token: string, idx: number) => (
-                    <Badge key={idx} variant="secondary">{token}</Badge>
-                  ))}
+                  {selectedPool.collateral.map((token: string, idx: number) => <Badge key={idx} variant="secondary">{token}</Badge>)}
                 </div>
-              </div>
-            )}
+              </div>}
 
             {/* Additional Info */}
             <div className="bg-muted p-4 rounded-lg">
@@ -1454,31 +1383,22 @@ const DeFi = () => {
                 Pool Information
               </h4>
               <p className="text-sm text-muted-foreground">
-                {selectedPool.type === 'market' 
-                  ? `This market-based pool aggregates real estate financing opportunities across ${selectedPool.location}, ${selectedPool.country}. Loans could be for land acquisition, construction development, mezzanine financing, bridge loans, or other real estate purposes.`
-                  : selectedPool.type === 'building'
-                  ? `This building-specific pool provides financing for ${selectedPool.name} with ${selectedPool.units} units. Loans may include construction development, bridge financing, mezzanine loans, or land acquisition for this property.`
-                  : `This loan pool specializes in ${selectedPool.name} financing. Funds are deployed for land loans, construction development, mezzanine financing, bridge loans, and other real estate lending opportunities matching this category.`
-                }
+                {selectedPool.type === 'market' ? `This market-based pool aggregates real estate financing opportunities across ${selectedPool.location}, ${selectedPool.country}. Loans could be for land acquisition, construction development, mezzanine financing, bridge loans, or other real estate purposes.` : selectedPool.type === 'building' ? `This building-specific pool provides financing for ${selectedPool.name} with ${selectedPool.units} units. Loans may include construction development, bridge financing, mezzanine loans, or land acquisition for this property.` : `This loan pool specializes in ${selectedPool.name} financing. Funds are deployed for land loans, construction development, mezzanine financing, bridge loans, and other real estate lending opportunities matching this category.`}
               </p>
             </div>
 
             {/* Action Buttons */}
             <div className="flex gap-3">
-              <Button 
-                className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
-              >
+              <Button className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90">
                 Fund Pool
               </Button>
               <Button variant="outline" className="flex-1">
                 View Details
               </Button>
             </div>
-          </div>
-        )}
+          </div>}
       </DialogContent>
     </Dialog>
   </>;
 };
-
 export default DeFi;
