@@ -43,6 +43,9 @@ const Dashboard = () => {
       case "earn":
         setActiveTab("earn");
         break;
+      case "defi":
+        setActiveTab("defi");
+        break;
       case "wallet":
         setShowWallet(true);
         break;
