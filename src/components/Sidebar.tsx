@@ -15,8 +15,8 @@ const Sidebar = ({
     label: "Dashboard",
     icon: Home
   }, {
-    id: "properties",
-    label: "Properties",
+    id: "manage",
+    label: "Manage",
     icon: Building,
     hasSubItems: true
   }, {
@@ -28,15 +28,15 @@ const Sidebar = ({
     label: "Settings",
     icon: Settings
   }];
-  const propertyItems = [{
-    id: "century-city",
-    label: "Century City"
+  const manageItems = [{
+    id: "fund",
+    label: "Fund"
   }, {
-    id: "juniper-tower",
-    label: "Juniper Tower"
+    id: "stake",
+    label: "Stake"
   }, {
-    id: "atmosphere",
-    label: "Atmosphere"
+    id: "earn",
+    label: "Earn"
   }];
   return <div className="w-64 h-screen bg-card border-r border-border">
       <div className="p-6">
@@ -60,8 +60,8 @@ const Sidebar = ({
                 {item.hasSubItems && <ChevronDown className="ml-auto h-4 w-4" />}
               </Button>
               
-              {item.hasSubItems && item.id === "properties" && <div className="ml-6 space-y-1">
-                  {propertyItems.map(subItem => <Button key={subItem.id} variant="ghost" size="sm" className={cn("w-full justify-start text-sm", activeItem === subItem.id && "bg-muted")} onClick={() => onItemClick(subItem.id)}>
+              {item.hasSubItems && item.id === "manage" && <div className="ml-6 space-y-1">
+                  {manageItems.map(subItem => <Button key={subItem.id} variant="ghost" size="sm" className={cn("w-full justify-start text-sm", activeItem === subItem.id && "bg-muted")} onClick={() => onItemClick(subItem.id)}>
                       {subItem.label}
                     </Button>)}
                 </div>}
