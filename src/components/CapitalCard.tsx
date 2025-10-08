@@ -9,7 +9,7 @@ interface CapitalCardProps {
 const CapitalCard = ({ onStakeClick }: CapitalCardProps) => {
   const rentTokens = 125000;
   const apyBoost = (rentTokens / 10000) * 0.1;
-  return <Card className="p-8 mb-8 bg-primary-gradient text-primary-foreground border-0 shadow-lg">
+  return <Card className="p-6 mb-8 bg-primary-gradient text-primary-foreground border-0 shadow-lg">
       <div className="space-y-4">
         <div className="flex justify-between items-start">
           <div>
