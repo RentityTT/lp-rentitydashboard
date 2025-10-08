@@ -29,14 +29,14 @@ const Sidebar = ({
     icon: Settings
   }];
   const manageItems = [{
-    id: "fund",
+    id: "wallet",
     label: "Fund"
-  }, {
-    id: "stake",
-    label: "Stake"
   }, {
     id: "earn",
     label: "Earn"
+  }, {
+    id: "defi",
+    label: "Explore"
   }];
   return <div className="w-64 h-screen bg-card border-r border-border">
       <div className="p-6">
