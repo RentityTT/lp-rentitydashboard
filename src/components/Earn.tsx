@@ -130,92 +130,102 @@ const Earn = () => {
       </Card>
 
       {/* Staking Section */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">$RENT Token Staking</h2>
-        <p className="text-muted-foreground mb-4">Boost your APY by staking $RENT tokens</p>
-      </div>
+      <div className="mt-8 pt-8 border-t">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold mb-2">$RENT Token Management</h2>
+          <p className="text-muted-foreground">Purchase or stake $RENT tokens to boost your earnings</p>
+        </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* Purchase $RENT */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Coins className="w-5 h-5" />
-              Purchase $RENT
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label>Amount (USDC)</Label>
-              <Input
-                type="number"
-                value={purchaseAmount}
-                onChange={e => setPurchaseAmount(e.target.value)}
-                placeholder="0.00"
-                className="text-xl h-12 font-mono mt-2"
-              />
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-sm text-muted-foreground">
-                  Current Price: ${rentTokenPrice} per $RENT
-                </span>
-                <span className="text-sm font-medium">
-                  ≈ {(Number(purchaseAmount) / rentTokenPrice).toFixed(0)} $RENT
-                </span>
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Purchase $RENT */}
+          <Card className="border-primary/20 hover:border-primary/40 transition-all">
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <Coins className="w-4 h-4 text-primary" />
+                  </div>
+                  Purchase $RENT
+                </CardTitle>
+                <Badge variant="outline" className="text-xs">
+                  ${rentTokenPrice} / token
+                </Badge>
               </div>
-            </div>
-            <Button className="w-full" variant="outline">
-              Purchase $RENT Tokens
-            </Button>
-          </CardContent>
-        </Card>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Input
+                  type="number"
+                  value={purchaseAmount}
+                  onChange={e => setPurchaseAmount(e.target.value)}
+                  placeholder="0.00"
+                  className="text-2xl h-14 font-mono"
+                />
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">You'll receive</span>
+                  <span className="font-semibold">
+                    {(Number(purchaseAmount) / rentTokenPrice).toFixed(0)} $RENT
+                  </span>
+                </div>
+              </div>
+              <Button className="w-full h-11" size="lg">
+                Purchase Tokens
+              </Button>
+            </CardContent>
+          </Card>
 
-        {/* Stake $RENT */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5" />
-              Stake $RENT
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <Label>Stake Amount</Label>
-              <Input
-                type="number"
-                value={stakeAmount}
-                onChange={e => setStakeAmount(e.target.value)}
-                placeholder="0"
-                className="text-xl h-12 font-mono mt-2"
-              />
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-sm text-muted-foreground">
-                  Available: {rentTokenBalance.toLocaleString()} $RENT
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setStakeAmount(rentTokenBalance.toString())}
-                >
-                  Max
-                </Button>
+          {/* Stake $RENT */}
+          <Card className="border-primary/20 hover:border-primary/40 transition-all bg-gradient-to-br from-background to-primary/5">
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <div className="p-2 rounded-lg bg-primary/10">
+                    <TrendingUp className="w-4 h-4 text-primary" />
+                  </div>
+                  Stake $RENT
+                </CardTitle>
+                <Badge className="text-xs bg-primary/90">
+                  +{apyBoost.toFixed(2)}% APY
+                </Badge>
               </div>
-            </div>
-            <div className="bg-primary/5 rounded-lg p-4 border border-primary/20">
-              <div className="flex items-center gap-2 mb-2">
-                <TrendingUp className="w-4 h-4 text-primary" />
-                <span className="font-semibold text-primary">
-                  +{apyBoost.toFixed(2)}% APY Boost
-                </span>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <div className="relative">
+                  <Input
+                    type="number"
+                    value={stakeAmount}
+                    onChange={e => setStakeAmount(e.target.value)}
+                    placeholder="0"
+                    className="text-2xl h-14 font-mono pr-20"
+                  />
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setStakeAmount(rentTokenBalance.toString())}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-8"
+                  >
+                    Max
+                  </Button>
+                </div>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-muted-foreground">Available</span>
+                  <span className="font-semibold">
+                    {rentTokenBalance.toLocaleString()} $RENT
+                  </span>
+                </div>
               </div>
-              <p className="text-xs text-muted-foreground">
-                10,000 $RENT tokens = +0.1% APY bonus
-              </p>
-            </div>
-            <Button className="w-full">
-              Stake $RENT Tokens
-            </Button>
-          </CardContent>
-        </Card>
+              <div className="bg-background/50 backdrop-blur-sm rounded-lg p-3 border border-primary/30">
+                <p className="text-xs text-muted-foreground text-center">
+                  Every 10,000 $RENT staked increases your APY by 0.1%
+                </p>
+              </div>
+              <Button className="w-full h-11" size="lg">
+                Stake Tokens
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     </div>;
 };
