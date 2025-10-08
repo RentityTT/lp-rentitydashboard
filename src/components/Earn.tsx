@@ -47,11 +47,6 @@ const Earn = () => {
     setDepositAmount(amount);
   };
   return <div className="max-w-3xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold mb-2">Deposit Funds</h1>
-        <p className="text-muted-foreground">Choose your investment type and earn competitive returns</p>
-      </div>
-
       {/* Wallet Balance Overview with Chart */}
       <Card className="border-2">
         <CardHeader className="pb-2">
@@ -130,6 +125,11 @@ const Earn = () => {
           </ResponsiveContainer>
         </CardContent>
       </Card>
+
+      <div>
+        <h1 className="text-3xl font-bold mb-2">Deposit Funds</h1>
+        <p className="text-muted-foreground">Choose your investment type and earn competitive returns</p>
+      </div>
 
       {/* Product Type Selection */}
       <Card>
