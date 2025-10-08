@@ -25,20 +25,45 @@ const Earn = () => {
   // User's wallet data
   const totalBalance = 510500;
   const totalYieldEarned = 24161;
-  
-  // Historical balance and yield data
-  const balanceChartData = [
-    { month: 'Apr', balance: 410500, yield: 0 },
-    { month: 'May', balance: 420750, yield: 3250 },
-    { month: 'Jun', balance: 432100, yield: 6850 },
-    { month: 'Jul', balance: 444500, yield: 10800 },
-    { month: 'Aug', balance: 458200, yield: 14900 },
-    { month: 'Sep', balance: 473100, yield: 18650 },
-    { month: 'Oct', balance: 488500, yield: 21500 },
-    { month: 'Nov', balance: 499300, yield: 23100 },
-    { month: 'Dec', balance: 510500, yield: 24161 }
-  ];
 
+  // Historical balance and yield data
+  const balanceChartData = [{
+    month: 'Apr',
+    balance: 410500,
+    yield: 0
+  }, {
+    month: 'May',
+    balance: 420750,
+    yield: 3250
+  }, {
+    month: 'Jun',
+    balance: 432100,
+    yield: 6850
+  }, {
+    month: 'Jul',
+    balance: 444500,
+    yield: 10800
+  }, {
+    month: 'Aug',
+    balance: 458200,
+    yield: 14900
+  }, {
+    month: 'Sep',
+    balance: 473100,
+    yield: 18650
+  }, {
+    month: 'Oct',
+    balance: 488500,
+    yield: 21500
+  }, {
+    month: 'Nov',
+    balance: 499300,
+    yield: 23100
+  }, {
+    month: 'Dec',
+    balance: 510500,
+    yield: 24161
+  }];
   const formatCurrency = (value: number) => {
     return `$${value.toLocaleString()}`;
   };
@@ -86,38 +111,15 @@ const Earn = () => {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis 
-                dataKey="month" 
-                stroke="hsl(var(--muted-foreground))" 
-                fontSize={11} 
-              />
-              <YAxis 
-                stroke="hsl(var(--muted-foreground))" 
-                fontSize={11} 
-                tickFormatter={formatCurrency}
-              />
-              <Tooltip 
-                formatter={(value: number) => formatCurrency(value)} 
-                contentStyle={{
-                  backgroundColor: 'hsl(var(--card))',
-                  border: '1px solid hsl(var(--border))',
-                  borderRadius: '8px'
-                }} 
-              />
-              <Area 
-                type="monotone" 
-                dataKey="balance" 
-                stroke="hsl(180, 65%, 45%)" 
-                strokeWidth={2} 
-                fill="url(#balanceGradient)" 
-              />
-              <Area 
-                type="monotone" 
-                dataKey="yield" 
-                stroke="hsl(158, 64%, 52%)" 
-                strokeWidth={2} 
-                fill="url(#yieldGradient)" 
-              />
+              <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+              <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={formatCurrency} />
+              <Tooltip formatter={(value: number) => formatCurrency(value)} contentStyle={{
+                backgroundColor: 'hsl(var(--card))',
+                border: '1px solid hsl(var(--border))',
+                borderRadius: '8px'
+              }} />
+              <Area type="monotone" dataKey="balance" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#balanceGradient)" />
+              <Area type="monotone" dataKey="yield" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#yieldGradient)" />
             </AreaChart>
           </ResponsiveContainer>
         </CardContent>
@@ -128,7 +130,7 @@ const Earn = () => {
       <div className="space-y-4">
         <div className="border-b pb-2">
           <h2 className="text-2xl font-bold">Deposit Funds</h2>
-          <p className="text-sm text-muted-foreground">Choose your investment type and earn competitive returns</p>
+          <p className="text-sm text-muted-foreground">Choose your investment type and earn competitive returns in Rentity's general pools.</p>
         </div>
 
         {/* Product Type Selection */}
@@ -250,13 +252,7 @@ const Earn = () => {
           <CardContent className="space-y-4">
             <div>
               <Label>Amount (USDC)</Label>
-              <Input
-                type="number"
-                value={purchaseAmount}
-                onChange={e => setPurchaseAmount(e.target.value)}
-                placeholder="0.00"
-                className="text-xl h-12 font-mono mt-2"
-              />
+              <Input type="number" value={purchaseAmount} onChange={e => setPurchaseAmount(e.target.value)} placeholder="0.00" className="text-xl h-12 font-mono mt-2" />
               <div className="flex items-center justify-between mt-2">
                 <span className="text-sm text-muted-foreground">
                   Current Price: ${rentTokenPrice} per $RENT
@@ -283,22 +279,12 @@ const Earn = () => {
           <CardContent className="space-y-4">
             <div>
               <Label>Stake Amount</Label>
-              <Input
-                type="number"
-                value={stakeAmount}
-                onChange={e => setStakeAmount(e.target.value)}
-                placeholder="0"
-                className="text-xl h-12 font-mono mt-2"
-              />
+              <Input type="number" value={stakeAmount} onChange={e => setStakeAmount(e.target.value)} placeholder="0" className="text-xl h-12 font-mono mt-2" />
               <div className="flex items-center justify-between mt-2">
                 <span className="text-sm text-muted-foreground">
                   Available: {rentTokenBalance.toLocaleString()} $RENT
                 </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setStakeAmount(rentTokenBalance.toString())}
-                >
+                <Button variant="outline" size="sm" onClick={() => setStakeAmount(rentTokenBalance.toString())}>
                   Max
                 </Button>
               </div>
