@@ -682,7 +682,7 @@ const DeFi = () => {
                   <TableHead>Country</TableHead>
                   <TableHead className="text-right">Total Value</TableHead>
                   <TableHead className="text-right">Properties</TableHead>
-                  <TableHead className="text-right">Avg Return</TableHead>
+                  <TableHead className="text-right">APY</TableHead>
                   <TableHead className="text-right">Occupancy</TableHead>
                   <TableHead className="text-right">Market Cap</TableHead>
                   <TableHead className="text-right">Growth</TableHead>
@@ -691,9 +691,9 @@ const DeFi = () => {
               </TableHeader>
               <TableBody>
                 {markets.map((market, index) => <TableRow key={index} className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                      ...market,
-                      type: 'market'
-                    })}>
+                        ...market,
+                        type: 'market'
+                      })}>
                     <TableCell className="font-medium">{market.location}</TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {market.country}
@@ -718,8 +718,8 @@ const DeFi = () => {
                     </TableCell>
                     <TableCell className="text-right">
                       <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => {
-                          e.stopPropagation();
-                        }}>
+                            e.stopPropagation();
+                          }}>
                         Fund Pool
                       </Button>
                     </TableCell>
@@ -744,9 +744,9 @@ const DeFi = () => {
               </TableHeader>
               <TableBody>
                 {pools.map((pool, index) => <TableRow key={index} className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                      ...pool,
-                      type: 'pool'
-                    })}>
+                        ...pool,
+                        type: 'pool'
+                      })}>
                     <TableCell className="font-medium">{pool.name}</TableCell>
                     <TableCell className="text-right font-mono text-sm">
                       {pool.deposits}
@@ -768,8 +768,8 @@ const DeFi = () => {
                     </TableCell>
                     <TableCell className="text-right">
                       <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => {
-                          e.stopPropagation();
-                        }}>
+                            e.stopPropagation();
+                          }}>
                         Fund Pool
                       </Button>
                     </TableCell>
@@ -794,15 +794,15 @@ const DeFi = () => {
               </TableHeader>
               <TableBody>
                 <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                      name: 'Century City',
-                      totalValue: '$3,245,600',
-                      units: 156,
-                      avgReturn: '10.5%',
-                      occupancy: '96%',
-                      marketCap: '$3.7M',
-                      growth: '+15.2%',
-                      type: 'building'
-                    })}>
+                        name: 'Century City',
+                        totalValue: '$3,245,600',
+                        units: 156,
+                        avgReturn: '10.5%',
+                        occupancy: '96%',
+                        marketCap: '$3.7M',
+                        growth: '+15.2%',
+                        type: 'building'
+                      })}>
                   <TableCell className="font-medium">Century City</TableCell>
                   <TableCell className="text-right font-mono text-sm">$3,245,600</TableCell>
                   <TableCell className="text-right font-mono text-sm">156</TableCell>
@@ -817,15 +817,15 @@ const DeFi = () => {
                   </TableCell>
                 </TableRow>
                 <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                      name: 'Atmosphere',
-                      totalValue: '$2,890,300',
-                      units: 124,
-                      avgReturn: '9.8%',
-                      occupancy: '94%',
-                      marketCap: '$3.2M',
-                      growth: '+13.8%',
-                      type: 'building'
-                    })}>
+                        name: 'Atmosphere',
+                        totalValue: '$2,890,300',
+                        units: 124,
+                        avgReturn: '9.8%',
+                        occupancy: '94%',
+                        marketCap: '$3.2M',
+                        growth: '+13.8%',
+                        type: 'building'
+                      })}>
                   <TableCell className="font-medium">Atmosphere</TableCell>
                   <TableCell className="text-right font-mono text-sm">$2,890,300</TableCell>
                   <TableCell className="text-right font-mono text-sm">124</TableCell>
@@ -840,15 +840,15 @@ const DeFi = () => {
                   </TableCell>
                 </TableRow>
                 <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                      name: 'Sphere',
-                      totalValue: '$3,125,800',
-                      units: 178,
-                      avgReturn: '11.2%',
-                      occupancy: '98%',
-                      marketCap: '$3.5M',
-                      growth: '+16.5%',
-                      type: 'building'
-                    })}>
+                        name: 'Sphere',
+                        totalValue: '$3,125,800',
+                        units: 178,
+                        avgReturn: '11.2%',
+                        occupancy: '98%',
+                        marketCap: '$3.5M',
+                        growth: '+16.5%',
+                        type: 'building'
+                      })}>
                   <TableCell className="font-medium">Sphere</TableCell>
                   <TableCell className="text-right font-mono text-sm">$3,125,800</TableCell>
                   <TableCell className="text-right font-mono text-sm">178</TableCell>
