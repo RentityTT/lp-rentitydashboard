@@ -71,7 +71,7 @@ const Earn = () => {
     const amount = (walletBalance * percent).toFixed(2);
     setDepositAmount(amount);
   };
-  return <div className="max-w-3xl mx-auto space-y-8">
+  return <div className="space-y-8">
       {/* My Wallet Section */}
       <div className="space-y-4">
         <div className="border-b pb-2">
