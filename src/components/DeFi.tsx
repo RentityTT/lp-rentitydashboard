@@ -1467,6 +1467,96 @@ const DeFi = () => {
 
             <Separator />
 
+            {/* Distribution Timeline */}
+            <div>
+              <h4 className="text-lg font-semibold mb-3">Projected Distribution Timeline</h4>
+              <div className="bg-muted/30 rounded-lg p-4 mb-4">
+                <div className="grid grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <p className="text-muted-foreground">Distribution Frequency</p>
+                    <p className="font-semibold">Monthly</p>
+                  </div>
+                  <div>
+                    <p className="text-muted-foreground">Next Distribution</p>
+                    <p className="font-semibold">Jan 15, 2025</p>
+                  </div>
+                </div>
+              </div>
+              <ResponsiveContainer width="100%" height={220}>
+                <AreaChart data={[
+                  { month: 'Jan 2025', distribution: 850, cumulative: 850 },
+                  { month: 'Feb 2025', distribution: 920, cumulative: 1770 },
+                  { month: 'Mar 2025', distribution: 885, cumulative: 2655 },
+                  { month: 'Apr 2025', distribution: 950, cumulative: 3605 },
+                  { month: 'May 2025', distribution: 910, cumulative: 4515 },
+                  { month: 'Jun 2025', distribution: 975, cumulative: 5490 },
+                  { month: 'Jul 2025', distribution: 1020, cumulative: 6510 },
+                  { month: 'Aug 2025', distribution: 1050, cumulative: 7560 }
+                ]}>
+                  <defs>
+                    <linearGradient id="distributionGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.4} />
+                      <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.05} />
+                    </linearGradient>
+                    <linearGradient id="cumulativeGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0.3} />
+                      <stop offset="95%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0} />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                  <XAxis 
+                    dataKey="month" 
+                    stroke="hsl(var(--muted-foreground))" 
+                    fontSize={10}
+                    angle={-45}
+                    textAnchor="end"
+                    height={60}
+                  />
+                  <YAxis 
+                    stroke="hsl(var(--muted-foreground))" 
+                    fontSize={11} 
+                    tickFormatter={(value) => `$${(value / 1000).toFixed(1)}k`}
+                  />
+                  <Tooltip 
+                    formatter={(value: number, name: string) => [
+                      `$${value.toLocaleString()}`, 
+                      name === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'
+                    ]}
+                    contentStyle={{
+                      backgroundColor: 'hsl(var(--card))',
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px'
+                    }} 
+                  />
+                  <Legend 
+                    verticalAlign="top" 
+                    height={36}
+                    formatter={(value) => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'}
+                  />
+                  <Area 
+                    type="monotone" 
+                    dataKey="distribution" 
+                    stroke="hsl(158, 64%, 52%)" 
+                    strokeWidth={2} 
+                    fill="url(#distributionGradient)" 
+                  />
+                  <Area 
+                    type="monotone" 
+                    dataKey="cumulative" 
+                    stroke="hsl(270, 70%, 60%)" 
+                    strokeWidth={2} 
+                    fill="url(#cumulativeGradient)" 
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+              <div className="mt-3 text-xs text-muted-foreground">
+                <Info className="h-3 w-3 inline mr-1" />
+                Projections based on current APY of {selectedPool.type === 'market' ? selectedPool.avgReturn : selectedPool.supplyAPY || selectedPool.avgReturn} and typical distribution patterns
+              </div>
+            </div>
+
+            <Separator />
+
             {/* Collateral Information (for pool type) */}
             {selectedPool.type === 'pool' && selectedPool.collateral && <div>
                 <h4 className="text-lg font-semibold mb-3">Accepted Collateral</h4>
