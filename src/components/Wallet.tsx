@@ -5,17 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Wallet as WalletIcon, ArrowRight, Plus, Minus } from "lucide-react";
 import usdcLogo from "@/assets/usdc-logo.png";
-
 const Wallet = () => {
   const [depositAmount, setDepositAmount] = useState("100,000");
   const [withdrawAmount, setWithdrawAmount] = useState("50,000");
   const [earnAmount, setEarnAmount] = useState("100,000");
-
-  return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
+  return <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
       <div className="w-full max-w-2xl space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold">Liquidity Management</h1>
+          <h1 className="text-4xl font-bold">Wallet</h1>
           <p className="text-muted-foreground">
             Add or withdraw liquidity and earn $RENT rewards
           </p>
@@ -87,10 +84,7 @@ const Wallet = () => {
                 </div>
 
                 {/* Confirm Button */}
-                <Button 
-                  className="w-full h-12 text-base font-medium bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] hover:opacity-90 transition-opacity"
-                  size="lg"
-                >
+                <Button className="w-full h-12 text-base font-medium bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] hover:opacity-90 transition-opacity" size="lg">
                   Add Liquidity
                 </Button>
               </TabsContent>
@@ -147,10 +141,7 @@ const Wallet = () => {
                 </div>
 
                 {/* Confirm Button */}
-                <Button 
-                  className="w-full h-12 text-base font-medium bg-gradient-to-r from-orange-500 to-red-500 hover:opacity-90 transition-opacity"
-                  size="lg"
-                >
+                <Button className="w-full h-12 text-base font-medium bg-gradient-to-r from-orange-500 to-red-500 hover:opacity-90 transition-opacity" size="lg">
                   Withdraw Liquidity
                 </Button>
               </TabsContent>
@@ -174,8 +165,6 @@ const Wallet = () => {
           </CardContent>
         </Card>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Wallet;
