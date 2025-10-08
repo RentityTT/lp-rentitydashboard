@@ -46,11 +46,15 @@ const Earn = () => {
     const amount = (walletBalance * percent).toFixed(2);
     setDepositAmount(amount);
   };
-  return <div className="max-w-3xl mx-auto space-y-6">
-      {/* Wallet Balance Overview with Chart */}
-      <Card>
-        <CardHeader className="pb-2">
-          <CardTitle className="text-2xl font-bold mb-4">My Wallet</CardTitle>
+  return <div className="max-w-3xl mx-auto space-y-8">
+      {/* My Wallet Section */}
+      <div className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="text-2xl font-bold">My Wallet</h2>
+          <p className="text-sm text-muted-foreground">Your balance and yield overview</p>
+        </div>
+        <Card>
+          <CardHeader className="pb-2">
           <div className="grid grid-cols-2 gap-6">
             <div>
               <div className="text-sm text-muted-foreground mb-1">Total Balance</div>
@@ -117,14 +121,17 @@ const Earn = () => {
             </AreaChart>
           </ResponsiveContainer>
         </CardContent>
-      </Card>
-
-      <div>
-        <h1 className="text-3xl font-bold mb-2">Deposit Funds</h1>
-        <p className="text-muted-foreground">Choose your investment type and earn competitive returns</p>
+        </Card>
       </div>
 
-      {/* Product Type Selection */}
+      {/* Deposit Funds Section */}
+      <div className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="text-2xl font-bold">Deposit Funds</h2>
+          <p className="text-sm text-muted-foreground">Choose your investment type and earn competitive returns</p>
+        </div>
+
+        {/* Product Type Selection */}
       <Card>
         <CardHeader>
           <CardTitle>Select Product Type</CardTitle>
@@ -221,15 +228,17 @@ const Earn = () => {
             Deposit Funds
           </Button>
         </CardContent>
-      </Card>
-
-      {/* Staking Section */}
-      <div>
-        <h2 className="text-2xl font-bold mb-4">$RENT Token Staking</h2>
-        <p className="text-muted-foreground mb-4">Boost your APY by staking $RENT tokens</p>
+        </Card>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      {/* Staking Section */}
+      <div className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="text-2xl font-bold">Staking</h2>
+          <p className="text-sm text-muted-foreground">Purchase and stake $RENT tokens to boost your APY</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
         {/* Purchase $RENT */}
         <Card>
           <CardHeader>
@@ -309,7 +318,8 @@ const Earn = () => {
               Stake $RENT Tokens
             </Button>
           </CardContent>
-        </Card>
+          </Card>
+        </div>
       </div>
     </div>;
 };
