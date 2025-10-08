@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import TopNavigation from "./TopNavigation";
 import CapitalCard from "./CapitalCard";
 import RecentActivity from "./RecentActivity";
-import Analytics from "./Analytics";
+import Earn from "./Earn";
 import Wallet from "./Wallet";
 import DeFi from "./DeFi";
 import Settings from "./Settings";
@@ -171,7 +171,7 @@ const Dashboard = () => {
                     </div>
                   </>}
                 
-                {activeTab === "earn" && <Analytics />}
+                {activeTab === "earn" && <Earn />}
                 
                 {activeTab === "defi" && <DeFi />}
                 
