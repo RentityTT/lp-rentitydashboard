@@ -18,7 +18,7 @@ const CapitalCard = ({ onStakeClick }: CapitalCardProps) => {
           </div>
           <Button 
             variant="secondary" 
-            className="bg-white/20 text-white border-white/30 hover:bg-white/30 backdrop-blur-sm"
+            className="bg-white/20 text-primary-foreground border-white/30 hover:bg-white/30 backdrop-blur-sm"
             onClick={onStakeClick}
           >
             Stake For Rewards
