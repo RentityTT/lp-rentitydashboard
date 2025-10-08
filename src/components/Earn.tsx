@@ -9,7 +9,7 @@ import usdcLogo from "@/assets/usdc-logo.png";
 const Earn = () => {
   const [depositAmount, setDepositAmount] = useState("");
   const [lockupMonths, setLockupMonths] = useState(3);
-  const [activeType, setActiveType] = useState<"classic" | "maxi">("classic");
+  const [activeType, setActiveType] = useState<"bond" | "loan">("bond");
   
   const walletBalance = 50000;
   const baseAPY = 10;
@@ -39,26 +39,26 @@ const Earn = () => {
           {/* Type Selector */}
           <div className="flex gap-4 mb-8">
             <button
-              onClick={() => setActiveType("classic")}
+              onClick={() => setActiveType("bond")}
               className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors ${
-                activeType === "classic"
+                activeType === "bond"
                   ? "bg-primary/10 text-primary border-2 border-primary"
                   : "bg-muted text-muted-foreground border-2 border-transparent hover:bg-muted/80"
               }`}
             >
               <BarChart3 className="w-5 h-5" />
-              Classic
+              Bond
             </button>
             <button
-              onClick={() => setActiveType("maxi")}
+              onClick={() => setActiveType("loan")}
               className={`flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors ${
-                activeType === "maxi"
+                activeType === "loan"
                   ? "bg-primary/10 text-primary border-2 border-primary"
                   : "bg-muted text-muted-foreground border-2 border-transparent hover:bg-muted/80"
               }`}
             >
               <Rocket className="w-5 h-5" />
-              Maxi
+              Loan
             </button>
           </div>
 
