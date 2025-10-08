@@ -551,6 +551,108 @@ const DeFi = () => {
 
                       <Separator />
 
+                      {/* Performance Chart */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3">Position Performance</h4>
+                        <ResponsiveContainer width="100%" height={200}>
+                          <AreaChart data={[
+                            { month: 'Jul', value: position.amountNumeric * 0.92, yield: 0 },
+                            { month: 'Aug', value: position.amountNumeric * 0.94, yield: position.amountNumeric * 0.02 },
+                            { month: 'Sep', value: position.amountNumeric * 0.96, yield: position.amountNumeric * 0.04 },
+                            { month: 'Oct', value: position.amountNumeric * 0.98, yield: position.amountNumeric * 0.06 },
+                            { month: 'Nov', value: position.amountNumeric, yield: position.amountNumeric * 0.08 },
+                            { month: 'Dec', value: parseFloat(position.details.currentValue.replace(/[$,]/g, '')), yield: parseFloat(position.details.yieldEarned.replace(/[$,]/g, '')) }
+                          ]}>
+                            <defs>
+                              <linearGradient id={`valueGradient${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0} />
+                              </linearGradient>
+                              <linearGradient id={`yieldGradientPos${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
+                              </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                            <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`} />
+                            <Tooltip 
+                              formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'value' ? 'Position Value' : 'Yield Earned']}
+                              contentStyle={{
+                                backgroundColor: 'hsl(var(--card))',
+                                border: '1px solid hsl(var(--border))',
+                                borderRadius: '8px'
+                              }} 
+                            />
+                            <Area type="monotone" dataKey="value" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill={`url(#valueGradient${index})`} />
+                            <Area type="monotone" dataKey="yield" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#yieldGradientPos${index})`} />
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      <Separator />
+
+                      {/* Distribution Timeline */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3">Distribution Timeline</h4>
+                        <div className="bg-muted/30 rounded-lg p-4 mb-4">
+                          <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                              <p className="text-muted-foreground">Next Distribution</p>
+                              <p className="font-semibold">{position.details.nextDistribution}</p>
+                            </div>
+                            <div>
+                              <p className="text-muted-foreground">Distribution Amount</p>
+                              <p className="font-semibold text-success">{position.details.distributionAmount}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <ResponsiveContainer width="100%" height={200}>
+                          <AreaChart data={[
+                            { month: 'Jan', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95 },
+                            { month: 'Feb', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.02, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.97 },
+                            { month: 'Mar', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.98, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 2.95 },
+                            { month: 'Apr', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.05, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 4.0 },
+                            { month: 'May', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.01, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 5.01 },
+                            { month: 'Jun', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')), cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 6.01 }
+                          ]}>
+                            <defs>
+                              <linearGradient id={`distGradient${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.4} />
+                                <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.05} />
+                              </linearGradient>
+                              <linearGradient id={`cumGradient${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0} />
+                              </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                            <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${value.toLocaleString()}`} />
+                            <Tooltip 
+                              formatter={(value: number, name: string) => [
+                                `$${value.toLocaleString()}`, 
+                                name === 'distribution' ? 'Monthly' : 'Cumulative'
+                              ]}
+                              contentStyle={{
+                                backgroundColor: 'hsl(var(--card))',
+                                border: '1px solid hsl(var(--border))',
+                                borderRadius: '8px'
+                              }} 
+                            />
+                            <Legend 
+                              verticalAlign="top" 
+                              height={36}
+                              formatter={(value) => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'}
+                            />
+                            <Area type="monotone" dataKey="distribution" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#distGradient${index})`} />
+                            <Area type="monotone" dataKey="cumulative" stroke="hsl(270, 70%, 60%)" strokeWidth={2} fill={`url(#cumGradient${index})`} />
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      <Separator />
+
                       {/* Yield Information */}
                       <div>
                         <h4 className="text-lg font-semibold mb-3">Yield & Distribution</h4>
