@@ -74,7 +74,7 @@ const Earn = () => {
   return <div className="space-y-8">
       {/* My Wallet Section */}
       <div className="space-y-4">
-        <div className="border-b pb-2">
+        <div className="pb-2">
           <h2 className="text-2xl font-bold">My Wallet</h2>
           <p className="text-sm text-muted-foreground">Your balance and yield overview</p>
         </div>
@@ -128,7 +128,7 @@ const Earn = () => {
 
       {/* Deposit Funds Section */}
       <div className="space-y-4">
-        <div className="border-b pb-2">
+        <div className="pb-2">
           <h2 className="text-2xl font-bold">Deposit Funds</h2>
           <p className="text-sm text-muted-foreground">Choose your investment type and earn competitive returns in Rentity's general pools.</p>
         </div>
@@ -235,7 +235,7 @@ const Earn = () => {
 
       {/* Staking Section */}
       <div className="space-y-4">
-        <div className="border-b pb-2">
+        <div className="pb-2">
           <h2 className="text-2xl font-bold">Staking</h2>
           <p className="text-sm text-muted-foreground">Purchase and stake $RENT tokens to boost your APY</p>
         </div>
