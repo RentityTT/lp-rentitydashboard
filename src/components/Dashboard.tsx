@@ -87,7 +87,7 @@ const Dashboard = () => {
       }} onWalletClick={() => setShowWallet(true)} />
         
         <main className="flex-1 p-8 overflow-auto">
-          <div className="max-w-7xl mx-auto">
+          <div className={activeTab === "earn" ? "w-full" : "max-w-7xl mx-auto"}>
             {showWallet ? <Wallet /> : <>
                 {activeTab === "portfolio" && <>
                     <h1 className="text-2xl font-bold mb-8">Hello Johnny 👋</h1>
