@@ -7,24 +7,19 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Info } from "lucide-react";
 import usdcLogo from "@/assets/usdc-logo.png";
-
 const Earn = () => {
   const [depositAmount, setDepositAmount] = useState("");
   const [lockupMonths, setLockupMonths] = useState(3);
   const [activeType, setActiveType] = useState<"bond" | "loan">("bond");
-  
   const walletBalance = 50000;
   const baseAPY = activeType === "bond" ? 7.82 : 11.2;
   const estimatedYield = Number(depositAmount) * (baseAPY / 100);
-  const rentTokenBonus = (Number(depositAmount) / 10000) * lockupMonths * 100;
-
+  const rentTokenBonus = Number(depositAmount) / 10000 * lockupMonths * 100;
   const handlePercentage = (percent: number) => {
     const amount = (walletBalance * percent).toFixed(2);
     setDepositAmount(amount);
   };
-
-  return (
-    <div className="max-w-3xl mx-auto space-y-6">
+  return <div className="max-w-3xl mx-auto space-y-6">
       <div>
         <h1 className="text-3xl font-bold mb-2">Deposit Funds</h1>
         <p className="text-muted-foreground">Choose your investment type and earn competitive returns</p>
@@ -37,28 +32,14 @@ const Earn = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 gap-4">
-            <button
-              onClick={() => setActiveType("bond")}
-              className={`p-6 rounded-lg border-2 transition-all ${
-                activeType === "bond"
-                  ? "border-primary bg-primary/5"
-                  : "border-border hover:border-primary/50"
-              }`}
-            >
+            <button onClick={() => setActiveType("bond")} className={`p-6 rounded-lg border-2 transition-all ${activeType === "bond" ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"}`}>
               <div className="text-left space-y-2">
-                <div className="font-semibold text-lg">Bond</div>
+                <div className="font-semibold text-lg">Rent Bond</div>
                 <div className="text-sm text-muted-foreground">Fixed term, stable returns</div>
                 <Badge variant="outline" className="text-success border-success">7.82% APY</Badge>
               </div>
             </button>
-            <button
-              onClick={() => setActiveType("loan")}
-              className={`p-6 rounded-lg border-2 transition-all ${
-                activeType === "loan"
-                  ? "border-primary bg-primary/5"
-                  : "border-border hover:border-primary/50"
-              }`}
-            >
+            <button onClick={() => setActiveType("loan")} className={`p-6 rounded-lg border-2 transition-all ${activeType === "loan" ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"}`}>
               <div className="text-left space-y-2">
                 <div className="font-semibold text-lg">Loan</div>
                 <div className="text-sm text-muted-foreground">Flexible, higher returns</div>
@@ -79,13 +60,7 @@ const Earn = () => {
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Input
-              type="number"
-              value={depositAmount}
-              onChange={(e) => setDepositAmount(e.target.value)}
-              placeholder="0.00"
-              className="text-2xl h-16 font-mono"
-            />
+            <Input type="number" value={depositAmount} onChange={e => setDepositAmount(e.target.value)} placeholder="0.00" className="text-2xl h-16 font-mono" />
             <div className="flex items-center justify-between mt-2">
               <span className="text-sm text-muted-foreground">
                 Wallet Balance: ${walletBalance.toLocaleString()}
@@ -112,14 +87,7 @@ const Earn = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Slider
-            value={[lockupMonths]}
-            onValueChange={(value) => setLockupMonths(value[0])}
-            min={1}
-            max={12}
-            step={1}
-            className="w-full"
-          />
+          <Slider value={[lockupMonths]} onValueChange={value => setLockupMonths(value[0])} min={1} max={12} step={1} className="w-full" />
           <div className="flex justify-between text-sm text-muted-foreground">
             <span>1 month</span>
             <span>12 months</span>
@@ -155,8 +123,6 @@ const Earn = () => {
           </Button>
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>;
 };
-
 export default Earn;
