@@ -656,7 +656,7 @@ const DeFi = () => {
       </Card>
 
       {/* Tabs and Table Section */}
-      <Card className="border-0 shadow-none">
+      <Card>
         <div className="mb-6">
           <h2 className="text-2xl font-bold">Pools</h2>
         </div>
