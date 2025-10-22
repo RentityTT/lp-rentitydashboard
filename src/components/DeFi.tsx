@@ -372,6 +372,80 @@ const DeFi = () => {
     marketCap: "$1.0B",
     growth: "+7.9%"
   }];
+
+  const individualProperties = [{
+    name: "Century City Tower",
+    loanType: "Mezzanine Loan",
+    location: "Los Angeles, CA",
+    propertyType: "Commercial Office",
+    loanAmount: "$12,500,000",
+    ltv: "65%",
+    apy: activeMode === "bonds" ? "8.5%" : "11.2%",
+    term: "3 years",
+    propertyValue: "$45,000,000",
+    status: "Active",
+    occupancy: "92%"
+  }, {
+    name: "Skyline Apartments",
+    loanType: "Senior Debt",
+    location: "Seattle, WA",
+    propertyType: "Multi-Family",
+    loanAmount: "$8,750,000",
+    ltv: "55%",
+    apy: activeMode === "bonds" ? "7.8%" : "9.5%",
+    term: "5 years",
+    propertyValue: "$28,000,000",
+    status: "Active",
+    occupancy: "96%"
+  }, {
+    name: "Marina Bay Complex",
+    loanType: "Bridge Loan",
+    location: "Miami, FL",
+    propertyType: "Mixed-Use",
+    loanAmount: "$15,000,000",
+    ltv: "70%",
+    apy: activeMode === "bonds" ? "9.2%" : "12.8%",
+    term: "2 years",
+    propertyValue: "$52,000,000",
+    status: "Funding",
+    occupancy: "88%"
+  }, {
+    name: "Tech Park Plaza",
+    loanType: "Construction Loan",
+    location: "Austin, TX",
+    propertyType: "Commercial Office",
+    loanAmount: "$20,000,000",
+    ltv: "75%",
+    apy: activeMode === "bonds" ? "10.5%" : "14.2%",
+    term: "18 months",
+    propertyValue: "$68,000,000",
+    status: "Funding",
+    occupancy: "N/A"
+  }, {
+    name: "Harbor View Residence",
+    loanType: "Mezzanine Loan",
+    location: "Boston, MA",
+    propertyType: "Luxury Residential",
+    loanAmount: "$9,500,000",
+    ltv: "60%",
+    apy: activeMode === "bonds" ? "8.8%" : "11.8%",
+    term: "4 years",
+    propertyValue: "$38,000,000",
+    status: "Active",
+    occupancy: "94%"
+  }, {
+    name: "Greenfield Shopping Center",
+    loanType: "Senior Debt",
+    location: "Denver, CO",
+    propertyType: "Retail",
+    loanAmount: "$11,200,000",
+    ltv: "58%",
+    apy: activeMode === "bonds" ? "7.5%" : "9.2%",
+    term: "7 years",
+    propertyValue: "$32,000,000",
+    status: "Active",
+    occupancy: "90%"
+  }];
   const formatCurrency = (value: number) => {
     if (value >= 1000000000) {
       return `$${(value / 1000000000).toFixed(2)}B`;
@@ -885,106 +959,61 @@ const DeFi = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Property</TableHead>
-                  <TableHead className="text-right">Total Value</TableHead>
-                  <TableHead className="text-right">Units</TableHead>
-                  <TableHead className="text-right">Avg Return</TableHead>
-                  <TableHead className="text-right">Occupancy</TableHead>
-                  <TableHead className="text-right">Market Cap</TableHead>
-                  <TableHead className="text-right">Growth</TableHead>
+                  <TableHead>Loan Type</TableHead>
+                  <TableHead>Location</TableHead>
+                  <TableHead>Property Type</TableHead>
+                  <TableHead className="text-right">Loan Amount</TableHead>
+                  <TableHead className="text-right">LTV</TableHead>
+                  <TableHead className="text-right">APY</TableHead>
+                  <TableHead className="text-right">Term</TableHead>
+                  <TableHead>Status</TableHead>
                   <TableHead className="text-right">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Riverside Gardens',
-                        totalValue: '$4,567,200',
-                        units: 189,
-                        avgReturn: '9.2%',
-                        occupancy: '97%',
-                        marketCap: '$4.8M',
-                        growth: '+14.6%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Riverside Gardens</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$4,567,200</TableCell>
-                  <TableCell className="text-right font-mono text-sm">189</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">9.2%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">97%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$4.8M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+14.6%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Downtown Development Site',
-                        totalValue: '$8,950,000',
-                        isDevelopmentLand: true,
-                        avgReturn: '12.5%',
-                        marketCap: '$9.2M',
-                        growth: '+18.3%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Downtown Development Site</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$8,950,000</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">12.5%</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$9.2M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+18.3%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Harbor Point Towers',
-                        totalValue: '$6,234,800',
-                        units: 142,
-                        avgReturn: '10.8%',
-                        occupancy: '95%',
-                        marketCap: '$6.5M',
-                        growth: '+16.1%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Harbor Point Towers</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$6,234,800</TableCell>
-                  <TableCell className="text-right font-mono text-sm">142</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">10.8%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">95%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$6.5M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+16.1%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Westside Land Parcel',
-                        totalValue: '$5,670,000',
-                        isDevelopmentLand: true,
-                        avgReturn: '13.2%',
-                        marketCap: '$5.9M',
-                        growth: '+19.5%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Westside Land Parcel</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$5,670,000</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">13.2%</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$5.9M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+19.5%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                {individualProperties.map((property, index) => (
+                  <TableRow 
+                    key={index} 
+                    className="hover:bg-muted/50 cursor-pointer" 
+                    onClick={() => setSelectedPool({
+                      ...property,
+                      type: 'individual-property'
+                    })}
+                  >
+                    <TableCell className="font-medium">{property.name}</TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant={property.loanType === "Mezzanine Loan" ? "secondary" : "outline"}
+                        className="text-xs"
+                      >
+                        {property.loanType}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-sm text-muted-foreground">{property.location}</TableCell>
+                    <TableCell className="text-sm text-muted-foreground">{property.propertyType}</TableCell>
+                    <TableCell className="text-right font-mono text-sm">{property.loanAmount}</TableCell>
+                    <TableCell className="text-right font-mono text-sm">{property.ltv}</TableCell>
+                    <TableCell className="text-right font-mono text-sm text-success">{property.apy}</TableCell>
+                    <TableCell className="text-right font-mono text-sm">{property.term}</TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant={property.status === "Active" ? "default" : "outline"}
+                        className={property.status === "Active" ? "bg-success/20 text-success" : "bg-muted text-muted-foreground"}
+                      >
+                        {property.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button 
+                        size="sm" 
+                        className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" 
+                        onClick={e => e.stopPropagation()}
+                      >
+                        Fund Loan
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TabsContent>
