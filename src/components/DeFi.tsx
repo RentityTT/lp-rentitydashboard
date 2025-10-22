@@ -433,7 +433,7 @@ const DeFi = () => {
               <p className="text-sm">Estimated Yield</p>
               <Info className="h-4 w-4" />
             </div>
-            <p className="text-4xl font-bold">{activeMode === "bonds" ? "7.5%" : "10.0%"}</p>
+            <p className="text-4xl font-bold">{activeMode === "bonds" ? "7.5%" : "10.5%"}</p>
             <p className="text-sm">Annual APY</p>
           </div>
         </div>
