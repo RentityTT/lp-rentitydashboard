@@ -42,7 +42,7 @@ const InvestmentPage = () => {
       {/* Header */}
       <div className="border-b border-border bg-card/50 sticky top-0 z-10 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <Button variant="ghost" onClick={() => navigate(-1)} className="gap-2">
+          <Button variant="ghost" onClick={() => navigate("/")} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Back
           </Button>
@@ -179,7 +179,7 @@ const InvestmentPage = () => {
                   <Button className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 h-12" disabled={!amount || parseFloat(amount) < 1000}>
                     Confirm Investment
                   </Button>
-                  <Button variant="outline" className="w-full" onClick={() => navigate(-1)}>
+                  <Button variant="outline" className="w-full" onClick={() => navigate("/")}>
                     Cancel
                   </Button>
                 </div>
