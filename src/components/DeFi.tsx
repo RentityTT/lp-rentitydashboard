@@ -386,7 +386,7 @@ const DeFi = () => {
     propertyValue: "$45,000,000",
     status: "Active",
     occupancy: "92%",
-    image: "/src/assets/century-city-tower.jpg",
+    image: activeMode === "bonds" ? "/src/assets/century-city-bond.jpg" : "/src/assets/century-city-tower.jpg",
     description: activeMode === "bonds" ? "Invest in rent-backed bonds. Capital funds tenant rent advances, repaid monthly from rent collections" : "Premium commercial office tower in the heart of Century City's business district"
   }, {
     name: "Skyline Apartments",
@@ -400,7 +400,7 @@ const DeFi = () => {
     propertyValue: "$28,000,000",
     status: "Active",
     occupancy: "96%",
-    image: "/src/assets/skyline-apartments.jpg",
+    image: activeMode === "bonds" ? "/src/assets/skyline-bond.jpg" : "/src/assets/skyline-apartments.jpg",
     description: activeMode === "bonds" ? "Fund rent advances for tenants, receive monthly repayments from collected rent with stable returns" : "Modern multi-family residential complex with high occupancy rates"
   }, {
     name: "Marina Bay Complex",
@@ -414,7 +414,7 @@ const DeFi = () => {
     propertyValue: "$52,000,000",
     status: "Funding",
     occupancy: "88%",
-    image: "/src/assets/marina-bay-complex.jpg",
+    image: activeMode === "bonds" ? "/src/assets/marina-bay-bond.jpg" : "/src/assets/marina-bay-complex.jpg",
     description: activeMode === "bonds" ? "Provide capital for rent-back bonds, earn returns from monthly tenant rent payments" : "Waterfront mixed-use development combining retail and residential spaces"
   }, {
     name: "Tech Park Plaza",
@@ -428,7 +428,7 @@ const DeFi = () => {
     propertyValue: "$68,000,000",
     status: "Funding",
     occupancy: "N/A",
-    image: "/src/assets/tech-park-plaza.jpg",
+    image: activeMode === "bonds" ? "/src/assets/tech-park-bond.jpg" : "/src/assets/tech-park-plaza.jpg",
     description: activeMode === "bonds" ? "Back tenant rent advances with monthly returns secured by ongoing rent collections" : "New construction project in Austin's growing tech corridor"
   }, {
     name: "Harbor View Residence",
@@ -442,7 +442,7 @@ const DeFi = () => {
     propertyValue: "$38,000,000",
     status: "Active",
     occupancy: "94%",
-    image: "/src/assets/harbor-view-residence.jpg",
+    image: activeMode === "bonds" ? "/src/assets/harbor-view-bond.jpg" : "/src/assets/harbor-view-residence.jpg",
     description: activeMode === "bonds" ? "Finance rent-backed bonds with monthly repayment from luxury tenant rent streams" : "Exclusive waterfront luxury residences with panoramic harbor views"
   }, {
     name: "Greenfield Shopping Center",
@@ -456,7 +456,7 @@ const DeFi = () => {
     propertyValue: "$32,000,000",
     status: "Active",
     occupancy: "90%",
-    image: "/src/assets/greenfield-shopping.jpg",
+    image: activeMode === "bonds" ? "/src/assets/greenfield-bond.jpg" : "/src/assets/greenfield-shopping.jpg",
     description: activeMode === "bonds" ? "Support rent advance bonds, receive consistent monthly returns from retail tenant payments" : "Well-established retail center in prime Denver location"
   }];
   const formatCurrency = (value: number) => {
