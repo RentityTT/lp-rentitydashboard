@@ -372,7 +372,6 @@ const DeFi = () => {
     marketCap: "$1.0B",
     growth: "+7.9%"
   }];
-
   const individualProperties = [{
     name: "Century City Tower",
     loanType: "Mezzanine Loan",
@@ -528,30 +527,18 @@ const DeFi = () => {
       {/* Available Properties for Investment */}
       <Card>
         <CardHeader>
-          <CardTitle>Available Properties for Investment</CardTitle>
+          <CardTitle>Properties</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {individualProperties.map((property, index) => (
-              <Card 
-                key={index} 
-                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
-                onClick={() => setSelectedPool({
+            {individualProperties.map((property, index) => <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => setSelectedPool({
                   ...property,
                   type: 'individual-property'
-                })}
-              >
+                })}>
                 <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={property.image} 
-                    alt={property.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <img src={property.image} alt={property.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                   <div className="absolute top-3 right-3">
-                    <Badge 
-                      variant={property.status === "Active" ? "default" : "outline"}
-                      className={property.status === "Active" ? "bg-success/90 text-white" : "bg-muted/90 text-muted-foreground"}
-                    >
+                    <Badge variant={property.status === "Active" ? "default" : "outline"} className={property.status === "Active" ? "bg-success/90 text-white" : "bg-muted/90 text-muted-foreground"}>
                       {property.status}
                     </Badge>
                   </div>
@@ -571,11 +558,9 @@ const DeFi = () => {
                     <Badge variant="secondary" className="text-xs">
                       {property.loanType}
                     </Badge>
-                    {property.occupancy !== "N/A" && (
-                      <span className="text-xs text-muted-foreground">
+                    {property.occupancy !== "N/A" && <span className="text-xs text-muted-foreground">
                         {property.occupancy} occupied
-                      </span>
-                    )}
+                      </span>}
                   </div>
 
                   <Separator />
@@ -599,17 +584,13 @@ const DeFi = () => {
                     </div>
                   </div>
 
-                  <Button 
-                    className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
-                    onClick={(e) => {
+                  <Button className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90" onClick={e => {
                       e.stopPropagation();
-                    }}
-                  >
+                    }}>
                     Invest Now
                   </Button>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </CardContent>
       </Card>
@@ -730,14 +711,31 @@ const DeFi = () => {
                       <div>
                         <h4 className="text-lg font-semibold mb-3">Position Performance</h4>
                         <ResponsiveContainer width="100%" height={200}>
-                          <AreaChart data={[
-                            { month: 'Jul', value: position.amountNumeric * 0.92, yield: 0 },
-                            { month: 'Aug', value: position.amountNumeric * 0.94, yield: position.amountNumeric * 0.02 },
-                            { month: 'Sep', value: position.amountNumeric * 0.96, yield: position.amountNumeric * 0.04 },
-                            { month: 'Oct', value: position.amountNumeric * 0.98, yield: position.amountNumeric * 0.06 },
-                            { month: 'Nov', value: position.amountNumeric, yield: position.amountNumeric * 0.08 },
-                            { month: 'Dec', value: parseFloat(position.details.currentValue.replace(/[$,]/g, '')), yield: parseFloat(position.details.yieldEarned.replace(/[$,]/g, '')) }
-                          ]}>
+                          <AreaChart data={[{
+                              month: 'Jul',
+                              value: position.amountNumeric * 0.92,
+                              yield: 0
+                            }, {
+                              month: 'Aug',
+                              value: position.amountNumeric * 0.94,
+                              yield: position.amountNumeric * 0.02
+                            }, {
+                              month: 'Sep',
+                              value: position.amountNumeric * 0.96,
+                              yield: position.amountNumeric * 0.04
+                            }, {
+                              month: 'Oct',
+                              value: position.amountNumeric * 0.98,
+                              yield: position.amountNumeric * 0.06
+                            }, {
+                              month: 'Nov',
+                              value: position.amountNumeric,
+                              yield: position.amountNumeric * 0.08
+                            }, {
+                              month: 'Dec',
+                              value: parseFloat(position.details.currentValue.replace(/[$,]/g, '')),
+                              yield: parseFloat(position.details.yieldEarned.replace(/[$,]/g, ''))
+                            }]}>
                             <defs>
                               <linearGradient id={`valueGradient${index}`} x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
@@ -750,15 +748,12 @@ const DeFi = () => {
                             </defs>
                             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                             <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`} />
-                            <Tooltip 
-                              formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'value' ? 'Position Value' : 'Yield Earned']}
-                              contentStyle={{
+                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => `$${(value / 1000).toFixed(0)}k`} />
+                            <Tooltip formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'value' ? 'Position Value' : 'Yield Earned']} contentStyle={{
                                 backgroundColor: 'hsl(var(--card))',
                                 border: '1px solid hsl(var(--border))',
                                 borderRadius: '8px'
-                              }} 
-                            />
+                              }} />
                             <Area type="monotone" dataKey="value" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill={`url(#valueGradient${index})`} />
                             <Area type="monotone" dataKey="yield" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#yieldGradientPos${index})`} />
                           </AreaChart>
@@ -783,14 +778,31 @@ const DeFi = () => {
                           </div>
                         </div>
                         <ResponsiveContainer width="100%" height={200}>
-                          <AreaChart data={[
-                            { month: 'Jan', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95 },
-                            { month: 'Feb', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.02, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.97 },
-                            { month: 'Mar', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.98, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 2.95 },
-                            { month: 'Apr', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.05, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 4.0 },
-                            { month: 'May', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.01, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 5.01 },
-                            { month: 'Jun', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')), cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 6.01 }
-                          ]}>
+                          <AreaChart data={[{
+                              month: 'Jan',
+                              distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95,
+                              cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95
+                            }, {
+                              month: 'Feb',
+                              distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.02,
+                              cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.97
+                            }, {
+                              month: 'Mar',
+                              distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.98,
+                              cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 2.95
+                            }, {
+                              month: 'Apr',
+                              distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.05,
+                              cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 4.0
+                            }, {
+                              month: 'May',
+                              distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.01,
+                              cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 5.01
+                            }, {
+                              month: 'Jun',
+                              distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')),
+                              cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 6.01
+                            }]}>
                             <defs>
                               <linearGradient id={`distGradient${index}`} x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.4} />
@@ -803,23 +815,13 @@ const DeFi = () => {
                             </defs>
                             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                             <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${value.toLocaleString()}`} />
-                            <Tooltip 
-                              formatter={(value: number, name: string) => [
-                                `$${value.toLocaleString()}`, 
-                                name === 'distribution' ? 'Monthly' : 'Cumulative'
-                              ]}
-                              contentStyle={{
+                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => `$${value.toLocaleString()}`} />
+                            <Tooltip formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'distribution' ? 'Monthly' : 'Cumulative']} contentStyle={{
                                 backgroundColor: 'hsl(var(--card))',
                                 border: '1px solid hsl(var(--border))',
                                 borderRadius: '8px'
-                              }} 
-                            />
-                            <Legend 
-                              verticalAlign="top" 
-                              height={36}
-                              formatter={(value) => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'}
-                            />
+                              }} />
+                            <Legend verticalAlign="top" height={36} formatter={value => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'} />
                             <Area type="monotone" dataKey="distribution" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#distGradient${index})`} />
                             <Area type="monotone" dataKey="cumulative" stroke="hsl(270, 70%, 60%)" strokeWidth={2} fill={`url(#cumGradient${index})`} />
                           </AreaChart>
@@ -1072,21 +1074,13 @@ const DeFi = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {individualProperties.map((property, index) => (
-                  <TableRow 
-                    key={index} 
-                    className="hover:bg-muted/50 cursor-pointer" 
-                    onClick={() => setSelectedPool({
-                      ...property,
-                      type: 'individual-property'
-                    })}
-                  >
+                {individualProperties.map((property, index) => <TableRow key={index} className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                        ...property,
+                        type: 'individual-property'
+                      })}>
                     <TableCell className="font-medium">{property.name}</TableCell>
                     <TableCell>
-                      <Badge 
-                        variant={property.loanType === "Mezzanine Loan" ? "secondary" : "outline"}
-                        className="text-xs"
-                      >
+                      <Badge variant={property.loanType === "Mezzanine Loan" ? "secondary" : "outline"} className="text-xs">
                         {property.loanType}
                       </Badge>
                     </TableCell>
@@ -1097,24 +1091,16 @@ const DeFi = () => {
                     <TableCell className="text-right font-mono text-sm text-success">{property.apy}</TableCell>
                     <TableCell className="text-right font-mono text-sm">{property.term}</TableCell>
                     <TableCell>
-                      <Badge 
-                        variant={property.status === "Active" ? "default" : "outline"}
-                        className={property.status === "Active" ? "bg-success/20 text-success" : "bg-muted text-muted-foreground"}
-                      >
+                      <Badge variant={property.status === "Active" ? "default" : "outline"} className={property.status === "Active" ? "bg-success/20 text-success" : "bg-muted text-muted-foreground"}>
                         {property.status}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button 
-                        size="sm" 
-                        className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" 
-                        onClick={e => e.stopPropagation()}
-                      >
+                      <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
                         Fund Loan
                       </Button>
                     </TableCell>
-                  </TableRow>
-                ))}
+                  </TableRow>)}
               </TableBody>
             </Table>
           </TabsContent>
@@ -1629,14 +1615,31 @@ const DeFi = () => {
             <div>
               <h4 className="text-lg font-semibold mb-3">Historical Performance</h4>
               <ResponsiveContainer width="100%" height={200}>
-                <AreaChart data={[
-                  { month: 'Jul', apy: selectedPool.type === 'market' ? 7.2 : selectedPool.type === 'pool' ? 6.8 : 9.1, tvl: selectedPool.type === 'market' ? 1.6 : selectedPool.type === 'pool' ? 280 : 2.8 },
-                  { month: 'Aug', apy: selectedPool.type === 'market' ? 7.5 : selectedPool.type === 'pool' ? 7.1 : 9.5, tvl: selectedPool.type === 'market' ? 1.7 : selectedPool.type === 'pool' ? 295 : 2.9 },
-                  { month: 'Sep', apy: selectedPool.type === 'market' ? 7.8 : selectedPool.type === 'pool' ? 7.3 : 9.8, tvl: selectedPool.type === 'market' ? 1.75 : selectedPool.type === 'pool' ? 310 : 3.0 },
-                  { month: 'Oct', apy: selectedPool.type === 'market' ? 8.0 : selectedPool.type === 'pool' ? 7.5 : 10.2, tvl: selectedPool.type === 'market' ? 1.8 : selectedPool.type === 'pool' ? 330 : 3.1 },
-                  { month: 'Nov', apy: selectedPool.type === 'market' ? 8.3 : selectedPool.type === 'pool' ? 7.7 : 10.5, tvl: selectedPool.type === 'market' ? 1.85 : selectedPool.type === 'pool' ? 350 : 3.15 },
-                  { month: 'Dec', apy: selectedPool.type === 'market' ? parseFloat(selectedPool.avgReturn) : parseFloat(selectedPool.supplyAPY || selectedPool.avgReturn), tvl: selectedPool.type === 'market' ? 1.89 : selectedPool.type === 'pool' ? 367 : 3.2 }
-                ]}>
+                <AreaChart data={[{
+                month: 'Jul',
+                apy: selectedPool.type === 'market' ? 7.2 : selectedPool.type === 'pool' ? 6.8 : 9.1,
+                tvl: selectedPool.type === 'market' ? 1.6 : selectedPool.type === 'pool' ? 280 : 2.8
+              }, {
+                month: 'Aug',
+                apy: selectedPool.type === 'market' ? 7.5 : selectedPool.type === 'pool' ? 7.1 : 9.5,
+                tvl: selectedPool.type === 'market' ? 1.7 : selectedPool.type === 'pool' ? 295 : 2.9
+              }, {
+                month: 'Sep',
+                apy: selectedPool.type === 'market' ? 7.8 : selectedPool.type === 'pool' ? 7.3 : 9.8,
+                tvl: selectedPool.type === 'market' ? 1.75 : selectedPool.type === 'pool' ? 310 : 3.0
+              }, {
+                month: 'Oct',
+                apy: selectedPool.type === 'market' ? 8.0 : selectedPool.type === 'pool' ? 7.5 : 10.2,
+                tvl: selectedPool.type === 'market' ? 1.8 : selectedPool.type === 'pool' ? 330 : 3.1
+              }, {
+                month: 'Nov',
+                apy: selectedPool.type === 'market' ? 8.3 : selectedPool.type === 'pool' ? 7.7 : 10.5,
+                tvl: selectedPool.type === 'market' ? 1.85 : selectedPool.type === 'pool' ? 350 : 3.15
+              }, {
+                month: 'Dec',
+                apy: selectedPool.type === 'market' ? parseFloat(selectedPool.avgReturn) : parseFloat(selectedPool.supplyAPY || selectedPool.avgReturn),
+                tvl: selectedPool.type === 'market' ? 1.89 : selectedPool.type === 'pool' ? 367 : 3.2
+              }]}>
                   <defs>
                     <linearGradient id="apyGradient" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
@@ -1645,15 +1648,12 @@ const DeFi = () => {
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                   <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-                  <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `${value}%`} />
-                  <Tooltip 
-                    formatter={(value: number, name: string) => [name === 'apy' ? `${value}%` : `$${value}B`, name === 'apy' ? 'APY' : 'TVL']}
-                    contentStyle={{
-                      backgroundColor: 'hsl(var(--card))',
-                      border: '1px solid hsl(var(--border))',
-                      borderRadius: '8px'
-                    }} 
-                  />
+                  <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => `${value}%`} />
+                  <Tooltip formatter={(value: number, name: string) => [name === 'apy' ? `${value}%` : `$${value}B`, name === 'apy' ? 'APY' : 'TVL']} contentStyle={{
+                  backgroundColor: 'hsl(var(--card))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '8px'
+                }} />
                   <Area type="monotone" dataKey="apy" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#apyGradient)" />
                 </AreaChart>
               </ResponsiveContainer>
@@ -1662,18 +1662,28 @@ const DeFi = () => {
             <Separator />
 
             {/* Utilization Chart (for pool types) */}
-            {(selectedPool.type === 'pool' || selectedPool.type === 'building') && (
-              <div>
+            {(selectedPool.type === 'pool' || selectedPool.type === 'building') && <div>
                 <h4 className="text-lg font-semibold mb-3">Utilization Trends</h4>
                 <ResponsiveContainer width="100%" height={180}>
-                  <AreaChart data={[
-                    { month: 'Jul', utilization: selectedPool.type === 'pool' ? 45 : 88 },
-                    { month: 'Aug', utilization: selectedPool.type === 'pool' ? 48 : 90 },
-                    { month: 'Sep', utilization: selectedPool.type === 'pool' ? 51 : 92 },
-                    { month: 'Oct', utilization: selectedPool.type === 'pool' ? 55 : 94 },
-                    { month: 'Nov', utilization: selectedPool.type === 'pool' ? 58 : 95 },
-                    { month: 'Dec', utilization: selectedPool.type === 'pool' ? parseInt(selectedPool.utilization) : parseInt(selectedPool.occupancy || '90') }
-                  ]}>
+                  <AreaChart data={[{
+                month: 'Jul',
+                utilization: selectedPool.type === 'pool' ? 45 : 88
+              }, {
+                month: 'Aug',
+                utilization: selectedPool.type === 'pool' ? 48 : 90
+              }, {
+                month: 'Sep',
+                utilization: selectedPool.type === 'pool' ? 51 : 92
+              }, {
+                month: 'Oct',
+                utilization: selectedPool.type === 'pool' ? 55 : 94
+              }, {
+                month: 'Nov',
+                utilization: selectedPool.type === 'pool' ? 58 : 95
+              }, {
+                month: 'Dec',
+                utilization: selectedPool.type === 'pool' ? parseInt(selectedPool.utilization) : parseInt(selectedPool.occupancy || '90')
+              }]}>
                     <defs>
                       <linearGradient id="utilizationGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
@@ -1682,20 +1692,16 @@ const DeFi = () => {
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
                     <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-                    <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `${value}%`} domain={[0, 100]} />
-                    <Tooltip 
-                      formatter={(value: number) => [`${value}%`, selectedPool.type === 'pool' ? 'Utilization' : 'Occupancy']}
-                      contentStyle={{
-                        backgroundColor: 'hsl(var(--card))',
-                        border: '1px solid hsl(var(--border))',
-                        borderRadius: '8px'
-                      }} 
-                    />
+                    <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => `${value}%`} domain={[0, 100]} />
+                    <Tooltip formatter={(value: number) => [`${value}%`, selectedPool.type === 'pool' ? 'Utilization' : 'Occupancy']} contentStyle={{
+                  backgroundColor: 'hsl(var(--card))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '8px'
+                }} />
                     <Area type="monotone" dataKey="utilization" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill="url(#utilizationGradient)" />
                   </AreaChart>
                 </ResponsiveContainer>
-              </div>
-            )}
+              </div>}
 
             <Separator />
 
@@ -1715,16 +1721,39 @@ const DeFi = () => {
                 </div>
               </div>
               <ResponsiveContainer width="100%" height={220}>
-                <AreaChart data={[
-                  { month: 'Jan 2025', distribution: 850, cumulative: 850 },
-                  { month: 'Feb 2025', distribution: 920, cumulative: 1770 },
-                  { month: 'Mar 2025', distribution: 885, cumulative: 2655 },
-                  { month: 'Apr 2025', distribution: 950, cumulative: 3605 },
-                  { month: 'May 2025', distribution: 910, cumulative: 4515 },
-                  { month: 'Jun 2025', distribution: 975, cumulative: 5490 },
-                  { month: 'Jul 2025', distribution: 1020, cumulative: 6510 },
-                  { month: 'Aug 2025', distribution: 1050, cumulative: 7560 }
-                ]}>
+                <AreaChart data={[{
+                month: 'Jan 2025',
+                distribution: 850,
+                cumulative: 850
+              }, {
+                month: 'Feb 2025',
+                distribution: 920,
+                cumulative: 1770
+              }, {
+                month: 'Mar 2025',
+                distribution: 885,
+                cumulative: 2655
+              }, {
+                month: 'Apr 2025',
+                distribution: 950,
+                cumulative: 3605
+              }, {
+                month: 'May 2025',
+                distribution: 910,
+                cumulative: 4515
+              }, {
+                month: 'Jun 2025',
+                distribution: 975,
+                cumulative: 5490
+              }, {
+                month: 'Jul 2025',
+                distribution: 1020,
+                cumulative: 6510
+              }, {
+                month: 'Aug 2025',
+                distribution: 1050,
+                cumulative: 7560
+              }]}>
                   <defs>
                     <linearGradient id="distributionGradient" x1="0" y1="0" x2="0" y2="1">
                       <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.4} />
@@ -1736,49 +1765,16 @@ const DeFi = () => {
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis 
-                    dataKey="month" 
-                    stroke="hsl(var(--muted-foreground))" 
-                    fontSize={10}
-                    angle={-45}
-                    textAnchor="end"
-                    height={60}
-                  />
-                  <YAxis 
-                    stroke="hsl(var(--muted-foreground))" 
-                    fontSize={11} 
-                    tickFormatter={(value) => `$${(value / 1000).toFixed(1)}k`}
-                  />
-                  <Tooltip 
-                    formatter={(value: number, name: string) => [
-                      `$${value.toLocaleString()}`, 
-                      name === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'
-                    ]}
-                    contentStyle={{
-                      backgroundColor: 'hsl(var(--card))',
-                      border: '1px solid hsl(var(--border))',
-                      borderRadius: '8px'
-                    }} 
-                  />
-                  <Legend 
-                    verticalAlign="top" 
-                    height={36}
-                    formatter={(value) => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'}
-                  />
-                  <Area 
-                    type="monotone" 
-                    dataKey="distribution" 
-                    stroke="hsl(158, 64%, 52%)" 
-                    strokeWidth={2} 
-                    fill="url(#distributionGradient)" 
-                  />
-                  <Area 
-                    type="monotone" 
-                    dataKey="cumulative" 
-                    stroke="hsl(270, 70%, 60%)" 
-                    strokeWidth={2} 
-                    fill="url(#cumulativeGradient)" 
-                  />
+                  <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={10} angle={-45} textAnchor="end" height={60} />
+                  <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={value => `$${(value / 1000).toFixed(1)}k`} />
+                  <Tooltip formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total']} contentStyle={{
+                  backgroundColor: 'hsl(var(--card))',
+                  border: '1px solid hsl(var(--border))',
+                  borderRadius: '8px'
+                }} />
+                  <Legend verticalAlign="top" height={36} formatter={value => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'} />
+                  <Area type="monotone" dataKey="distribution" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill="url(#distributionGradient)" />
+                  <Area type="monotone" dataKey="cumulative" stroke="hsl(270, 70%, 60%)" strokeWidth={2} fill="url(#cumulativeGradient)" />
                 </AreaChart>
               </ResponsiveContainer>
               <div className="mt-3 text-xs text-muted-foreground">
