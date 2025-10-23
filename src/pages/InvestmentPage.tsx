@@ -7,6 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
+import usdcIcon from "@/assets/usdc-icon.png";
+import usdtLogo from "@/assets/usdt-logo.png";
+import cadcLogo from "@/assets/cadc-logo.png";
 const InvestmentPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -28,15 +31,15 @@ const InvestmentPage = () => {
   const stablecoins = [{
     symbol: "USDC",
     name: "USD Coin",
-    icon: "/src/assets/usdc-icon.png"
+    icon: usdcIcon
   }, {
     symbol: "USDT",
     name: "Tether",
-    icon: "/src/assets/usdt-logo.png"
+    icon: usdtLogo
   }, {
     symbol: "CADC",
     name: "Canadian Dollar Coin",
-    icon: "/src/assets/cadc-logo.png"
+    icon: cadcLogo
   }];
   return <div className="min-h-screen bg-background">
       {/* Header */}
