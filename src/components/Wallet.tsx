@@ -70,23 +70,21 @@ const Wallet = () => {
                         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <img src={usdcLogo} alt="USDC" className="w-5 h-5" />
                         </div>
-                        <div className="relative flex-1">
-                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-2xl font-bold">$</span>
-                          <Input
-                            type="text"
-                            placeholder="0"
-                            value={depositAmount}
-                            onChange={(e) => {
-                              const value = e.target.value.replace(/[^0-9]/g, '');
-                              if (value) {
-                                setDepositAmount(parseFloat(value).toLocaleString());
-                              } else {
-                                setDepositAmount('');
-                              }
-                            }}
-                            className="text-2xl font-bold pl-8 h-12 border-0 focus-visible:ring-0"
-                          />
-                        </div>
+                        <span className="text-3xl font-bold">$</span>
+                        <input
+                          type="text"
+                          placeholder="0"
+                          value={depositAmount}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/[^0-9]/g, '');
+                            if (value) {
+                              setDepositAmount(parseFloat(value).toLocaleString());
+                            } else {
+                              setDepositAmount('');
+                            }
+                          }}
+                          className="text-3xl font-bold bg-transparent border-none outline-none focus:outline-none w-full"
+                        />
                       </div>
                       <p className="text-xs text-muted-foreground pl-10">USDC</p>
                     </div>
@@ -142,23 +140,21 @@ const Wallet = () => {
                         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
                           <img src={usdcLogo} alt="USDC" className="w-5 h-5" />
                         </div>
-                        <div className="relative flex-1">
-                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-2xl font-bold">$</span>
-                          <Input
-                            type="text"
-                            placeholder="0"
-                            value={withdrawAmount}
-                            onChange={(e) => {
-                              const value = e.target.value.replace(/[^0-9]/g, '');
-                              if (value) {
-                                setWithdrawAmount(parseFloat(value).toLocaleString());
-                              } else {
-                                setWithdrawAmount('');
-                              }
-                            }}
-                            className="text-2xl font-bold pl-8 h-12 border-0 focus-visible:ring-0"
-                          />
-                        </div>
+                        <span className="text-3xl font-bold">$</span>
+                        <input
+                          type="text"
+                          placeholder="0"
+                          value={withdrawAmount}
+                          onChange={(e) => {
+                            const value = e.target.value.replace(/[^0-9]/g, '');
+                            if (value) {
+                              setWithdrawAmount(parseFloat(value).toLocaleString());
+                            } else {
+                              setWithdrawAmount('');
+                            }
+                          }}
+                          className="text-3xl font-bold bg-transparent border-none outline-none focus:outline-none w-full"
+                        />
                       </div>
                       <p className="text-xs text-muted-foreground pl-10">USDC</p>
                     </div>
