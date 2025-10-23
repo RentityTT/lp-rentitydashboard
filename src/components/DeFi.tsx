@@ -385,7 +385,7 @@ const DeFi = () => {
     propertyValue: "$45,000,000",
     status: "Active",
     occupancy: "92%",
-    image: "/src/assets/century-city.jpg",
+    image: "/src/assets/century-city-tower.jpg",
     description: "Premium commercial office tower in the heart of Century City's business district"
   }, {
     name: "Skyline Apartments",
@@ -399,7 +399,7 @@ const DeFi = () => {
     propertyValue: "$28,000,000",
     status: "Active",
     occupancy: "96%",
-    image: "/src/assets/juniper-tower.jpg",
+    image: "/src/assets/skyline-apartments.jpg",
     description: "Modern multi-family residential complex with high occupancy rates"
   }, {
     name: "Marina Bay Complex",
@@ -413,7 +413,7 @@ const DeFi = () => {
     propertyValue: "$52,000,000",
     status: "Funding",
     occupancy: "88%",
-    image: "/src/assets/atmosphere.jpg",
+    image: "/src/assets/marina-bay-complex.jpg",
     description: "Waterfront mixed-use development combining retail and residential spaces"
   }, {
     name: "Tech Park Plaza",
@@ -427,7 +427,7 @@ const DeFi = () => {
     propertyValue: "$68,000,000",
     status: "Funding",
     occupancy: "N/A",
-    image: "/src/assets/century-city.jpg",
+    image: "/src/assets/tech-park-plaza.jpg",
     description: "New construction project in Austin's growing tech corridor"
   }, {
     name: "Harbor View Residence",
@@ -441,7 +441,7 @@ const DeFi = () => {
     propertyValue: "$38,000,000",
     status: "Active",
     occupancy: "94%",
-    image: "/src/assets/atmosphere.jpg",
+    image: "/src/assets/harbor-view-residence.jpg",
     description: "Exclusive waterfront luxury residences with panoramic harbor views"
   }, {
     name: "Greenfield Shopping Center",
@@ -455,7 +455,7 @@ const DeFi = () => {
     propertyValue: "$32,000,000",
     status: "Active",
     occupancy: "90%",
-    image: "/src/assets/juniper-tower.jpg",
+    image: "/src/assets/greenfield-shopping.jpg",
     description: "Well-established retail center in prime Denver location"
   }];
   const formatCurrency = (value: number) => {
