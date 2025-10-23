@@ -1425,7 +1425,7 @@ const DeFi = () => {
                   Category
                 </TabsTrigger>
                 <TabsTrigger value="more" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
-                  More
+                  Buildings
                 </TabsTrigger>
               </TabsList>
 
@@ -1511,6 +1511,54 @@ const DeFi = () => {
                         </TableCell>
                         <TableCell className="text-right font-mono text-sm">
                           {pool.utilization}
+                        </TableCell>
+                      </TableRow>)}
+                  </TableBody>
+                </Table>
+              </TabsContent>
+
+              <TabsContent value="more" className="pt-6">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Property</TableHead>
+                      <TableHead>Loan Type</TableHead>
+                      <TableHead>Location</TableHead>
+                      <TableHead>Property Type</TableHead>
+                      <TableHead className="text-right">Loan Amount</TableHead>
+                      <TableHead className="text-right">LTV</TableHead>
+                      <TableHead className="text-right">Borrow Rate</TableHead>
+                      <TableHead className="text-right">Term</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {individualProperties.filter(property => userLocations.includes(property.location.split(',')[0])).map((property, index) => <TableRow key={index} className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
+                            ...property,
+                            type: 'individual-property'
+                          })}>
+                        <TableCell className="font-medium">{property.name}</TableCell>
+                        <TableCell>
+                          <Badge variant={property.loanType === "Mezzanine Loan" ? "secondary" : "outline"} className="text-xs">
+                            {property.loanType}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{property.location}</TableCell>
+                        <TableCell className="text-sm text-muted-foreground">{property.propertyType}</TableCell>
+                        <TableCell className="text-right font-mono text-sm">{property.loanAmount}</TableCell>
+                        <TableCell className="text-right font-mono text-sm">{property.ltv}</TableCell>
+                        <TableCell className="text-right font-mono text-sm text-success">{property.apy}</TableCell>
+                        <TableCell className="text-right font-mono text-sm">{property.term}</TableCell>
+                        <TableCell>
+                          <Badge variant={property.status === "Active" ? "default" : "outline"} className={property.status === "Active" ? "bg-success/20 text-success" : "bg-muted text-muted-foreground"}>
+                            {property.status}
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="text-right">
+                          <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
+                            Borrow
+                          </Button>
                         </TableCell>
                       </TableRow>)}
                   </TableBody>
