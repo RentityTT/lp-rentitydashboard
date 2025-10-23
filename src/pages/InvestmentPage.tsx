@@ -167,7 +167,14 @@ const InvestmentPage = () => {
                       className="pl-7 text-lg h-12"
                     />
                   </div>
-                  <p className="text-xs text-muted-foreground">Minimum investment: $1,000</p>
+                  <div className="flex justify-between items-center">
+                    <p className="text-xs text-muted-foreground">Minimum investment: $1,000</p>
+                    {amount && parseFloat(amount) > 0 && (
+                      <p className="text-sm font-semibold text-success">
+                        Est. Annual Yield: ${(parseFloat(amount) * parseFloat(property.apy.replace('%', '')) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 <Separator />
