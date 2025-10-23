@@ -317,139 +317,6 @@ const DeFi = () => {
       propertyValue: "$2,250,000"
     }
   }];
-  const availablePropertyBonds = [
-    {
-      property: "Century Tower",
-      location: "Vancouver, BC",
-      propertyType: "Multi-Family",
-      bondAmount: "$1,250,000",
-      apy: "7.82%",
-      term: "36 months",
-      ltv: "55%",
-      status: "Available",
-      minInvestment: "$10,000"
-    },
-    {
-      property: "Meridian Apartments",
-      location: "Paris, France",
-      propertyType: "Residential",
-      bondAmount: "$2,100,000",
-      apy: "7.45%",
-      term: "48 months",
-      ltv: "50%",
-      status: "Available",
-      minInvestment: "$25,000"
-    },
-    {
-      property: "Harbor View Residences",
-      location: "Hong Kong",
-      propertyType: "Luxury Housing",
-      bondAmount: "$3,500,000",
-      apy: "8.12%",
-      term: "60 months",
-      ltv: "45%",
-      status: "Available",
-      minInvestment: "$50,000"
-    },
-    {
-      property: "Metropolitan Plaza",
-      location: "New York, USA",
-      propertyType: "Commercial",
-      bondAmount: "$4,200,000",
-      apy: "7.95%",
-      term: "42 months",
-      ltv: "60%",
-      status: "Available",
-      minInvestment: "$100,000"
-    },
-    {
-      property: "Greenwich Square",
-      location: "London, UK",
-      propertyType: "Mixed-Use",
-      bondAmount: "$1,800,000",
-      apy: "7.65%",
-      term: "36 months",
-      ltv: "52%",
-      status: "Funding",
-      minInvestment: "$15,000"
-    }
-  ];
-
-  const availablePropertyLoans = [
-    {
-      property: "Skyline Tower",
-      location: "Vancouver, BC",
-      propertyType: "Multi-Family",
-      loanType: "Mezzanine",
-      loanAmount: "$850,000",
-      apy: "10.35%",
-      term: "24 months",
-      ltv: "75%",
-      status: "Available",
-      minInvestment: "$5,000"
-    },
-    {
-      property: "Pacific Heights",
-      location: "Vancouver, BC",
-      propertyType: "Residential",
-      loanType: "Construction",
-      loanAmount: "$1,500,000",
-      apy: "11.20%",
-      term: "18 months",
-      ltv: "70%",
-      status: "Available",
-      minInvestment: "$10,000"
-    },
-    {
-      property: "Victoria Gardens",
-      location: "London, UK",
-      propertyType: "Student Housing",
-      loanType: "Senior",
-      loanAmount: "$2,200,000",
-      apy: "9.85%",
-      term: "36 months",
-      ltv: "65%",
-      status: "Available",
-      minInvestment: "$25,000"
-    },
-    {
-      property: "Central Business District",
-      location: "Hong Kong",
-      propertyType: "Office",
-      loanType: "Bridge",
-      loanAmount: "$5,000,000",
-      apy: "12.50%",
-      term: "12 months",
-      ltv: "60%",
-      status: "Available",
-      minInvestment: "$50,000"
-    },
-    {
-      property: "Madison Avenue Retail",
-      location: "New York, USA",
-      propertyType: "Retail",
-      loanType: "Mezzanine",
-      loanAmount: "$3,200,000",
-      apy: "10.75%",
-      term: "30 months",
-      ltv: "68%",
-      status: "Funding",
-      minInvestment: "$20,000"
-    },
-    {
-      property: "Seine Riverside",
-      location: "Paris, France",
-      propertyType: "Luxury Housing",
-      loanType: "Construction",
-      loanAmount: "$4,100,000",
-      apy: "11.80%",
-      term: "24 months",
-      ltv: "72%",
-      status: "Available",
-      minInvestment: "$30,000"
-    }
-  ];
-
   const markets = [{
     location: "Vancouver",
     country: "Canada",
@@ -504,6 +371,80 @@ const DeFi = () => {
     occupancyRate: "93%",
     marketCap: "$1.0B",
     growth: "+7.9%"
+  }];
+
+  const individualProperties = [{
+    name: "Century City Tower",
+    loanType: "Mezzanine Loan",
+    location: "Los Angeles, CA",
+    propertyType: "Commercial Office",
+    loanAmount: "$12,500,000",
+    ltv: "65%",
+    apy: activeMode === "bonds" ? "8.5%" : "11.2%",
+    term: "3 years",
+    propertyValue: "$45,000,000",
+    status: "Active",
+    occupancy: "92%"
+  }, {
+    name: "Skyline Apartments",
+    loanType: "Senior Debt",
+    location: "Seattle, WA",
+    propertyType: "Multi-Family",
+    loanAmount: "$8,750,000",
+    ltv: "55%",
+    apy: activeMode === "bonds" ? "7.8%" : "9.5%",
+    term: "5 years",
+    propertyValue: "$28,000,000",
+    status: "Active",
+    occupancy: "96%"
+  }, {
+    name: "Marina Bay Complex",
+    loanType: "Bridge Loan",
+    location: "Miami, FL",
+    propertyType: "Mixed-Use",
+    loanAmount: "$15,000,000",
+    ltv: "70%",
+    apy: activeMode === "bonds" ? "9.2%" : "12.8%",
+    term: "2 years",
+    propertyValue: "$52,000,000",
+    status: "Funding",
+    occupancy: "88%"
+  }, {
+    name: "Tech Park Plaza",
+    loanType: "Construction Loan",
+    location: "Austin, TX",
+    propertyType: "Commercial Office",
+    loanAmount: "$20,000,000",
+    ltv: "75%",
+    apy: activeMode === "bonds" ? "10.5%" : "14.2%",
+    term: "18 months",
+    propertyValue: "$68,000,000",
+    status: "Funding",
+    occupancy: "N/A"
+  }, {
+    name: "Harbor View Residence",
+    loanType: "Mezzanine Loan",
+    location: "Boston, MA",
+    propertyType: "Luxury Residential",
+    loanAmount: "$9,500,000",
+    ltv: "60%",
+    apy: activeMode === "bonds" ? "8.8%" : "11.8%",
+    term: "4 years",
+    propertyValue: "$38,000,000",
+    status: "Active",
+    occupancy: "94%"
+  }, {
+    name: "Greenfield Shopping Center",
+    loanType: "Senior Debt",
+    location: "Denver, CO",
+    propertyType: "Retail",
+    loanAmount: "$11,200,000",
+    ltv: "58%",
+    apy: activeMode === "bonds" ? "7.5%" : "9.2%",
+    term: "7 years",
+    propertyValue: "$32,000,000",
+    status: "Active",
+    occupancy: "90%"
   }];
   const formatCurrency = (value: number) => {
     if (value >= 1000000000) {
@@ -591,86 +532,251 @@ const DeFi = () => {
                 <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
-...
-          </Table>
-        </CardContent>
-      </Card>
-
-      {/* Available Properties for Investment */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Available Properties for Investment</CardTitle>
-          <p className="text-sm text-muted-foreground mt-2">
-            Individual property {activeMode === "bonds" ? "bonds" : "loans"} available for direct investment
-          </p>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Property</TableHead>
-                <TableHead>Location</TableHead>
-                <TableHead>Type</TableHead>
-                {activeMode === "loans" && <TableHead>Loan Type</TableHead>}
-                <TableHead className="text-right">{activeMode === "bonds" ? "Bond" : "Loan"} Amount</TableHead>
-                <TableHead className="text-right">APY</TableHead>
-                <TableHead className="text-right">LTV</TableHead>
-                <TableHead>Term</TableHead>
-                <TableHead className="text-right">Min. Investment</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead></TableHead>
-              </TableRow>
-            </TableHeader>
             <TableBody>
-              {(activeMode === "bonds" ? availablePropertyBonds : availablePropertyLoans).map((property, index) => (
-                <TableRow key={index} className="hover:bg-muted/50">
-                  <TableCell className="font-medium">{property.property}</TableCell>
-                  <TableCell className="text-sm text-muted-foreground">{property.location}</TableCell>
-                  <TableCell>
-                    <Badge variant="outline" className="text-xs">
-                      {property.propertyType}
-                    </Badge>
-                  </TableCell>
-                  {activeMode === "loans" && (
-                    <TableCell>
-                      <Badge variant="secondary" className="bg-primary/20 text-primary text-xs">
-                        {"loanType" in property ? property.loanType : ""}
-                      </Badge>
-                    </TableCell>
-                  )}
-                  <TableCell className="text-right font-mono text-sm">
-                    {activeMode === "bonds" ? property.bondAmount : "loanAmount" in property ? property.loanAmount : ""}
-                  </TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success font-semibold">
-                    {property.apy}
-                  </TableCell>
-                  <TableCell className="text-right font-mono text-sm">
-                    {property.ltv}
-                  </TableCell>
-                  <TableCell className="text-sm text-muted-foreground">
-                    {property.term}
-                  </TableCell>
-                  <TableCell className="text-right font-mono text-sm">
-                    {property.minInvestment}
-                  </TableCell>
-                  <TableCell>
-                    <Badge 
-                      variant={property.status === "Available" ? "default" : "secondary"}
-                      className={property.status === "Available" ? "bg-success/20 text-success" : ""}
-                    >
-                      {property.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <Button 
-                      size="sm" 
-                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
-                    >
-                      Invest
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {earnPositions.map((position, index) => <Dialog key={index}>
+                  <DialogTrigger asChild>
+                    <TableRow className="hover:bg-muted/50 cursor-pointer">
+                      <TableCell className="font-medium">{position.pool}</TableCell>
+                      <TableCell>
+                        <Badge variant={position.productType === "Bond" ? "outline" : "secondary"} className={position.productType === "Bond" ? "text-xs" : "bg-primary/20 text-primary text-xs"}>
+                          {position.productType}
+                        </Badge>
+                      </TableCell>
+                      <TableCell className="text-right font-mono text-sm">
+                        {position.amount}
+                      </TableCell>
+                      <TableCell className="text-right font-mono text-sm text-success">
+                        {position.apy}
+                      </TableCell>
+                      <TableCell className="text-sm text-muted-foreground">
+                        {position.duration}
+                      </TableCell>
+                      <TableCell className="text-sm text-muted-foreground">
+                        {position.startDate}
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="outline" className="text-xs">
+                          {position.network}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="default" className="bg-success/20 text-success">
+                          {position.status}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl">Position Details</DialogTitle>
+                    </DialogHeader>
+                    
+                    <div className="space-y-6">
+                      {/* Position Header */}
+                      <div className="bg-primary-gradient text-primary-foreground p-6 rounded-lg">
+                        <h3 className="text-2xl font-bold mb-2">{position.pool}</h3>
+                        <Badge variant="outline" className="bg-white/20 text-white border-white/30">
+                          {position.productType} Position
+                        </Badge>
+                        <p className="text-sm mt-2 opacity-90">Position ID: {position.details.positionId}</p>
+                      </div>
+
+                      {/* Key Metrics */}
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Principal Amount</p>
+                          <p className="text-lg font-semibold">{position.details.principalAmount}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Yield Earned</p>
+                          <p className="text-lg font-semibold text-success">{position.details.yieldEarned}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Current Value</p>
+                          <p className="text-lg font-semibold">{position.details.currentValue}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">APY</p>
+                          <p className="text-lg font-semibold text-success">{position.apy}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Days Active</p>
+                          <p className="text-lg font-semibold">{position.details.daysActive} days</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Status</p>
+                          <Badge variant="default" className="bg-success/20 text-success">
+                            {position.status}
+                          </Badge>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Network</p>
+                          <p className="text-lg font-semibold">{position.network}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Pool Utilization</p>
+                          <p className="text-lg font-semibold">{position.details.poolUtilization}</p>
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-sm text-muted-foreground">Deposit Date</p>
+                          <p className="text-lg font-semibold">{position.details.depositDate}</p>
+                        </div>
+                      </div>
+
+                      <Separator />
+
+                      {/* Performance Chart */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3">Position Performance</h4>
+                        <ResponsiveContainer width="100%" height={200}>
+                          <AreaChart data={[
+                            { month: 'Jul', value: position.amountNumeric * 0.92, yield: 0 },
+                            { month: 'Aug', value: position.amountNumeric * 0.94, yield: position.amountNumeric * 0.02 },
+                            { month: 'Sep', value: position.amountNumeric * 0.96, yield: position.amountNumeric * 0.04 },
+                            { month: 'Oct', value: position.amountNumeric * 0.98, yield: position.amountNumeric * 0.06 },
+                            { month: 'Nov', value: position.amountNumeric, yield: position.amountNumeric * 0.08 },
+                            { month: 'Dec', value: parseFloat(position.details.currentValue.replace(/[$,]/g, '')), yield: parseFloat(position.details.yieldEarned.replace(/[$,]/g, '')) }
+                          ]}>
+                            <defs>
+                              <linearGradient id={`valueGradient${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0} />
+                              </linearGradient>
+                              <linearGradient id={`yieldGradientPos${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
+                              </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                            <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`} />
+                            <Tooltip 
+                              formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'value' ? 'Position Value' : 'Yield Earned']}
+                              contentStyle={{
+                                backgroundColor: 'hsl(var(--card))',
+                                border: '1px solid hsl(var(--border))',
+                                borderRadius: '8px'
+                              }} 
+                            />
+                            <Area type="monotone" dataKey="value" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill={`url(#valueGradient${index})`} />
+                            <Area type="monotone" dataKey="yield" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#yieldGradientPos${index})`} />
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      <Separator />
+
+                      {/* Distribution Timeline */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3">Distribution Timeline</h4>
+                        <div className="bg-muted/30 rounded-lg p-4 mb-4">
+                          <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                              <p className="text-muted-foreground">Next Distribution</p>
+                              <p className="font-semibold">{position.details.nextDistribution}</p>
+                            </div>
+                            <div>
+                              <p className="text-muted-foreground">Distribution Amount</p>
+                              <p className="font-semibold text-success">{position.details.distributionAmount}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <ResponsiveContainer width="100%" height={200}>
+                          <AreaChart data={[
+                            { month: 'Jan', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95 },
+                            { month: 'Feb', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.02, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.97 },
+                            { month: 'Mar', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.98, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 2.95 },
+                            { month: 'Apr', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.05, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 4.0 },
+                            { month: 'May', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.01, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 5.01 },
+                            { month: 'Jun', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')), cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 6.01 }
+                          ]}>
+                            <defs>
+                              <linearGradient id={`distGradient${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.4} />
+                                <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.05} />
+                              </linearGradient>
+                              <linearGradient id={`cumGradient${index}`} x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0.3} />
+                                <stop offset="95%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0} />
+                              </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                            <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
+                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${value.toLocaleString()}`} />
+                            <Tooltip 
+                              formatter={(value: number, name: string) => [
+                                `$${value.toLocaleString()}`, 
+                                name === 'distribution' ? 'Monthly' : 'Cumulative'
+                              ]}
+                              contentStyle={{
+                                backgroundColor: 'hsl(var(--card))',
+                                border: '1px solid hsl(var(--border))',
+                                borderRadius: '8px'
+                              }} 
+                            />
+                            <Legend 
+                              verticalAlign="top" 
+                              height={36}
+                              formatter={(value) => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'}
+                            />
+                            <Area type="monotone" dataKey="distribution" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#distGradient${index})`} />
+                            <Area type="monotone" dataKey="cumulative" stroke="hsl(270, 70%, 60%)" strokeWidth={2} fill={`url(#cumGradient${index})`} />
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </div>
+
+                      <Separator />
+
+                      {/* Yield Information */}
+                      <div>
+                        <h4 className="text-lg font-semibold mb-3">Yield & Distribution</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <p className="text-sm text-muted-foreground">Projected Annual Yield</p>
+                            <p className="text-lg font-semibold text-success">{position.details.projectedAnnualYield}</p>
+                            <p className="text-xs text-muted-foreground">Based on current APY of {position.apy}</p>
+                          </div>
+                          <div className="space-y-1">
+                            <p className="text-sm text-muted-foreground">Next Distribution</p>
+                            <p className="text-lg font-semibold">{position.details.nextDistribution}</p>
+                            <p className="text-xs text-muted-foreground">Amount: {position.details.distributionAmount}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Additional Info */}
+                      <div className="bg-muted p-4 rounded-lg">
+                        <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
+                          <Info className="h-4 w-4" />
+                          Position Information
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          This {position.productType.toLowerCase()} position in {position.pool} has been active for {position.details.daysActive} days, earning a total of {position.details.yieldEarned} in yield. The current value of your position is {position.details.currentValue}, representing a return on your principal investment of {position.details.principalAmount}.
+                        </p>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-3">
+                        <Button className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90">
+                          Add Funds
+                        </Button>
+                        <Button variant="outline" className="flex-1">
+                          Withdraw
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>)}
+              <TableRow className="border-t-2 font-bold bg-muted/50">
+                <TableCell className="text-lg">TOTAL</TableCell>
+                <TableCell></TableCell>
+                <TableCell className="text-right text-lg">$510,500</TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+                <TableCell></TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </CardContent>
@@ -853,106 +959,61 @@ const DeFi = () => {
               <TableHeader>
                 <TableRow>
                   <TableHead>Property</TableHead>
-                  <TableHead className="text-right">Total Value</TableHead>
-                  <TableHead className="text-right">Units</TableHead>
-                  <TableHead className="text-right">Avg Return</TableHead>
-                  <TableHead className="text-right">Occupancy</TableHead>
-                  <TableHead className="text-right">Market Cap</TableHead>
-                  <TableHead className="text-right">Growth</TableHead>
+                  <TableHead>Loan Type</TableHead>
+                  <TableHead>Location</TableHead>
+                  <TableHead>Property Type</TableHead>
+                  <TableHead className="text-right">Loan Amount</TableHead>
+                  <TableHead className="text-right">LTV</TableHead>
+                  <TableHead className="text-right">APY</TableHead>
+                  <TableHead className="text-right">Term</TableHead>
+                  <TableHead>Status</TableHead>
                   <TableHead className="text-right">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Riverside Gardens',
-                        totalValue: '$4,567,200',
-                        units: 189,
-                        avgReturn: '9.2%',
-                        occupancy: '97%',
-                        marketCap: '$4.8M',
-                        growth: '+14.6%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Riverside Gardens</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$4,567,200</TableCell>
-                  <TableCell className="text-right font-mono text-sm">189</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">9.2%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">97%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$4.8M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+14.6%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Downtown Development Site',
-                        totalValue: '$8,950,000',
-                        isDevelopmentLand: true,
-                        avgReturn: '12.5%',
-                        marketCap: '$9.2M',
-                        growth: '+18.3%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Downtown Development Site</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$8,950,000</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">12.5%</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$9.2M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+18.3%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Harbor Point Towers',
-                        totalValue: '$6,234,800',
-                        units: 142,
-                        avgReturn: '10.8%',
-                        occupancy: '95%',
-                        marketCap: '$6.5M',
-                        growth: '+16.1%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Harbor Point Towers</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$6,234,800</TableCell>
-                  <TableCell className="text-right font-mono text-sm">142</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">10.8%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">95%</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$6.5M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+16.1%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow className="hover:bg-muted/50 cursor-pointer" onClick={() => setSelectedPool({
-                        name: 'Westside Land Parcel',
-                        totalValue: '$5,670,000',
-                        isDevelopmentLand: true,
-                        avgReturn: '13.2%',
-                        marketCap: '$5.9M',
-                        growth: '+19.5%',
-                        type: 'building'
-                      })}>
-                  <TableCell className="font-medium">Westside Land Parcel</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$5,670,000</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">13.2%</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-muted-foreground">-</TableCell>
-                  <TableCell className="text-right font-mono text-sm">$5.9M</TableCell>
-                  <TableCell className="text-right font-mono text-sm text-success">+19.5%</TableCell>
-                  <TableCell className="text-right">
-                    <Button size="sm" className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" onClick={e => e.stopPropagation()}>
-                      Fund Pool
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                {individualProperties.map((property, index) => (
+                  <TableRow 
+                    key={index} 
+                    className="hover:bg-muted/50 cursor-pointer" 
+                    onClick={() => setSelectedPool({
+                      ...property,
+                      type: 'individual-property'
+                    })}
+                  >
+                    <TableCell className="font-medium">{property.name}</TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant={property.loanType === "Mezzanine Loan" ? "secondary" : "outline"}
+                        className="text-xs"
+                      >
+                        {property.loanType}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-sm text-muted-foreground">{property.location}</TableCell>
+                    <TableCell className="text-sm text-muted-foreground">{property.propertyType}</TableCell>
+                    <TableCell className="text-right font-mono text-sm">{property.loanAmount}</TableCell>
+                    <TableCell className="text-right font-mono text-sm">{property.ltv}</TableCell>
+                    <TableCell className="text-right font-mono text-sm text-success">{property.apy}</TableCell>
+                    <TableCell className="text-right font-mono text-sm">{property.term}</TableCell>
+                    <TableCell>
+                      <Badge 
+                        variant={property.status === "Active" ? "default" : "outline"}
+                        className={property.status === "Active" ? "bg-success/20 text-success" : "bg-muted text-muted-foreground"}
+                      >
+                        {property.status}
+                      </Badge>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <Button 
+                        size="sm" 
+                        className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 rounded-full px-4 py-1 text-xs h-auto" 
+                        onClick={e => e.stopPropagation()}
+                      >
+                        Fund Loan
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
               </TableBody>
             </Table>
           </TabsContent>
