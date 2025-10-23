@@ -155,6 +155,52 @@ const InvestmentPage = () => {
 
                 <Separator />
 
+                {/* Monthly Repayment Schedule for Rent-Backed Bonds */}
+                {property.loanType === "Rent-Backed Bond" && amount && parseFloat(amount) > 0 && (
+                  <>
+                    <Separator />
+                    <div className="space-y-3">
+                      <Label className="text-base font-semibold">Monthly Repayment Schedule</Label>
+                      <p className="text-sm text-muted-foreground">Based on rental income collections</p>
+                      <div className="bg-muted/30 rounded-lg p-4 space-y-3 max-h-64 overflow-y-auto">
+                        {Array.from({ length: 12 }, (_, i) => {
+                          const monthlyReturn = parseFloat(amount) * (parseFloat(property.apy.replace('%', '')) / 100 / 12);
+                          const principal = parseFloat(amount) / 12;
+                          const total = monthlyReturn + principal;
+                          const date = new Date();
+                          date.setMonth(date.getMonth() + i + 1);
+                          
+                          return (
+                            <div key={i} className="flex justify-between items-center py-2 border-b border-border last:border-0">
+                              <div>
+                                <p className="font-medium text-sm">
+                                  {date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                                </p>
+                                <p className="text-xs text-muted-foreground">
+                                  Principal: ${principal.toFixed(2)} + Return: ${monthlyReturn.toFixed(2)}
+                                </p>
+                              </div>
+                              <p className="font-semibold text-success">
+                                ${total.toFixed(2)}
+                              </p>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div className="bg-primary/10 rounded-lg p-3 border border-primary/20">
+                        <div className="flex justify-between items-center">
+                          <p className="font-semibold">Total Repayment (12 months)</p>
+                          <p className="text-lg font-bold text-success">
+                            ${(parseFloat(amount) * (1 + parseFloat(property.apy.replace('%', '')) / 100)).toFixed(2)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                <Separator />
+
                 {/* Investment Process Info */}
                 <div className="bg-muted/30 rounded-lg p-4 space-y-3">
                   <h4 className="font-semibold text-sm">How It Works</h4>
