@@ -384,7 +384,9 @@ const DeFi = () => {
     term: "3 years",
     propertyValue: "$45,000,000",
     status: "Active",
-    occupancy: "92%"
+    occupancy: "92%",
+    image: "/src/assets/century-city.jpg",
+    description: "Premium commercial office tower in the heart of Century City's business district"
   }, {
     name: "Skyline Apartments",
     loanType: "Senior Debt",
@@ -396,7 +398,9 @@ const DeFi = () => {
     term: "5 years",
     propertyValue: "$28,000,000",
     status: "Active",
-    occupancy: "96%"
+    occupancy: "96%",
+    image: "/src/assets/juniper-tower.jpg",
+    description: "Modern multi-family residential complex with high occupancy rates"
   }, {
     name: "Marina Bay Complex",
     loanType: "Bridge Loan",
@@ -408,7 +412,9 @@ const DeFi = () => {
     term: "2 years",
     propertyValue: "$52,000,000",
     status: "Funding",
-    occupancy: "88%"
+    occupancy: "88%",
+    image: "/src/assets/atmosphere.jpg",
+    description: "Waterfront mixed-use development combining retail and residential spaces"
   }, {
     name: "Tech Park Plaza",
     loanType: "Construction Loan",
@@ -420,7 +426,9 @@ const DeFi = () => {
     term: "18 months",
     propertyValue: "$68,000,000",
     status: "Funding",
-    occupancy: "N/A"
+    occupancy: "N/A",
+    image: "/src/assets/century-city.jpg",
+    description: "New construction project in Austin's growing tech corridor"
   }, {
     name: "Harbor View Residence",
     loanType: "Mezzanine Loan",
@@ -432,7 +440,9 @@ const DeFi = () => {
     term: "4 years",
     propertyValue: "$38,000,000",
     status: "Active",
-    occupancy: "94%"
+    occupancy: "94%",
+    image: "/src/assets/atmosphere.jpg",
+    description: "Exclusive waterfront luxury residences with panoramic harbor views"
   }, {
     name: "Greenfield Shopping Center",
     loanType: "Senior Debt",
@@ -444,7 +454,9 @@ const DeFi = () => {
     term: "7 years",
     propertyValue: "$32,000,000",
     status: "Active",
-    occupancy: "90%"
+    occupancy: "90%",
+    image: "/src/assets/juniper-tower.jpg",
+    description: "Well-established retail center in prime Denver location"
   }];
   const formatCurrency = (value: number) => {
     if (value >= 1000000000) {
@@ -845,6 +857,9 @@ const DeFi = () => {
             <TabsTrigger value="category" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               Category
             </TabsTrigger>
+            <TabsTrigger value="properties" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
+              Properties
+            </TabsTrigger>
             <TabsTrigger value="more" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               Buildings
             </TabsTrigger>
@@ -952,6 +967,89 @@ const DeFi = () => {
                   </TableRow>)}
               </TableBody>
             </Table>
+          </TabsContent>
+
+          <TabsContent value="properties" className="pt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {individualProperties.map((property, index) => (
+                <Card 
+                  key={index} 
+                  className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+                  onClick={() => setSelectedPool({
+                    ...property,
+                    type: 'individual-property'
+                  })}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={property.image} 
+                      alt={property.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 right-3">
+                      <Badge 
+                        variant={property.status === "Active" ? "default" : "outline"}
+                        className={property.status === "Active" ? "bg-success/90 text-white" : "bg-muted/90 text-muted-foreground"}
+                      >
+                        {property.status}
+                      </Badge>
+                    </div>
+                  </div>
+                  <CardContent className="p-4 space-y-3">
+                    <div>
+                      <h3 className="font-semibold text-lg mb-1">{property.name}</h3>
+                      <p className="text-sm text-muted-foreground mb-2">{property.description}</p>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span>{property.location}</span>
+                        <span>•</span>
+                        <span>{property.propertyType}</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                      <Badge variant="secondary" className="text-xs">
+                        {property.loanType}
+                      </Badge>
+                      {property.occupancy !== "N/A" && (
+                        <span className="text-xs text-muted-foreground">
+                          {property.occupancy} occupied
+                        </span>
+                      )}
+                    </div>
+
+                    <Separator />
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Loan Amount</p>
+                        <p className="font-semibold text-sm">{property.loanAmount}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">APY</p>
+                        <p className="font-semibold text-sm text-success">{property.apy}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">LTV</p>
+                        <p className="font-semibold text-sm">{property.ltv}</p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-muted-foreground mb-1">Term</p>
+                        <p className="font-semibold text-sm">{property.term}</p>
+                      </div>
+                    </div>
+
+                    <Button 
+                      className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                      }}
+                    >
+                      Invest Now
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </TabsContent>
 
           <TabsContent value="more" className="pt-6">
