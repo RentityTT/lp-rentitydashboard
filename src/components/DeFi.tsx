@@ -6,10 +6,12 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { Info } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 const DeFi = () => {
+  const navigate = useNavigate();
   const [activeMode, setActiveMode] = useState<"bonds" | "loans">("bonds");
   const [selectedPool, setSelectedPool] = useState<any>(null);
   // User's properties with location and sector information
@@ -584,37 +586,17 @@ const DeFi = () => {
                     </div>
                   </div>
 
-                  <Button className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90" onClick={e => {
+                  <Button 
+                    className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90" 
+                    onClick={e => {
                       e.stopPropagation();
-                    }}>
+                      navigate(`/invest/${property.name.toLowerCase().replace(/\s+/g, '-')}`, {
+                        state: { property }
+                      });
+                    }}
+                  >
                     Invest Now
                   </Button>
-
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" className="w-full" onClick={e => {
-                          e.stopPropagation();
-                        }}>
-                        How to Invest
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent onClick={e => e.stopPropagation()}>
-                      <DialogHeader>
-                        <DialogTitle>Investment Steps</DialogTitle>
-                      </DialogHeader>
-                      <div className="space-y-4 text-sm">
-                        <p>
-                          Once ready to invest, simply choose your stablecoin — USDC, USDT, or CADC — and allocate the amount.
-                        </p>
-                        <p>
-                          The smart contract automatically mints Rentity Loan Tokens (RLTs) representing your proportional ownership of the underlying loan.
-                        </p>
-                        <p>
-                          All funds are held in escrow through our regulated MSB partners like PayTrie and custodians such as BitGo for compliance and transparency.
-                        </p>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
                 </CardContent>
               </Card>)}
           </div>
