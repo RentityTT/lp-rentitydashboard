@@ -218,7 +218,7 @@ const InvestmentPage = () => {
                     </div>
                     <div className="flex gap-2">
                       <CheckCircle2 className="h-5 w-5 text-success shrink-0 mt-0.5" />
-                      <p>All funds are held in escrow through our regulated MSB partners like PayTrie and custodians for compliance and transparency.</p>
+                      <p>All funds are held in escrow through our regulated MSB partners and custodians for compliance and transparency.</p>
                     </div>
                   </div>
                 </div>
