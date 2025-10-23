@@ -956,9 +956,9 @@ const DeFi = () => {
             <TabsTrigger value="category" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
               Category
             </TabsTrigger>
-            {activeMode === "bonds" && <TabsTrigger value="more" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
-                Rent-Backed Bonds
-              </TabsTrigger>}
+            <TabsTrigger value="more" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent">
+              Buildings
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="markets" className="pt-6">
