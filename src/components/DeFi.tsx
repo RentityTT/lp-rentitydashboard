@@ -589,6 +589,32 @@ const DeFi = () => {
                     }}>
                     Invest Now
                   </Button>
+
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="w-full" onClick={e => {
+                          e.stopPropagation();
+                        }}>
+                        How to Invest
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent onClick={e => e.stopPropagation()}>
+                      <DialogHeader>
+                        <DialogTitle>Investment Steps</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4 text-sm">
+                        <p>
+                          Once ready to invest, simply choose your stablecoin — USDC, USDT, or CADC — and allocate the amount.
+                        </p>
+                        <p>
+                          The smart contract automatically mints Rentity Loan Tokens (RLTs) representing your proportional ownership of the underlying loan.
+                        </p>
+                        <p>
+                          All funds are held in escrow through our regulated MSB partners like PayTrie and custodians such as BitGo for compliance and transparency.
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </CardContent>
               </Card>)}
           </div>
