@@ -7,17 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
-
 const InvestmentPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const property = location.state?.property;
   const [selectedCoin, setSelectedCoin] = useState<string>("USDC");
   const [amount, setAmount] = useState<string>("");
-
   if (!property) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    return <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <Card className="max-w-md w-full">
           <CardContent className="pt-6">
             <p className="text-center text-muted-foreground">Property not found</p>
@@ -26,26 +23,26 @@ const InvestmentPage = () => {
             </Button>
           </CardContent>
         </Card>
-      </div>
-    );
+      </div>;
   }
-
-  const stablecoins = [
-    { symbol: "USDC", name: "USD Coin", icon: "/src/assets/usdc-icon.png" },
-    { symbol: "USDT", name: "Tether", icon: "/src/assets/usdt-logo.png" },
-    { symbol: "CADC", name: "Canadian Dollar Coin", icon: "/src/assets/cadc-logo.png" }
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const stablecoins = [{
+    symbol: "USDC",
+    name: "USD Coin",
+    icon: "/src/assets/usdc-icon.png"
+  }, {
+    symbol: "USDT",
+    name: "Tether",
+    icon: "/src/assets/usdt-logo.png"
+  }, {
+    symbol: "CADC",
+    name: "Canadian Dollar Coin",
+    icon: "/src/assets/cadc-logo.png"
+  }];
+  return <div className="min-h-screen bg-background">
       {/* Header */}
       <div className="border-b border-border bg-card/50 sticky top-0 z-10 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate(-1)}
-            className="gap-2"
-          >
+          <Button variant="ghost" onClick={() => navigate(-1)} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Back
           </Button>
@@ -63,16 +60,9 @@ const InvestmentPage = () => {
 
             <Card>
               <div className="relative h-64 overflow-hidden rounded-t-lg">
-                <img 
-                  src={property.image} 
-                  alt={property.name} 
-                  className="w-full h-full object-cover"
-                />
+                <img src={property.image} alt={property.name} className="w-full h-full object-cover" />
                 <div className="absolute top-4 right-4">
-                  <Badge 
-                    variant={property.status === "Active" ? "default" : "outline"}
-                    className={property.status === "Active" ? "bg-success/90 text-white" : "bg-muted/90 text-muted-foreground"}
-                  >
+                  <Badge variant={property.status === "Active" ? "default" : "outline"} className={property.status === "Active" ? "bg-success/90 text-white" : "bg-muted/90 text-muted-foreground"}>
                     {property.status}
                   </Badge>
                 </div>
@@ -132,22 +122,12 @@ const InvestmentPage = () => {
                 <div className="space-y-3">
                   <Label className="text-base font-semibold">Step 1: Choose Your Stablecoin</Label>
                   <div className="grid grid-cols-3 gap-3">
-                    {stablecoins.map((coin) => (
-                      <button
-                        key={coin.symbol}
-                        onClick={() => setSelectedCoin(coin.symbol)}
-                        className={`p-4 rounded-lg border-2 transition-all hover:border-primary/50 ${
-                          selectedCoin === coin.symbol 
-                            ? "border-primary bg-primary/5" 
-                            : "border-border"
-                        }`}
-                      >
+                    {stablecoins.map(coin => <button key={coin.symbol} onClick={() => setSelectedCoin(coin.symbol)} className={`p-4 rounded-lg border-2 transition-all hover:border-primary/50 ${selectedCoin === coin.symbol ? "border-primary bg-primary/5" : "border-border"}`}>
                         <div className="flex flex-col items-center gap-2">
                           <img src={coin.icon} alt={coin.symbol} className="h-8 w-8" />
                           <span className="font-semibold text-sm">{coin.symbol}</span>
                         </div>
-                      </button>
-                    ))}
+                      </button>)}
                   </div>
                 </div>
 
@@ -158,23 +138,16 @@ const InvestmentPage = () => {
                   <Label htmlFor="amount" className="text-base font-semibold">Step 2: Enter Investment Amount</Label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">$</span>
-                    <Input
-                      id="amount"
-                      type="number"
-                      placeholder="0.00"
-                      value={amount}
-                      onChange={(e) => setAmount(e.target.value)}
-                      className="pl-7 text-lg h-12"
-                    />
+                    <Input id="amount" type="number" placeholder="0.00" value={amount} onChange={e => setAmount(e.target.value)} className="pl-7 text-lg h-12" />
                   </div>
                   <p className="text-xs text-muted-foreground">Minimum investment: $1,000</p>
                   <div className="bg-muted/30 rounded-lg p-3 border border-border">
                     <p className="text-xs text-muted-foreground mb-1">Estimated Annual Yield</p>
                     <p className="text-2xl font-bold text-success">
-                      ${amount && parseFloat(amount) > 0 
-                        ? (parseFloat(amount) * parseFloat(property.apy.replace('%', '')) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-                        : '0.00'
-                      }
+                      ${amount && parseFloat(amount) > 0 ? (parseFloat(amount) * parseFloat(property.apy.replace('%', '')) / 100).toLocaleString('en-US', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2
+                    }) : '0.00'}
                     </p>
                     <p className="text-xs text-muted-foreground mt-1">Based on {property.apy} APY</p>
                   </div>
@@ -196,24 +169,17 @@ const InvestmentPage = () => {
                     </div>
                     <div className="flex gap-2">
                       <CheckCircle2 className="h-5 w-5 text-success shrink-0 mt-0.5" />
-                      <p>All funds are held in escrow through our regulated MSB partners like PayTrie and custodians such as BitGo for compliance and transparency.</p>
+                      <p>All funds are held in escrow through our regulated MSB partners like PayTrie and custodians for compliance and transparency.</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="space-y-3">
-                  <Button 
-                    className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 h-12"
-                    disabled={!amount || parseFloat(amount) < 1000}
-                  >
+                  <Button className="w-full bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90 h-12" disabled={!amount || parseFloat(amount) < 1000}>
                     Confirm Investment
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    onClick={() => navigate(-1)}
-                  >
+                  <Button variant="outline" className="w-full" onClick={() => navigate(-1)}>
                     Cancel
                   </Button>
                 </div>
@@ -222,8 +188,6 @@ const InvestmentPage = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default InvestmentPage;
