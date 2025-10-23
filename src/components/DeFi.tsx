@@ -376,88 +376,88 @@ const DeFi = () => {
   }];
   const individualProperties = [{
     name: "Century City Tower",
-    loanType: "Mezzanine Loan",
+    loanType: activeMode === "bonds" ? "Rent-Backed Bond" : "Mezzanine Loan",
     location: "Los Angeles, CA",
     propertyType: "Commercial Office",
     loanAmount: "$12,500,000",
     ltv: "65%",
     apy: activeMode === "bonds" ? "12.5%" : "15.2%",
-    term: "3 years",
+    term: activeMode === "bonds" ? "Monthly repayment" : "3 years",
     propertyValue: "$45,000,000",
     status: "Active",
     occupancy: "92%",
     image: "/src/assets/century-city-tower.jpg",
-    description: "Premium commercial office tower in the heart of Century City's business district"
+    description: activeMode === "bonds" ? "Invest in rent-backed bonds. Capital funds tenant rent advances, repaid monthly from rent collections" : "Premium commercial office tower in the heart of Century City's business district"
   }, {
     name: "Skyline Apartments",
-    loanType: "Senior Debt",
+    loanType: activeMode === "bonds" ? "Rent-Backed Bond" : "Senior Debt",
     location: "Seattle, WA",
     propertyType: "Multi-Family",
     loanAmount: "$8,750,000",
     ltv: "55%",
     apy: activeMode === "bonds" ? "11.8%" : "13.5%",
-    term: "5 years",
+    term: activeMode === "bonds" ? "Monthly repayment" : "5 years",
     propertyValue: "$28,000,000",
     status: "Active",
     occupancy: "96%",
     image: "/src/assets/skyline-apartments.jpg",
-    description: "Modern multi-family residential complex with high occupancy rates"
+    description: activeMode === "bonds" ? "Fund rent advances for tenants, receive monthly repayments from collected rent with stable returns" : "Modern multi-family residential complex with high occupancy rates"
   }, {
     name: "Marina Bay Complex",
-    loanType: "Bridge Loan",
+    loanType: activeMode === "bonds" ? "Rent-Backed Bond" : "Bridge Loan",
     location: "Miami, FL",
     propertyType: "Mixed-Use",
     loanAmount: "$15,000,000",
     ltv: "70%",
     apy: activeMode === "bonds" ? "13.2%" : "16.8%",
-    term: "2 years",
+    term: activeMode === "bonds" ? "Monthly repayment" : "2 years",
     propertyValue: "$52,000,000",
     status: "Funding",
     occupancy: "88%",
     image: "/src/assets/marina-bay-complex.jpg",
-    description: "Waterfront mixed-use development combining retail and residential spaces"
+    description: activeMode === "bonds" ? "Provide capital for rent-back bonds, earn returns from monthly tenant rent payments" : "Waterfront mixed-use development combining retail and residential spaces"
   }, {
     name: "Tech Park Plaza",
-    loanType: "Construction Loan",
+    loanType: activeMode === "bonds" ? "Rent-Backed Bond" : "Construction Loan",
     location: "Austin, TX",
     propertyType: "Commercial Office",
     loanAmount: "$20,000,000",
     ltv: "75%",
     apy: activeMode === "bonds" ? "14.5%" : "18.2%",
-    term: "18 months",
+    term: activeMode === "bonds" ? "Monthly repayment" : "18 months",
     propertyValue: "$68,000,000",
     status: "Funding",
     occupancy: "N/A",
     image: "/src/assets/tech-park-plaza.jpg",
-    description: "New construction project in Austin's growing tech corridor"
+    description: activeMode === "bonds" ? "Back tenant rent advances with monthly returns secured by ongoing rent collections" : "New construction project in Austin's growing tech corridor"
   }, {
     name: "Harbor View Residence",
-    loanType: "Mezzanine Loan",
+    loanType: activeMode === "bonds" ? "Rent-Backed Bond" : "Mezzanine Loan",
     location: "Boston, MA",
     propertyType: "Luxury Residential",
     loanAmount: "$9,500,000",
     ltv: "60%",
     apy: activeMode === "bonds" ? "12.8%" : "15.8%",
-    term: "4 years",
+    term: activeMode === "bonds" ? "Monthly repayment" : "4 years",
     propertyValue: "$38,000,000",
     status: "Active",
     occupancy: "94%",
     image: "/src/assets/harbor-view-residence.jpg",
-    description: "Exclusive waterfront luxury residences with panoramic harbor views"
+    description: activeMode === "bonds" ? "Finance rent-backed bonds with monthly repayment from luxury tenant rent streams" : "Exclusive waterfront luxury residences with panoramic harbor views"
   }, {
     name: "Greenfield Shopping Center",
-    loanType: "Senior Debt",
+    loanType: activeMode === "bonds" ? "Rent-Backed Bond" : "Senior Debt",
     location: "Denver, CO",
     propertyType: "Retail",
     loanAmount: "$11,200,000",
     ltv: "58%",
     apy: activeMode === "bonds" ? "11.5%" : "13.2%",
-    term: "7 years",
+    term: activeMode === "bonds" ? "Monthly repayment" : "7 years",
     propertyValue: "$32,000,000",
     status: "Active",
     occupancy: "90%",
     image: "/src/assets/greenfield-shopping.jpg",
-    description: "Well-established retail center in prime Denver location"
+    description: activeMode === "bonds" ? "Support rent advance bonds, receive consistent monthly returns from retail tenant payments" : "Well-established retail center in prime Denver location"
   }];
   const formatCurrency = (value: number) => {
     if (value >= 1000000000) {
@@ -529,7 +529,7 @@ const DeFi = () => {
       {/* Available Properties for Investment */}
       <Card>
         <CardHeader>
-          <CardTitle>Properties</CardTitle>
+          <CardTitle>{activeMode === "bonds" ? "Rent-Backed Bonds" : "Properties"}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
