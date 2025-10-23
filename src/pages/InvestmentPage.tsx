@@ -33,7 +33,7 @@ const InvestmentPage = () => {
   const stablecoins = [
     { symbol: "USDC", name: "USD Coin", icon: "/src/assets/usdc-icon.png" },
     { symbol: "USDT", name: "Tether", icon: "/src/assets/usdt-logo.png" },
-    { symbol: "CADC", name: "Canadian Dollar Coin", icon: "/src/assets/cadc-icon.webp" }
+    { symbol: "CADC", name: "Canadian Dollar Coin", icon: "/src/assets/cadc-logo.png" }
   ];
 
   return (
