@@ -317,6 +317,139 @@ const DeFi = () => {
       propertyValue: "$2,250,000"
     }
   }];
+  const availablePropertyBonds = [
+    {
+      property: "Century Tower",
+      location: "Vancouver, BC",
+      propertyType: "Multi-Family",
+      bondAmount: "$1,250,000",
+      apy: "7.82%",
+      term: "36 months",
+      ltv: "55%",
+      status: "Available",
+      minInvestment: "$10,000"
+    },
+    {
+      property: "Meridian Apartments",
+      location: "Paris, France",
+      propertyType: "Residential",
+      bondAmount: "$2,100,000",
+      apy: "7.45%",
+      term: "48 months",
+      ltv: "50%",
+      status: "Available",
+      minInvestment: "$25,000"
+    },
+    {
+      property: "Harbor View Residences",
+      location: "Hong Kong",
+      propertyType: "Luxury Housing",
+      bondAmount: "$3,500,000",
+      apy: "8.12%",
+      term: "60 months",
+      ltv: "45%",
+      status: "Available",
+      minInvestment: "$50,000"
+    },
+    {
+      property: "Metropolitan Plaza",
+      location: "New York, USA",
+      propertyType: "Commercial",
+      bondAmount: "$4,200,000",
+      apy: "7.95%",
+      term: "42 months",
+      ltv: "60%",
+      status: "Available",
+      minInvestment: "$100,000"
+    },
+    {
+      property: "Greenwich Square",
+      location: "London, UK",
+      propertyType: "Mixed-Use",
+      bondAmount: "$1,800,000",
+      apy: "7.65%",
+      term: "36 months",
+      ltv: "52%",
+      status: "Funding",
+      minInvestment: "$15,000"
+    }
+  ];
+
+  const availablePropertyLoans = [
+    {
+      property: "Skyline Tower",
+      location: "Vancouver, BC",
+      propertyType: "Multi-Family",
+      loanType: "Mezzanine",
+      loanAmount: "$850,000",
+      apy: "10.35%",
+      term: "24 months",
+      ltv: "75%",
+      status: "Available",
+      minInvestment: "$5,000"
+    },
+    {
+      property: "Pacific Heights",
+      location: "Vancouver, BC",
+      propertyType: "Residential",
+      loanType: "Construction",
+      loanAmount: "$1,500,000",
+      apy: "11.20%",
+      term: "18 months",
+      ltv: "70%",
+      status: "Available",
+      minInvestment: "$10,000"
+    },
+    {
+      property: "Victoria Gardens",
+      location: "London, UK",
+      propertyType: "Student Housing",
+      loanType: "Senior",
+      loanAmount: "$2,200,000",
+      apy: "9.85%",
+      term: "36 months",
+      ltv: "65%",
+      status: "Available",
+      minInvestment: "$25,000"
+    },
+    {
+      property: "Central Business District",
+      location: "Hong Kong",
+      propertyType: "Office",
+      loanType: "Bridge",
+      loanAmount: "$5,000,000",
+      apy: "12.50%",
+      term: "12 months",
+      ltv: "60%",
+      status: "Available",
+      minInvestment: "$50,000"
+    },
+    {
+      property: "Madison Avenue Retail",
+      location: "New York, USA",
+      propertyType: "Retail",
+      loanType: "Mezzanine",
+      loanAmount: "$3,200,000",
+      apy: "10.75%",
+      term: "30 months",
+      ltv: "68%",
+      status: "Funding",
+      minInvestment: "$20,000"
+    },
+    {
+      property: "Seine Riverside",
+      location: "Paris, France",
+      propertyType: "Luxury Housing",
+      loanType: "Construction",
+      loanAmount: "$4,100,000",
+      apy: "11.80%",
+      term: "24 months",
+      ltv: "72%",
+      status: "Available",
+      minInvestment: "$30,000"
+    }
+  ];
+
   const markets = [{
     location: "Vancouver",
     country: "Canada",
@@ -458,251 +591,86 @@ const DeFi = () => {
                 <TableHead>Status</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody>
-              {earnPositions.map((position, index) => <Dialog key={index}>
-                  <DialogTrigger asChild>
-                    <TableRow className="hover:bg-muted/50 cursor-pointer">
-                      <TableCell className="font-medium">{position.pool}</TableCell>
-                      <TableCell>
-                        <Badge variant={position.productType === "Bond" ? "outline" : "secondary"} className={position.productType === "Bond" ? "text-xs" : "bg-primary/20 text-primary text-xs"}>
-                          {position.productType}
-                        </Badge>
-                      </TableCell>
-                      <TableCell className="text-right font-mono text-sm">
-                        {position.amount}
-                      </TableCell>
-                      <TableCell className="text-right font-mono text-sm text-success">
-                        {position.apy}
-                      </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
-                        {position.duration}
-                      </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
-                        {position.startDate}
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="outline" className="text-xs">
-                          {position.network}
-                        </Badge>
-                      </TableCell>
-                      <TableCell>
-                        <Badge variant="default" className="bg-success/20 text-success">
-                          {position.status}
-                        </Badge>
-                      </TableCell>
-                    </TableRow>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle className="text-2xl">Position Details</DialogTitle>
-                    </DialogHeader>
-                    
-                    <div className="space-y-6">
-                      {/* Position Header */}
-                      <div className="bg-primary-gradient text-primary-foreground p-6 rounded-lg">
-                        <h3 className="text-2xl font-bold mb-2">{position.pool}</h3>
-                        <Badge variant="outline" className="bg-white/20 text-white border-white/30">
-                          {position.productType} Position
-                        </Badge>
-                        <p className="text-sm mt-2 opacity-90">Position ID: {position.details.positionId}</p>
-                      </div>
+...
+          </Table>
+        </CardContent>
+      </Card>
 
-                      {/* Key Metrics */}
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Principal Amount</p>
-                          <p className="text-lg font-semibold">{position.details.principalAmount}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Yield Earned</p>
-                          <p className="text-lg font-semibold text-success">{position.details.yieldEarned}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Current Value</p>
-                          <p className="text-lg font-semibold">{position.details.currentValue}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">APY</p>
-                          <p className="text-lg font-semibold text-success">{position.apy}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Days Active</p>
-                          <p className="text-lg font-semibold">{position.details.daysActive} days</p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Status</p>
-                          <Badge variant="default" className="bg-success/20 text-success">
-                            {position.status}
-                          </Badge>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Network</p>
-                          <p className="text-lg font-semibold">{position.network}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Pool Utilization</p>
-                          <p className="text-lg font-semibold">{position.details.poolUtilization}</p>
-                        </div>
-                        <div className="space-y-1">
-                          <p className="text-sm text-muted-foreground">Deposit Date</p>
-                          <p className="text-lg font-semibold">{position.details.depositDate}</p>
-                        </div>
-                      </div>
-
-                      <Separator />
-
-                      {/* Performance Chart */}
-                      <div>
-                        <h4 className="text-lg font-semibold mb-3">Position Performance</h4>
-                        <ResponsiveContainer width="100%" height={200}>
-                          <AreaChart data={[
-                            { month: 'Jul', value: position.amountNumeric * 0.92, yield: 0 },
-                            { month: 'Aug', value: position.amountNumeric * 0.94, yield: position.amountNumeric * 0.02 },
-                            { month: 'Sep', value: position.amountNumeric * 0.96, yield: position.amountNumeric * 0.04 },
-                            { month: 'Oct', value: position.amountNumeric * 0.98, yield: position.amountNumeric * 0.06 },
-                            { month: 'Nov', value: position.amountNumeric, yield: position.amountNumeric * 0.08 },
-                            { month: 'Dec', value: parseFloat(position.details.currentValue.replace(/[$,]/g, '')), yield: parseFloat(position.details.yieldEarned.replace(/[$,]/g, '')) }
-                          ]}>
-                            <defs>
-                              <linearGradient id={`valueGradient${index}`} x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0.3} />
-                                <stop offset="95%" stopColor="hsl(180, 65%, 45%)" stopOpacity={0} />
-                              </linearGradient>
-                              <linearGradient id={`yieldGradientPos${index}`} x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.3} />
-                                <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0} />
-                              </linearGradient>
-                            </defs>
-                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                            <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`} />
-                            <Tooltip 
-                              formatter={(value: number, name: string) => [`$${value.toLocaleString()}`, name === 'value' ? 'Position Value' : 'Yield Earned']}
-                              contentStyle={{
-                                backgroundColor: 'hsl(var(--card))',
-                                border: '1px solid hsl(var(--border))',
-                                borderRadius: '8px'
-                              }} 
-                            />
-                            <Area type="monotone" dataKey="value" stroke="hsl(180, 65%, 45%)" strokeWidth={2} fill={`url(#valueGradient${index})`} />
-                            <Area type="monotone" dataKey="yield" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#yieldGradientPos${index})`} />
-                          </AreaChart>
-                        </ResponsiveContainer>
-                      </div>
-
-                      <Separator />
-
-                      {/* Distribution Timeline */}
-                      <div>
-                        <h4 className="text-lg font-semibold mb-3">Distribution Timeline</h4>
-                        <div className="bg-muted/30 rounded-lg p-4 mb-4">
-                          <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div>
-                              <p className="text-muted-foreground">Next Distribution</p>
-                              <p className="font-semibold">{position.details.nextDistribution}</p>
-                            </div>
-                            <div>
-                              <p className="text-muted-foreground">Distribution Amount</p>
-                              <p className="font-semibold text-success">{position.details.distributionAmount}</p>
-                            </div>
-                          </div>
-                        </div>
-                        <ResponsiveContainer width="100%" height={200}>
-                          <AreaChart data={[
-                            { month: 'Jan', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.95 },
-                            { month: 'Feb', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.02, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.97 },
-                            { month: 'Mar', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 0.98, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 2.95 },
-                            { month: 'Apr', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.05, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 4.0 },
-                            { month: 'May', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 1.01, cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 5.01 },
-                            { month: 'Jun', distribution: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')), cumulative: parseFloat(position.details.distributionAmount.replace(/[$,]/g, '')) * 6.01 }
-                          ]}>
-                            <defs>
-                              <linearGradient id={`distGradient${index}`} x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.4} />
-                                <stop offset="95%" stopColor="hsl(158, 64%, 52%)" stopOpacity={0.05} />
-                              </linearGradient>
-                              <linearGradient id={`cumGradient${index}`} x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0.3} />
-                                <stop offset="95%" stopColor="hsl(270, 70%, 60%)" stopOpacity={0} />
-                              </linearGradient>
-                            </defs>
-                            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                            <XAxis dataKey="month" stroke="hsl(var(--muted-foreground))" fontSize={11} />
-                            <YAxis stroke="hsl(var(--muted-foreground))" fontSize={11} tickFormatter={(value) => `$${value.toLocaleString()}`} />
-                            <Tooltip 
-                              formatter={(value: number, name: string) => [
-                                `$${value.toLocaleString()}`, 
-                                name === 'distribution' ? 'Monthly' : 'Cumulative'
-                              ]}
-                              contentStyle={{
-                                backgroundColor: 'hsl(var(--card))',
-                                border: '1px solid hsl(var(--border))',
-                                borderRadius: '8px'
-                              }} 
-                            />
-                            <Legend 
-                              verticalAlign="top" 
-                              height={36}
-                              formatter={(value) => value === 'distribution' ? 'Monthly Distribution' : 'Cumulative Total'}
-                            />
-                            <Area type="monotone" dataKey="distribution" stroke="hsl(158, 64%, 52%)" strokeWidth={2} fill={`url(#distGradient${index})`} />
-                            <Area type="monotone" dataKey="cumulative" stroke="hsl(270, 70%, 60%)" strokeWidth={2} fill={`url(#cumGradient${index})`} />
-                          </AreaChart>
-                        </ResponsiveContainer>
-                      </div>
-
-                      <Separator />
-
-                      {/* Yield Information */}
-                      <div>
-                        <h4 className="text-lg font-semibold mb-3">Yield & Distribution</h4>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-1">
-                            <p className="text-sm text-muted-foreground">Projected Annual Yield</p>
-                            <p className="text-lg font-semibold text-success">{position.details.projectedAnnualYield}</p>
-                            <p className="text-xs text-muted-foreground">Based on current APY of {position.apy}</p>
-                          </div>
-                          <div className="space-y-1">
-                            <p className="text-sm text-muted-foreground">Next Distribution</p>
-                            <p className="text-lg font-semibold">{position.details.nextDistribution}</p>
-                            <p className="text-xs text-muted-foreground">Amount: {position.details.distributionAmount}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Additional Info */}
-                      <div className="bg-muted p-4 rounded-lg">
-                        <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
-                          <Info className="h-4 w-4" />
-                          Position Information
-                        </h4>
-                        <p className="text-sm text-muted-foreground">
-                          This {position.productType.toLowerCase()} position in {position.pool} has been active for {position.details.daysActive} days, earning a total of {position.details.yieldEarned} in yield. The current value of your position is {position.details.currentValue}, representing a return on your principal investment of {position.details.principalAmount}.
-                        </p>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-3">
-                        <Button className="flex-1 bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90">
-                          Add Funds
-                        </Button>
-                        <Button variant="outline" className="flex-1">
-                          Withdraw
-                        </Button>
-                      </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>)}
-              <TableRow className="border-t-2 font-bold bg-muted/50">
-                <TableCell className="text-lg">TOTAL</TableCell>
-                <TableCell></TableCell>
-                <TableCell className="text-right text-lg">$510,500</TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
-                <TableCell></TableCell>
+      {/* Available Properties for Investment */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Available Properties for Investment</CardTitle>
+          <p className="text-sm text-muted-foreground mt-2">
+            Individual property {activeMode === "bonds" ? "bonds" : "loans"} available for direct investment
+          </p>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Property</TableHead>
+                <TableHead>Location</TableHead>
+                <TableHead>Type</TableHead>
+                {activeMode === "loans" && <TableHead>Loan Type</TableHead>}
+                <TableHead className="text-right">{activeMode === "bonds" ? "Bond" : "Loan"} Amount</TableHead>
+                <TableHead className="text-right">APY</TableHead>
+                <TableHead className="text-right">LTV</TableHead>
+                <TableHead>Term</TableHead>
+                <TableHead className="text-right">Min. Investment</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead></TableHead>
               </TableRow>
+            </TableHeader>
+            <TableBody>
+              {(activeMode === "bonds" ? availablePropertyBonds : availablePropertyLoans).map((property, index) => (
+                <TableRow key={index} className="hover:bg-muted/50">
+                  <TableCell className="font-medium">{property.property}</TableCell>
+                  <TableCell className="text-sm text-muted-foreground">{property.location}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className="text-xs">
+                      {property.propertyType}
+                    </Badge>
+                  </TableCell>
+                  {activeMode === "loans" && (
+                    <TableCell>
+                      <Badge variant="secondary" className="bg-primary/20 text-primary text-xs">
+                        {"loanType" in property ? property.loanType : ""}
+                      </Badge>
+                    </TableCell>
+                  )}
+                  <TableCell className="text-right font-mono text-sm">
+                    {activeMode === "bonds" ? property.bondAmount : "loanAmount" in property ? property.loanAmount : ""}
+                  </TableCell>
+                  <TableCell className="text-right font-mono text-sm text-success font-semibold">
+                    {property.apy}
+                  </TableCell>
+                  <TableCell className="text-right font-mono text-sm">
+                    {property.ltv}
+                  </TableCell>
+                  <TableCell className="text-sm text-muted-foreground">
+                    {property.term}
+                  </TableCell>
+                  <TableCell className="text-right font-mono text-sm">
+                    {property.minInvestment}
+                  </TableCell>
+                  <TableCell>
+                    <Badge 
+                      variant={property.status === "Available" ? "default" : "secondary"}
+                      className={property.status === "Available" ? "bg-success/20 text-success" : ""}
+                    >
+                      {property.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Button 
+                      size="sm" 
+                      className="bg-gradient-to-r from-[hsl(180,65%,45%)] to-[hsl(90,70%,60%)] text-white hover:opacity-90"
+                    >
+                      Invest
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </TableBody>
           </Table>
         </CardContent>
