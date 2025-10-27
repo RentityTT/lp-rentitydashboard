@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./ui/table";
 import { Badge } from "./ui/badge";
 import { TrendingUp, Info } from "lucide-react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import BlockchainPaymentHistory from "./BlockchainPaymentHistory";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 import { Separator } from "./ui/separator";
@@ -22,9 +22,20 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("portfolio");
   const [showWallet, setShowWallet] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     slug
   } = useParams();
+
+  // Handle navigation state to set active tab
+  useEffect(() => {
+    if (location.state?.activeTab) {
+      setActiveTab(location.state.activeTab);
+      if (location.state.activeTab === "defi") {
+        setActiveItem("defi");
+      }
+    }
+  }, [location.state]);
   const handleSidebarClick = (item: string) => {
     setActiveItem(item);
     // Reset wallet view unless explicitly opening it

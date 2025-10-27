@@ -45,7 +45,7 @@ const InvestmentPage = () => {
       {/* Header */}
       <div className="border-b border-border bg-card/50 sticky top-0 z-10 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 py-4">
-          <Button variant="ghost" onClick={() => navigate("/")} className="gap-2">
+          <Button variant="ghost" onClick={() => navigate("/", { state: { activeTab: "defi" } })} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Back
           </Button>
